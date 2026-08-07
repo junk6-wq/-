@@ -1,19 +1,33 @@
-/* カード全体をFlexコンテナに設定 */
-.card {
-  display: flex;
-  flex-direction: column;
-}
+<!-- 各コンテンツカード -->
+<div class="spot-card">
+  
+  <!-- ① 写真・ギャラリーエリア（上部に移動） -->
+  <div class="spot-image-wrapper">
+    <div class="spot-image-gallery">
+      <img src="画像のURL1" alt="写真1">
+      <img src="画像のURL2" alt="写真2">
+    </div>
+    <span class="swipe-hint">スワイプ ➔</span>
+  </div>
 
-/* 写真・画像エリアを最上部に移動 */
-.card-image-block {
-  order: -1; /* -1を指定することでテキストより上に配置 */
-  margin-bottom: 12px; /* 下のテキストとの間に余白を設定 */
-}
+  <!-- ② テキスト・詳細情報エリア（下部に配置） -->
+  <div class="spot-content">
+    <div class="spot-header">
+      <span class="category-badge">🍣 食事</span>
+      <span class="time-badge">18:30 - 夕食</span>
+      <a href="https://maps.google.com/..." target="_blank" rel="noopener" class="map-button">📍 Map</a>
+    </div>
+    
+    <h3 class="spot-title">松本市街 寿司ディナー</h3>
+    
+    <div class="spot-info">
+      <div>🕐 所要時間：約90分</div>
+      <div>💰 予算目安：約3,000円〜5,000円/人</div>
+    </div>
+    
+    <p class="spot-description">
+      長野県ブランド魚「信州サーモン」や清流で育った淡水魚の握りを堪能！
+    </p>
+  </div>
 
-/* 画像自体のスタイリング（角丸・アスペクト比固定） */
-.card-image-block img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 8px;
-}
+</div>
