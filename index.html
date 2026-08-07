@@ -1,1 +1,355 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TRIP PLAN | 2026.09.12 - 09.13</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><style>*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;}body{background-color:#f8fafc;color:#1e293b;line-height:1.4;padding-bottom:20px;}header{background:linear-gradient(135deg, #1e293b, #334155);color:#fff;padding:14px 10px;text-align:center;border-bottom:3px solid #f59e0b;}header h1{font-family:"Georgia",serif;font-size:19px;font-weight:700;letter-spacing:0.05em;color:#fef08a;}header p{font-size:11px;color:#cbd5e1;margin-top:2px;font-weight:600;}nav{display:flex;width:100%;background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,0.04);}nav button{flex:1 1 0;padding:10px 0;border:none;background:none;font-size:13px;font-weight:700;color:#64748b;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;text-align:center;}nav button.active{color:#d97706;border-bottom-color:#d97706;}.container{width:100%;max-width:600px;margin:0 auto;padding:10px 8px;}.tab-content{display:none;}.tab-content.active{display:block;}.timeline{position:relative;padding-left:12px;}.timeline::before{content:'';position:absolute;left:3px;top:8px;bottom:8px;width:2px;background:#cbd5e1;}.timeline-item{position:relative;margin-bottom:12px;}.timeline-item::after{content:'';position:absolute;left:-12px;top:14px;width:6px;height:6px;border-radius:50%;background:#f59e0b;border:1px solid #fff;box-shadow:0 0 0 1.5px #cbd5e1;}.card{background:#fff;border:1px solid #cbd5e1;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.03);}.card-content{padding:10px 12px;}.card-gallery-container{position:relative;width:100%;height:150px;background:#e2e8f0;}.card-gallery{width:100%;height:150px;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;}.card-gallery::-webkit-scrollbar{display:none;}.card-gallery img{width:100%;height:150px;object-fit:cover;scroll-snap-align:start;flex-shrink:0;}.swipe-hint{position:absolute;bottom:6px;right:8px;background:rgba(15, 23, 42, 0.8);color:#fff;font-size:10px;padding:2px 8px;border-radius:4px;font-weight:700;pointer-events:none;}.card-meta{display:flex;align-items:center;gap:6px;margin-bottom:6px;}.badge-cat,.card-time{padding:2px 8px;border-radius:4px;font-size:11px;font-weight:800;}.item-move .badge-cat{background:#f1f5f9;color:#334155;}.item-move .card-time{background:#e2e8f0;color:#1e293b;}.item-sight .badge-cat{background:#dbeafe;color:#1e40af;}.item-sight .card-time{background:#bfdbfe;color:#1e3a8a;}.item-food .badge-cat{background:#ffe4e6;color:#be185d;}.item-food .card-time{background:#fecdd3;color:#881337;}.item-hotel .badge-cat{background:#f3e8ff;color:#6b21a8;}.item-hotel .card-time{background:#e9d5ff;color:#581c87;}.gmap-link{font-size:10px;color:#475569;text-decoration:none;background:#f8fafc;border:1px solid #cbd5e1;padding:2px 6px;border-radius:4px;font-weight:600;margin-left:auto;transition:all 0.2s;}.gmap-link:hover{background:#e2e8f0;color:#0f172a;}.card-title{font-size:15px;font-weight:800;color:#0f172a;margin-bottom:6px;line-height:1.3;}.info-list{margin-bottom:6px;}.info-row{display:flex;align-items:flex-start;gap:6px;font-size:11px;color:#475569;font-weight:600;margin-bottom:3px;}.info-icon{width:16px;text-align:center;flex-shrink:0;}.card-desc{font-size:12px;color:#334155;font-weight:500;line-height:1.5;border-top:1px dashed #e2e8f0;padding-top:6px;margin-top:4px;}.checklist{background:#fff;border:1px solid #cbd5e1;border-radius:10px;padding:14px;}.checklist-item{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #f1f5f9;font-size:13px;font-weight:600;color:#334155;}.checklist-item:last-child{border-bottom:none;}.checklist-item input{width:15px;height:15px;accent-color:#d97706;}.leaflet-tooltip{font-size:11px;font-weight:800;padding:4px 8px;border-radius:6px;background:#ffffff;color:#0f172a;border:2px solid #d97706;box-shadow:0 3px 8px rgba(0,0,0,0.2);}.leaflet-tooltip-top:before{border-top-color:#d97706;}</style></head><body><header><h1>HAKONE & IZU TRIP 🗺️✨</h1><p>2026.09.12 Sat - 09.13 Sun</p></header><nav><button class="nav-btn active" onclick="switchTab('day1',this)">DAY 1</button><button class="nav-btn" onclick="switchTab('day2',this)">DAY 2</button><button class="nav-btn" onclick="switchTab('map',this)">🗺️ 地図</button><button class="nav-btn" onclick="switchTab('prep',this)">📋 準備</button></nav><div class="container"><div id="day1" class="tab-content active"><div class="timeline"><div class="timeline-item item-move"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">09:00 - 10:30</span><a href="https://www.google.com/maps/dir/?api=1&origin=新宿駅&destination=箱根湯本駅&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">新宿IC ➔ 箱根湯本IC</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：車で約90分（東名高速経由）</span></div><div class="info-row"><span class="info-icon">💰</span><span>料金目安：高速代（ETC）約2,500円</span></div></div><div class="card-desc">海老名SA（下り）で名物「ぽるとがるのメロンパン」＆プレミアムソフトで朝のドライブ休憩がおすすめ！</div></div></div></div><div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=600&q=80" alt="箱根神社1"/><img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80" alt="箱根神社2"/></div><span class="swipe-hint">横スワイプ ➔</span></div><div class="card-content"><div class="card-meta"><span class="badge-cat">⛩️ 観光</span><span class="card-time">11:00 - 12:30</span><a href="https://www.google.com/maps/search/?api=1&query=箱根神社+平和の鳥居" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">箱根神社・平和の鳥居</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：約90分</span></div><div class="info-row"><span class="info-icon">💰</span><span>料金目安：境内自由（御朱印 500円）</span></div></div><div class="card-desc">芦ノ湖に浮かぶ朱色の鳥居が印象的な超人気パワースポット！水中鳥居前での映え写真撮影や、杉並木の美しい参道散策を満喫しよう。</div></div></div></div><div class="timeline-item item-move"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">13:00 - 14:00</span><a href="https://www.google.com/maps/dir/?api=1&origin=箱根神社&destination=伊豆&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">箱根神社 ➔ 伊豆エリア</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：車で約45分（伊豆スカイライン経由）</span></div><div class="info-row"><span class="info-icon">💰</span><span>料金目安：通行料 約1,000円</span></div></div><div class="card-desc">相模湾と富士山を一望できる爽快ドライブコース！滝知山展望台で車を止めて絶景記念撮影がおすすめ。</div></div></div></div><div class="timeline-item item-food"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?auto=format&fit=crop&w=600&q=80" alt="海鮮丼1"/><img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80" alt="海鮮2"/></div><span class="swipe-hint">横スワイプ ➔</span></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🍣 食事</span><span class="card-time">14:30 - 15:30</span><a href="https://www.google.com/maps/search/?api=1&query=伊豆海鮮" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">伊豆海鮮処 ◯◯丸</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：約60分</span></div><div class="info-row"><span class="info-icon">💰</span><span>予算目安：約2,000円〜3,500円</span></div></div><div class="card-desc">駿河湾・相模湾直送の新鮮地魚を豪華に盛り付けた名物海鮮丼！じっくり煮込んだ甘辛タレが染み渡る『金目鯛の姿煮』は絶品。</div></div></div></div><div class="timeline-item item-hotel"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="温泉1"/><img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=600&q=80" alt="温泉2"/><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="客室3"/></div><span class="swipe-hint">横スワイプ ➔</span></div><div class="card-content"><div class="card-meta"><span class="badge-cat">♨️ 宿泊</span><span class="card-time">16:00 - Check-in</span><a href="https://www.google.com/maps/search/?api=1&query=修善寺温泉" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">修善寺温泉 ◯◯楼</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>チェックイン：16:00〜</span></div><div class="info-row"><span class="info-icon">💰</span><span>プラン：1泊2食付き温泉会席</span></div></div><div class="card-desc">竹林の小径近くに佇む風情あふれる和風温泉旅館。源泉かけ流しの露天風呂で長旅の疲れを癒やし、夕食は伊豆の味覚が詰まった和食会席コースをご堪能ください。</div></div></div></div></div></div><div id="day2" class="tab-content"><div class="timeline"><div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80" alt="城ヶ崎海岸1"/><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="海岸2"/></div><span class="swipe-hint">横スワイプ ➔</span></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🌊 観光</span><span class="card-time">10:00 - 12:00</span><a href="https://www.google.com/maps/search/?api=1&query=城ヶ崎海岸+門脇吊橋" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">城ヶ崎海岸・門脇吊橋</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：約120分</span></div><div class="info-row"><span class="info-icon">💰</span><span>料金目安：見学自由（駐車場 500円）</span></div></div><div class="card-desc">崖と断崖絶壁に架かるスリル満点の懸崖吊り橋！足下に広がる太平洋の大海原＆波飛沫の大パノラマ絶景散策をお楽しみいただけます。</div></div></div></div></div></div><div id="map" class="tab-content"><div id="main-map" style="height:480px;width:100%;border-radius:10px;border:1px solid #cbd5e1;"></div></div><div id="prep" class="tab-content"><div class="checklist"><h3 style="font-size:14px;margin-bottom:10px;color:#0f172a;">📋 旅の準備・持ち物チェックリスト</h3><label class="checklist-item"><input type="checkbox"> ETCカード・運転免許証</label><label class="checklist-item"><input type="checkbox"> 着替え・防寒具・羽織もの</label><label class="checklist-item"><input type="checkbox"> 常備薬・スキンケア用品</label><label class="checklist-item"><input type="checkbox"> 充電器・モバイルバッテリー・カメラ</label></div></div></div><script>let mainMap;let mainMapInited=false;let mainMapMarkers=[];function switchTab(tabId,btn){document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(el=>el.classList.remove('active'));document.getElementById(tabId).classList.add('active');if(btn)btn.classList.add('active');if(tabId==='map'){setTimeout(function(){if(!mainMapInited){initMainMap();}else if(mainMap){mainMap.invalidateSize();if(mainMapMarkers.length>0){var group=new L.featureGroup(mainMapMarkers);mainMap.fitBounds(group.getBounds().pad(0.15));}}},100);}}function initMainMap(){mainMapInited=true;mainMap=L.map('main-map',{zoomControl:true}).setView([35.10,139.00],10);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'}).addTo(mainMap);var m1=L.marker([35.2016,139.0229]).bindTooltip("DAY 1 11:00 | 箱根神社",{permanent:true,direction:"top",offset:[0,-10]}).bindPopup("<b>DAY 1 11:00</b><br>⛩️ 箱根神社・平和の鳥居");var m2=L.marker([34.9720,138.9500]).bindTooltip("DAY 1 14:30 | 伊豆海鮮処",{permanent:true,direction:"top",offset:[0,-10]}).bindPopup("<b>DAY 1 14:30</b><br>🍣 伊豆海鮮処 ◯◯丸");var m3=L.marker([34.9750,138.9300]).bindTooltip("DAY 1 16:00 | 修善寺温泉",{permanent:true,direction:"top",offset:[0,-10]}).bindPopup("<b>DAY 1 16:00</b><br>♨️ 修善寺温泉 ◯◯楼");var m4=L.marker([34.8900,139.1300]).bindTooltip("DAY 2 10:00 | 城ヶ崎海岸",{permanent:true,direction:"top",offset:[0,-10]}).bindPopup("<b>DAY 2 10:00</b><br>🌊 城ヶ崎海岸・門脇吊橋");mainMapMarkers=[m1,m2,m3,m4];mainMapMarkers.forEach(function(m){m.addTo(mainMap);});var group=new L.featureGroup(mainMapMarkers);mainMap.fitBounds(group.getBounds().pad(0.15));}</script></body></html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>2026年お盆 信州・奥飛騨・白馬・軽井沢 絶景名湯＆グルメドライブ旅のしおり</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{--primary:#2e5a44;--accent:#c5a059;--bg:#f8f9fa;--card:#ffffff;--text:#2c3e50;--sub:#6c757d;}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Helvetica Neue',Arial,'Hiragino Kaku Gothic ProN','Meiryo',sans-serif;}
+body{background:var(--bg);color:var(--text);line-height:1.6;padding-bottom:60px;}
+header{background:linear-gradient(135deg, #1b3b2b, #2e5a44, #3d7258);color:#fff;text-align:center;padding:30px 15px 20px;box-shadow:0 4px 15px rgba(0,0,0,0.15);}
+header h1{font-size:1.6rem;font-weight:700;letter-spacing:1px;margin-bottom:8px;}
+header p{font-size:0.9rem;opacity:0.9;}
+.tag-container{display:flex;justify-content:center;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.tag{background:rgba(255,255,255,0.18);padding:4px 12px;border-radius:20px;font-size:0.75rem;border:1px solid rgba(255,255,255,0.3);}
+.nav-tabs{display:flex;background:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.08);overflow-x:auto;scrollbar-width:none;}
+.nav-tabs::-webkit-scrollbar{display:none;}
+.tab-btn{flex:1;min-width:70px;padding:12px 8px;text-align:center;border:none;background:none;font-weight:bold;font-size:0.85rem;color:var(--sub);cursor:pointer;border-bottom:3px solid transparent;transition:all 0.3s;}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary);background:rgba(46,90,68,0.05);}
+.container{max-width:800px;margin:20px auto;padding:0 15px;}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+.timeline{position:relative;padding-left:20px;}
+.timeline::before{content:'';position:absolute;left:7px;top:10px;bottom:10px;width:3px;background:#e0e0e0;border-radius:2px;}
+.timeline-card{position:relative;background:var(--card);border-radius:12px;padding:18px;margin-bottom:20px;box-shadow:0 3px 12px rgba(0,0,0,0.06);border:1px solid #edf2f7;}
+.timeline-card::before{content:'';position:absolute;left:-20px;top:22px;width:11px;height:11px;border-radius:50%;background:var(--primary);border:3px solid #fff;box-shadow:0 0 0 2px var(--primary);}
+.time-badge{display:inline-block;background:var(--primary);color:#fff;font-size:0.75rem;font-weight:bold;padding:3px 10px;border-radius:12px;margin-bottom:8px;}
+.card-title{font-size:1.15rem;font-weight:bold;color:#1a252f;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;}
+.card-img{width:100%;height:180px;object-fit:cover;border-radius:8px;margin:10px 0;}
+.card-desc{font-size:0.9rem;color:#4a5568;line-height:1.6;}
+.card-tip{background:#f0f7f4;border-left:4px solid var(--primary);padding:10px 12px;font-size:0.82rem;color:#2d523e;border-radius:0 8px 8px 0;margin-top:10px;}
+.info-box{background:var(--card);border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 3px 12px rgba(0,0,0,0.06);}
+.info-title{font-size:1.1rem;font-weight:bold;color:var(--primary);margin-bottom:12px;border-bottom:2px solid #e2e8f0;padding-bottom:6px;}
+.info-list{list-style:none;}
+.info-list li{padding:8px 0;border-bottom:1px dashed #e2e8f0;display:flex;justify-content:space-between;font-size:0.9rem;}
+.checklist{list-style:none;}
+.checklist li{padding:10px 0;border-bottom:1px solid #edf2f7;display:flex;align-items:center;gap:10px;font-size:0.9rem;cursor:pointer;}
+.checklist input[type="checkbox"]{width:18px;height:18px;accent-color:var(--primary);}
+#map{height:450px;width:100%;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,0.1);margin-bottom:15px;}
+.map-filter{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+.map-filter button{padding:6px 14px;border-radius:15px;border:1px solid var(--primary);background:#fff;color:var(--primary);font-size:0.8rem;font-weight:bold;cursor:pointer;}
+.map-filter button.active{background:var(--primary);color:#fff;}
+footer{text-align:center;padding:20px;font-size:0.8rem;color:var(--sub);}
+</style>
+</head>
+<body>
+<header>
+  <h1>🌿 2026年お盆 信州・奥飛騨・白馬・軽井沢 旅のしおり</h1>
+  <p>2026年8月10日(月) 〜 8月14日(金) 【4泊5日 夫婦ドライブ旅】</p>
+  <div class="tag-container">
+    <span class="tag">🚗 カローラ・クロス HV</span>
+    <span class="tag">♨️ 信州健康ランド</span>
+    <span class="tag">🏔️ 上高地＆白馬岩岳</span>
+    <span class="tag">🌲 軽井沢リゾート</span>
+  </div>
+</header>
+<div class="nav-tabs">
+  <button class="tab-btn active" onclick="switchTab('day1')">DAY 1<br><small>8/10</small></button>
+  <button class="tab-btn" onclick="switchTab('day2')">DAY 2<br><small>8/11</small></button>
+  <button class="tab-btn" onclick="switchTab('day3')">DAY 3<br><small>8/12</small></button>
+  <button class="tab-btn" onclick="switchTab('day4')">DAY 4<br><small>8/13</small></button>
+  <button class="tab-btn" onclick="switchTab('day5')">DAY 5<br><small>8/14</small></button>
+  <button class="tab-btn" onclick="switchTab('mapTab')">🗺️<br><small>地図</small></button>
+  <button class="tab-btn" onclick="switchTab('infoTab')">📋<br><small>準備/予算</small></button>
+</div>
+<div class="container">
+  <div id="day1" class="tab-content active">
+    <div class="timeline">
+      <div class="timeline-card">
+        <span class="time-badge">14:30 - 出発</span>
+        <div class="card-title">水戸を出発 🚗（北関東道・上信越道経由）</div>
+        <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=80" class="card-img" alt="ドライブ">
+        <div class="card-desc">水戸南ICから北関東自動車道・上信越自動車道・長野自動車道を経由して松本へ向かいます（約250km / 休憩含め約3.5〜4時間）。お盆初日の渋滞を考慮し、こまめにSAで水分補給と休憩を挟みます。</div>
+        <div class="card-tip">💡 横川SAなどで名物釜めしやスイーツの軽食購入もおすすめ！</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">18:30 - 夕食</span>
+        <div class="card-title">松本市街 寿司ディナー 🍣（信州サーモン＆地魚）</div>
+        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80" class="card-img" alt="松本寿司ディナー">
+        <div class="card-desc">松本ICを降りて松本市内の人気寿司店（「寿司処 銭形」や「すし酒場」等）へ。長野県ブランド魚「信州サーモン」や淡水魚「信州岩魚」の握り、新鮮なお刺身を堪能します。※人気店のため事前予約が安心です。</div>
+        <div class="card-tip">💡 信州サーモンは脂がのってトロける旨味！車中泊前に贅沢な夕食を楽しめます。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">20:15 - 温泉・スパ ♨️</span>
+        <div class="card-title">信州健康ランド（24時間営業 20種類以上の超大型スパ）</div>
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" class="card-img" alt="信州健康ランド">
+        <div class="card-desc">松本市街から南へ車で約20分（塩尻北IC近く）の信州健康ランドへ。24時間営業なので時間を気にせず、露天風呂・薬草湯・ジャグジー・各種サウナ・水風呂など20種類以上のお風呂を存分に堪能！ドライブの疲れを徹底的にリフレッシュします。</div>
+        <div class="card-tip">💡 24時間営業でアメニティも完全完備！仮眠室や広大なロビーラウンジもあるため、時間の制約なしに超快適に過ごせます。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">22:00 - 到着・車中泊 🌙</span>
+        <div class="card-title">沢渡（さわんど）駐車場 到着・車中泊</div>
+        <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=800&q=80" class="card-img" alt="沢渡駐車場車中泊">
+        <div class="card-desc">塩尻北IC付近から国道158号線を約1時間ドライブし、上高地マイカー規制の拠点「沢渡バスターミナル駐車場」へ（約41km）。車サンシェード・寝具・虫除けをセットし、翌朝一番の上高地行きに備えて早めに就寝します。</div>
+        <div class="card-tip">💡 標高約1,000mの沢渡は夜間涼しく快適です。キレイな公衆トイレ完備。</div>
+      </div>
+    </div>
+  </div>
+  <div id="day2" class="tab-content">
+    <div class="timeline">
+      <div class="timeline-card">
+        <span class="time-badge">05:30 - 移動</span>
+        <div class="card-title">沢渡 ➔ 定額タクシーで上高地へ 🚕</div>
+        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80" class="card-img" alt="上高地移動">
+        <div class="card-desc">お盆の長蛇のバス待ち列を回避するため、沢渡バスターミナルから定額タクシー（片道約4,900円/台）を利用してマイカー規制区間へ。運転手さんに「大正池まで」と伝えて約15分で到着。</div>
+        <div class="card-tip">💡 タクシー利用なら混雑フリーで早朝の上高地へ一番乗りできます！</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">06:00 - 11:30 - ハイキング 🥾</span>
+        <div class="card-title">上高地 絶景ハイキング（大正池 ➔ 田代池 ➔ 河童橋）</div>
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="card-img" alt="上高地">
+        <div class="card-desc">朝もやに包まれる幻想的な大正池から散策スタート。立ち枯れの木々と焼岳の水鏡、梓川沿いの木道を歩いて河童橋へ（約3km・ゆったり散策約2時間）。五千尺ホテル直営カフェ「5HORN」で極上レアチーズケーキや「トワサンク」の信州アップルパイをテイクアウト！</div>
+        <div class="card-tip">💡 朝の光に照らされる穂高連峰は言葉を失う美しさ。スニーカーで歩きやすいコースです。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">12:00 - ランチ＆移動 🍱</span>
+        <div class="card-title">沢渡へ戻り 安房トンネル経由で奥飛騨・平湯温泉へ</div>
+        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80" class="card-img" alt="奥飛騨温泉郷">
+        <div class="card-desc">上高地バスターミナルから沢渡へシャトルバスで戻り、マイカーで安房トンネルを抜けて奥飛騨温泉郷・平湯温泉へドライブ（約20km・わずか15分！）。温泉街にて温泉たまごや飛騨牛串焼きランチを味わいます。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">15:00 - 宿泊・温泉 ♨️</span>
+        <div class="card-title">平湯温泉 深山桜庵別館 湯めぐりの宿 平湯館</div>
+        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80" class="card-img" alt="平湯温泉宿">
+        <div class="card-desc">共立リゾート運営の老舗名宿に早めのチェックイン。奥飛騨最古の歴史を誇る豊富な源泉かけ流し大浴場と露天風呂でハイキングの疲れをしっかり癒やします。夕食は旬の飛騨味覚満載の豪華和洋バイキング！</div>
+        <div class="card-tip">💡 湯上がり処でのアイスキャンディーや夜鳴きそば無料サービスも大好評！</div>
+      </div>
+    </div>
+  </div>
+  <div id="day3" class="tab-content">
+    <div class="timeline">
+      <div class="timeline-card">
+        <span class="time-badge">09:30 - 出発</span>
+        <div class="card-title">安房トンネル経由で安曇野へドライブ 🚗</div>
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" class="card-img" alt="安曇野風景">
+        <div class="card-desc">宿をチェックアウト後、絶景山岳道路を通って北アルプスの麓・安曇野エリアへ移動（約1.5時間）。広大な安曇野の田園風景と清流が広がります。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">11:00 - ランチ＆体験 蕎麦</span>
+        <div class="card-title">安曇野 本場信州蕎麦 ＆ 大王わさび農場クリアボート</div>
+        <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80" class="card-img" alt="信州そばと湧水">
+        <div class="card-desc">北アルプスの冷たい湧水で締めた名店「そば処 上條」等で本格手打ち蕎麦ランチ。その後、日本一の「大王わさび農場」へ。蓼川（たでがわ）の水車小屋風景をクリアボートで水上から鑑賞するボート体験（安曇野気船）を体験！</div>
+        <div class="card-tip">💡 湧水で育った本生わさびを自分ですり下ろして食べる蕎麦は絶品！名物「わさびソフト」もおすすめ。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">15:00 - 16:30 - アクティビティ 🏄‍♂️</span>
+        <div class="card-title">青木湖 カヌー / SUP 湖上クルージング体験</div>
+        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" class="card-img" alt="青木湖SUP">
+        <div class="card-desc">安曇野から車で30分の北アルプスの湧水が注ぐ透明度抜群の「青木湖」へ。湧水と北アルプスの山々が水鏡のように映る穏やかな湖上でSUPやカヌー（約1.5時間体験）。夏の爽やかな湖上風を感じる最高の体験です。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">17:30 - 宿泊・最高級温泉 ♨️</span>
+        <div class="card-title">信州松本 美ヶ原温泉 翔峰（浅間温泉最大級ホテル）</div>
+        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" class="card-img" alt="ホテル翔峰">
+        <div class="card-desc">青木湖から車で約45分。松本城下と北アルプスを一望する高台の大型絶景宿「翔峰」へ。県内最大級の大パノラマ露天風呂と足湯ラウンジで贅沢な夕暮れ時を過ごします。夕食は料理長厳選の信州牛と季節の和会席ディナー！</div>
+        <div class="card-tip">💡 ロビーラウンジからの夕暮れ時の北アルプスと松本市街の夜景は息をのむ美しさです。</div>
+      </div>
+    </div>
+  </div>
+  <div id="day4" class="tab-content">
+    <div class="timeline">
+      <div class="timeline-card">
+        <span class="time-badge">09:00 - 移動</span>
+        <div class="card-title">白馬エリアへ移動 ⛰️（国道147号経由で約50分）</div>
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" class="card-img" alt="北アルプス白馬">
+        <div class="card-desc">翔峰をチェックアウトし、白馬三山が美しく聳えるオールシーズンマウンテンリゾート白馬村へドライブ。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">09:45 - 12:30 - 絶景マウンテン ☕</span>
+        <div class="card-title">白馬岩岳マウンテンリゾート（HAKUBA MOUNTAIN HARBOR）</div>
+        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80" class="card-img" alt="白馬岩岳">
+        <div class="card-desc">ゴンドラリフトで標高1,289mの山頂へ！北アルプスの崖に突き出た絶景テラス「HAKUBA MOUNTAIN HARBOR」で『THE CITY BAKERY』のクロワッサンサンド＆アイスカプチーノ。空に飛び出す絶景ブランコ「ヤッホー！スウィング」や『CHAVATY HAKUBA』の絶品スコーンも体験！</div>
+        <div class="card-tip">💡 標高1,300mの心地よい爽風と360度大パノラマは夏白馬のハイライトです！</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">12:30 - ランチ 🍽️</span>
+        <div class="card-title">白馬名物「HAKUBAガレット」＆白馬豚ランチ</div>
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80" class="card-img" alt="ガレットランチ">
+        <div class="card-desc">白馬村内の人気ガレット店（「ガレターリア ア・ラ・モード」や「農家カフェ」等）で地元白馬産そば粉100%の香ばしいガレット。信州サーモン・白馬豚・新鮮高原野菜がたっぷりの贅沢ランチです。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">13:40 - 絶景散策 📸</span>
+        <div class="card-title">大出公園（おおいでこうえん）＆ 大出吊橋</div>
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" class="card-img" alt="大出公園">
+        <div class="card-desc">ガレットランチ後、車でわずか5分。清流・姫川と木造の大出吊橋、茅葺き屋根の民家、その背景にそびえる白馬三山が織りなす「日本の原風景」へ。川沿いの散策路を歩き、お茶屋「かっぱの家」でおやき休憩。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">14:30 - カフェ＆買い物 🏕️</span>
+        <div class="card-title">Snow Peak LAND STATION HAKUBA</div>
+        <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=80" class="card-img" alt="スノーピーク白馬">
+        <div class="card-desc">世界的建築家・隈研吾氏デザインの体験型施設。広大な芝生エリアから白馬三山を望み、国内最大級のスノーピーク直営店で限定ギアショッピング。併設のスターバックスで冷たいドリンクを楽しめます。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">15:30 - 宿泊・絶景温泉 ♨️</span>
+        <div class="card-title">白馬姫川温泉 白馬ハイランドホテル</div>
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" class="card-img" alt="白馬ハイランドホテル">
+        <div class="card-desc">白馬岩岳から車で10分。北アルプス白馬連峰を真正面に一望する絶景露天風呂「天神の湯」を誇る高評価ホテルにチェックイン！夕暮れ時に赤く染まる白馬の山々を眺めながら温泉に浸かり、地産地消バイキングを堪能。</div>
+      </div>
+    </div>
+  </div>
+  <div id="day5" class="tab-content">
+    <div class="timeline">
+      <div class="timeline-card">
+        <span class="time-badge">08:30 - 出発</span>
+        <div class="card-title">白馬から上信越道経由で軽井沢へ 🚗（約1.75時間）</div>
+        <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80" class="card-img" alt="軽井沢新緑">
+        <div class="card-desc">ホテルを出発し、オリンピック道路・長野IC・上信越道を経由して日本屈指の避暑地リゾート・軽井沢へ向かいます。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">10:15 - 散策 🌿</span>
+        <div class="card-title">軽井沢 雲場池（くもばいけ）水鏡散策</div>
+        <img src="https://images.unsplash.com/photo-1511497584788-8767611136f6?auto=format&fit=crop&w=800&q=80" class="card-img" alt="雲場池">
+        <div class="card-desc">「スワンレイク」と呼ばれる美しい雲場池へ。池の周囲をぐるりと巡る散策路を歩き、清らかな水鏡に映る緑の樹々と木漏れ日を愉しむ贅沢な20分間の朝散策。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">11:15 - 食べ歩き 🥖</span>
+        <div class="card-title">旧軽井沢銀座通り（老舗「浅野屋」＆スイーツ）</div>
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" class="card-img" alt="旧軽井沢銀座">
+        <div class="card-desc">歴史ある旧軽井沢メインストリート。老舗ベーカリー「ブランジェ浅野屋」でフランスパンやクロワッサン、「中山のジャム」でお土産購入、モカソフトクリームの食べ歩きを満喫します。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">12:45 - ランチ＆カフェ ☕</span>
+        <div class="card-title">星野エリア ハルニレテラス（清流沿いテラス）</div>
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" class="card-img" alt="ハルニレテラス">
+        <div class="card-desc">ハルニレの木々と湯川の清流に抱かれたウッドデッキ空間。「川上庵」の天せいろ蕎麦ランチや「ベーカリー＆レストラン 沢村」の自家製パン、「丸山珈琲」で洗練されたカフェタイム。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">14:30 - お買い物 🛍️</span>
+        <div class="card-title">軽井沢・プリンスショッピングプラザ（アウトレット）</div>
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" class="card-img" alt="軽井沢アウトレット">
+        <div class="card-desc">軽井沢駅南口の広大な敷地を誇る日本最大級のアウトレットモールでお買い物。お盆帰省・Uターンラッシュ渋滞を回避するため、15:30には軽井沢を出発して関越道・北関東道経由で水戸へ帰路に就きます。</div>
+      </div>
+      <div class="timeline-card">
+        <span class="time-badge">19:30 - 無事帰着 🏠</span>
+        <div class="card-title">水戸へ無事帰着（お疲れ様でした！）</div>
+        <div class="card-desc">お盆のUターン渋滞ピークを避けて19:30頃に水戸の自宅へ無事帰着。信州の名湯・絶景・絶品グルメをフル堪能した忘れられない5日間の旅が締めくくられます。</div>
+      </div>
+    </div>
+  </div>
+  <div id="mapTab" class="tab-content">
+    <div class="info-box">
+      <div class="info-title">🗺️ 旅の目的地マップ</div>
+      <div class="map-filter">
+        <button class="active" onclick="filterMarkers('all')">すべて表示</button>
+        <button onclick="filterMarkers('day1')">DAY 1</button>
+        <button onclick="filterMarkers('day2')">DAY 2</button>
+        <button onclick="filterMarkers('day3')">DAY 3</button>
+        <button onclick="filterMarkers('day4')">DAY 4</button>
+        <button onclick="filterMarkers('day5')">DAY 5</button>
+      </div>
+      <div id="map"></div>
+    </div>
+  </div>
+  <div id="infoTab" class="tab-content">
+    <div class="info-box">
+      <div class="info-title">💰 旅の概算予算（大人2名分合計）</div>
+      <ul class="info-list">
+        <li><span>🚗 交通費（ガソリン・高速ETC・タクシー）</span><strong>約 ￥30,000</strong></li>
+        <li><span>🍱 食費・カフェ・食べ歩き（全食事）</span><strong>約 ￥35,000</strong></li>
+        <li><span>🏄‍♂️ アクティビティ（青木湖SUP・ゴンドラ・ボート）</span><strong>約 ￥15,200</strong></li>
+        <li><span>♨️ 宿泊費（平湯館 / 翔峰 / ハイランドホテル）</span><strong>￥117,468</strong></li>
+        <li style="border-top:2px solid var(--primary);font-weight:bold;font-size:1.05rem;color:var(--primary);margin-top:6px;padding-top:10px;">
+          <span>🎉 合計概算費用</span><strong>約 ￥197,668</strong>
+        </li>
+      </ul>
+    </div>
+    <div class="info-box">
+      <div class="info-title">📋 持ち物・準備チェックリスト</div>
+      <ul class="checklist">
+        <li><input type="checkbox"> 歩きやすいスニーカー/トレッキングシューズ（上高地・岩岳散策用）</li>
+        <li><input type="checkbox"> 防寒用羽織もの（早朝の上高地や標高1,300mの白馬用）</li>
+        <li><input type="checkbox"> 車中泊用寝具（寝袋/毛布/サンシェード/小型ライト）</li>
+        <li><input type="checkbox"> 青木湖SUP用濡れても良い服・マリンシューズ・着替え</li>
+        <li><input type="checkbox"> レインウェア（折りたたみ傘）</li>
+        <li><input type="checkbox"> 日焼け止め・虫除けスプレー・帽子</li>
+        <li><input type="checkbox"> 保冷バッグ＆保冷剤（お土産用）</li>
+        <li><input type="checkbox"> 宿へのアレルギー伝達（甲殻類・貝類NG）の確認</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<footer>
+  <p>© 2026 信州・奥飛騨・白馬・軽井沢 絶景名湯ドライブ旅のしおり</p>
+</footer>
+<script>
+function switchTab(tabId){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+  if(tabId === 'mapTab'){
+    setTimeout(()=>{ if(map) map.invalidateSize(); },200);
+  }
+}
+var map, markers = [];
+var spots = [
+  {name:"松本市街 (寿司ディナー)", lat:36.238, lng:137.971, day:"day1"},
+  {name:"信州健康ランド (24hスパ)", lat:36.168, lng:137.957, day:"day1"},
+  {name:"沢渡駐車場 (車中泊)", lat:36.141, lng:137.629, day:"day1"},
+  {name:"上高地 (河童橋)", lat:36.248, lng:137.637, day:"day2"},
+  {name:"平湯温泉 平湯館", lat:36.195, lng:137.552, day:"day2"},
+  {name:"大王わさび農場", lat:36.338, lng:137.910, day:"day3"},
+  {name:"青木湖 (SUP体験)", lat:36.613, lng:137.852, day:"day3"},
+  {name:"美ヶ原温泉 翔峰", lat:36.241, lng:137.998, day:"day3"},
+  {name:"白馬岩岳マウンテンリゾート", lat:36.708, lng:137.863, day:"day4"},
+  {name:"大出公園＆大出吊橋", lat:36.697, lng:137.873, day:"day4"},
+  {name:"Snow Peak LAND STATION", lat:36.696, lng:137.860, day:"day4"},
+  {name:"白馬ハイランドホテル", lat:36.691, lng:137.865, day:"day4"},
+  {name:"軽井沢 雲場池", lat:36.347, lng:138.627, day:"day5"},
+  {name:"旧軽井沢銀座通り", lat:36.357, lng:138.636, day:"day5"},
+  {name:"ハルニレテラス", lat:36.360, lng:138.591, day:"day5"}
+];
+document.addEventListener("DOMContentLoaded", function() {
+  map = L.map('map').setView([36.38, 137.90], 9);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+  spots.forEach(s => {
+    var m = L.marker([s.lat, s.lng]).bindPopup('<b>' + s.name + '</b>');
+    m.day = s.day;
+    m.addTo(map);
+    markers.push(m);
+  });
+});
+function filterMarkers(day){
+  document.querySelectorAll('.map-filter button').forEach(b=>b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  markers.forEach(m => {
+    if(day === 'all' || m.day === day){
+      map.addLayer(m);
+    } else {
+      map.removeLayer(m);
+    }
+  });
+}
+document.querySelectorAll('.checklist li').forEach(item => {
+  item.addEventListener('click', function(e) {
+    if (e.target.tagName !== 'INPUT') {
+      const cb = this.querySelector('input');
+      cb.checked = !cb.checked;
+    }
+    if (this.querySelector('input').checked) {
+      this.style.textDecoration = 'line-through';
+      this.style.opacity = '0.6';
+    } else {
+      this.style.textDecoration = 'none';
+      this.style.opacity = '1';
+    }
+  });
+});
+</script>
+</body>
+</html>
