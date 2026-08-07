@@ -5,226 +5,939 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>信州・飛騨・上州 プレミアムドライブ旅行のしおり</title>
 <style>
-:root{--primary:#2c3e50;--accent:#e74c3c;--bg:#f8f9fa;--card:#ffffff;--text:#333;--sub:#666;--border:#e9ecef}
-*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-body{background-color:var(--bg);color:var(--text);line-height:1.6;padding-bottom:60px}
-header{background:linear-gradient(135deg,var(--primary),#34495e);color:#fff;text-align:center;padding:24px 16px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
-header h1{font-size:1.4rem;font-weight:700;margin-bottom:6px}
-header p{font-size:0.85rem;opacity:0.9}
-.nav-tabs{display:flex;background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 5px rgba(0,0,0,0.05);border-bottom:1px solid var(--border)}
-.tab-btn{flex:1;padding:12px 4px;text-align:center;font-size:0.8rem;font-weight:bold;color:var(--sub);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer}
-.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
-.container{max-width:600px;margin:0 auto;padding:16px}
-.tab-content{display:none}.tab-content.active{display:block}
-.card{background:var(--card);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.04);border:1px solid var(--border)}
-.time-badge{display:inline-block;background:var(--primary);color:#fff;font-size:0.75rem;padding:2px 8px;border-radius:12px;font-weight:bold;margin-bottom:6px}
-.tag{display:inline-block;font-size:0.7rem;padding:2px 6px;border-radius:4px;margin-left:6px;font-weight:bold}
-.tag-drive{background:#e3f2fd;color:#0d47a1}
-.tag-food{background:#fbe9e7;color:#bf360c}
-.tag-spot{background:#e8f5e9;color:#1b5e20}
-.tag-hotel{background:#f3e5f5;color:#4a148c}
-.card-title{font-size:1.05rem;font-weight:bold;margin-bottom:6px;color:var(--primary)}
-.card-desc{font-size:0.85rem;color:var(--sub);margin-bottom:8px}
-.info-list{list-style:none;font-size:0.8rem;background:#f8f9fa;padding:8px 12px;border-radius:6px;border-left:3px solid var(--accent)}
-.info-list li{margin-bottom:4px}.info-list li:last-child{margin-bottom:0}
-.summary-table{width:100%;border-collapse:collapse;font-size:0.85rem;margin-top:8px}
-.summary-table th,.summary-table td{padding:8px;border-bottom:1px solid var(--border);text-align:left}
-.summary-table th{background:#f8f9fa;color:var(--sub);width:30%}
+:root {
+  --primary: #0284c7;
+  --primary-dark: #0369a1;
+  --bg-main: #f8fafc;
+  --text-main: #0f172a;
+  --text-sub: #475569;
+  --border-color: #e2e8f0;
+  --card-bg: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 600px;
+  background: var(--card-bg);
+  min-height: 100vh;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.06);
+  position: relative;
+  padding-bottom: 30px;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0d9488 100%);
+  color: #ffffff;
+  padding: 24px 18px 20px 18px;
+  text-align: center;
+}
+
+.header-tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.header h1 {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.header p {
+  font-size: 12px;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* Tabs */
+.nav-tabs {
+  display: flex;
+  background: #f1f5f9;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.tab-btn {
+  flex: 1 1 0;
+  padding: 12px 4px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-sub);
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.tab-btn span {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  opacity: 0.85;
+  margin-top: 1px;
+}
+
+.tab-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  background: #ffffff;
+}
+
+/* Tab Content */
+.tab-content {
+  display: none;
+  padding: 16px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 16px 0 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.section-title:first-child {
+  margin-top: 0;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 18px;
+  border-left: 2px solid #cbd5e1;
+  margin-left: 8px;
+  margin-top: 10px;
+}
+
+.card {
+  position: relative;
+  margin-bottom: 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.card-node {
+  position: absolute;
+  left: -25px;
+  top: 16px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2px var(--primary);
+}
+
+.card-header {
+  padding: 10px 12px 4px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge-group {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.badge-move { background: #f1f5f9; color: #334155; }
+.badge-food { background: #ffe4e6; color: #9f1239; }
+.badge-sight { background: #dbeafe; color: #1e40af; }
+.badge-spa { background: #f3e8ff; color: #6b21a8; }
+.badge-stay { background: #fef3c7; color: #92400e; }
+.badge-shop { background: #dcfce7; color: #166534; }
+
+.time-badge {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-main);
+  background: #f8fafc;
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.map-link {
+  font-size: 11px;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: #f0f9ff;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.card-body {
+  padding: 6px 12px 12px 12px;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: var(--text-sub);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.card-desc strong {
+  color: #0f172a;
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed #f1f5f9;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.info-icon {
+  width: 16px;
+  text-align: center;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+/* Tables & Summary Styles */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 12px;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.info-table th, .info-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.info-table th {
+  background: #f8fafc;
+  color: #334155;
+  font-weight: 700;
+  width: 30%;
+  white-space: nowrap;
+}
+
+.info-table td {
+  color: #0f172a;
+}
+
+.hotel-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.hotel-card h4 {
+  font-size: 14px;
+  color: #0f172a;
+  font-weight: 700;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hotel-card p {
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.tag-mini {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.alert-box {
+  background: #fff1f2;
+  border-left: 4px solid #e11d48;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #9f1239;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.alert-box strong {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.checklist {
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 6px 12px;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13px;
+  color: #334155;
+}
+
+.check-item:last-child {
+  border-bottom: none;
+}
+
+.check-item input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
+<div class="app-container">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-tag">🚗 4泊5日 プレミアムドライブ旅</div>
+    <h1>信州・飛騨・上州<br>ドライブ旅行のしおり</h1>
+    <p>📅 2026年8月10日(月) 〜 8月14日(金) ｜ 👥 大人2名</p>
+  </div>
 
-<header>
-  <h1>信州・飛騨・上州 プレミアムドライブ</h1>
-  <p>2026年8月10日(月) 〜 8月14日(金) | 4泊5日</p>
-</header>
+  <!-- Navigation Tabs -->
+  <div class="nav-tabs">
+    <button class="tab-btn active" data-tab="tab-part1" onclick="switchTab('tab-part1')">
+      前半<span>8/10-11</span>
+    </button>
+    <button class="tab-btn" data-tab="tab-part2" onclick="switchTab('tab-part2')">
+      中盤<span>8/12</span>
+    </button>
+    <button class="tab-btn" data-tab="tab-part3" onclick="switchTab('tab-part3')">
+      後半<span>8/13-14</span>
+    </button>
+    <button class="tab-btn" data-tab="tab-memo" onclick="switchTab('tab-memo')">
+      概要・メモ<span>Summary</span>
+    </button>
+  </div>
 
-<div class="nav-tabs">
-  <button class="tab-btn active" onclick="openTab('day01')">前半(8/10-11)</button>
-  <button class="tab-btn" onclick="openTab('day02')">中盤(8/12)</button>
-  <button class="tab-btn" onclick="openTab('day03')">後半(8/13-14)</button>
-  <button class="tab-btn" onclick="openTab('summary')">概要・メモ</button>
-</div>
+  <!-- TAB 1: 前半 8/10-11 -->
+  <div id="tab-part1" class="tab-content active">
+    <!-- Day 1 -->
+    <div class="section-title">🌙 8/10（月・祝）前夜移動</div>
+    <div class="timeline">
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-move">移動</span>
+            <span class="time-badge">14:30</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">水戸自宅 出発</div>
+          <div class="card-desc">常磐道 ➔ 北関東道 ➔ 上信越道経由で松本市街へドライブスタート！安全運転で移動。</div>
+          <div class="info-list">
+            <div class="info-item"><span class="info-icon">🚗</span><span>所要時間：約4時間</span></div>
+          </div>
+        </div>
+      </div>
 
-<div class="container">
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-food">グルメ</span>
+            <span class="time-badge">18:30</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=松本市街+寿司" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">松本市街 寿司ディナー</div>
+          <div class="card-desc">信州サーモンや季節の新鮮な地魚寿司を堪能。<br><strong>※二枚貝・甲殻類NGに配慮して注文</strong></div>
+          <div class="info-list">
+            <div class="info-item"><span class="info-icon">😋</span><span>名物：信州サーモン・地魚握り</span></div>
+          </div>
+        </div>
+      </div>
 
-  <!-- TAB 1 -->
-  <div id="day01" class="tab-content active">
-    <div class="card">
-      <span class="time-badge">8/10 14:30</span><span class="tag tag-drive">移動</span>
-      <div class="card-title">水戸出発 ➔ 松本へ</div>
-      <div class="card-desc">常磐道・北関東道・上信越道経由で長野へドライブ。</div>
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-spa">温泉</span>
+            <span class="time-badge">20:30</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=信州健康ランド" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">信州健康ランド</div>
+          <div class="card-desc">20種類のお風呂とサウナ完備の大型スパ施設。長距離ドライブの疲れをしっかりリフレッシュ！</div>
+          <div class="info-list">
+            <div class="info-item"><span class="info-icon">♨️</span><span>24時間営業・充実のアメニティ</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-stay">車中泊</span>
+            <span class="time-badge">23:15</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=沢渡駐車場" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">沢渡（さわんど）駐車場 到着</div>
+          <div class="card-desc">標高1,000mの沢渡駐車場にて車中泊。翌朝早朝のタクシー移動に備えてしっかり仮眠。</div>
+          <div class="info-list">
+            <div class="info-item"><span class="info-icon">💡</span><span>メモ：夜間防寒対策・洗面用具の確認</span></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="card">
-      <span class="time-badge">8/10 18:30</span><span class="tag tag-food">グルメ</span>
-      <div class="card-title">松本市街 寿司ディナー</div>
-      <div class="card-desc">「きときと寿司」等で本格寿司。天然ブリ・マグロ・白身魚を中心に堪能。（※二枚貝・甲殻類なし）</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/10 20:30</span><span class="tag tag-hotel">温泉</span>
-      <div class="card-title">信州健康ランド（塩尻）</div>
-      <div class="card-desc">20種類以上のお風呂とサウナで長距離ドライブの疲れをリフレッシュ。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/10 23:15</span><span class="tag tag-hotel">車中泊</span>
-      <div class="card-title">沢渡駐車場 着</div>
-      <div class="card-desc">標高1,000mの涼しい環境で車中泊。翌朝の上高地へ備えて就寝。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/11 05:45</span><span class="tag tag-spot">観光</span>
-      <div class="card-title">定額タクシーで大正池へ</div>
-      <div class="card-desc">混雑前に定額タクシーで沢渡から大正池へ直行。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/11 06:15</span><span class="tag tag-spot">絶景</span>
-      <div class="card-title">上高地ハイキング</div>
-      <div class="card-desc">大正池 ➔ 朝もやの田代池 ➔ 梓川沿い ➔ 河童橋（約3km平坦コース）。河童橋周辺でカフェタイム。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/11 12:15</span><span class="tag tag-food">グルメ</span>
-      <div class="card-title">飛騨高山 到着＆散策</div>
-      <div class="card-desc">安房トンネル経由で岐阜県へ。「古い町並み」散策＆飛騨牛串・コロッケの食べ歩き。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/11 15:30</span><span class="tag tag-hotel">宿泊</span>
-      <div class="card-title">飛騨花里の湯 高山桜庵</div>
-      <div class="card-desc">全館畳敷きの和風温泉ホテル（禁煙）。最上階の畳敷き大浴場＆露天風呂を満喫。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/11 18:00</span><span class="tag tag-food">グルメ</span>
-      <div class="card-title">飛騨高山 飛騨牛炭火焼肉</div>
-      <div class="card-desc">高山市内の名店にてA5ランク極上飛騨牛のステーキ・炭火焼肉ディナー。</div>
+
+    <!-- Day 2 -->
+    <div class="section-title">🏞️ 8/11（火）上高地＆飛騨高山</div>
+    <div class="timeline">
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-move">移動</span>
+            <span class="time-badge">05:45</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=沢渡バスターミナル" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">定額タクシーで大正池へ直行</div>
+          <div class="card-desc">沢渡から定額タクシーを利用し、早朝混雑を回避して直接「大正池」へ向かいます。</div>
+          <div class="info-list">
+            <div class="info-item"><span class="info-icon">🚕</span><span>定額タクシー：長蛇の列回避で快適移動</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-sight">絶景</span>
+            <span class="time-badge">06:15</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=上高地+大正池" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">上高地 絶景ハイキング</div>
+          <div class="card-desc">💡<strong>見どころ</strong> 朝もやに包まれる幻想的な大正池 ➔ 幻想的な田代池 ➔ 河童橋へ（約3kmの平坦絶景コース）。</div>
+          <div class="info-list">
+            <div class="info-item"><span class="info-icon">👟</span><span>歩きやすい靴・カメラ必携</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-move">移動</span>
+            <span class="time-badge">10:00</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">バスで沢渡へ・飛騨高山へドライブ</div>
+          <div class="card-desc">10:00上高地バスターミナル発バスで沢渡へ戻り、11:00沢渡出発（安房トンネル経由・約1時間で高山へ）。</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-food">グルメ</span>
+            <span class="time-badge">12:15</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=飛騨高山+古い町並" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">飛騨高山 古い町並み散策</div>
+          <div class="card-desc">出格子が美しい出格子の町並みを散策。絶品「飛騨牛串焼き」やみだらし団子の食べ歩き！</div>
+          <div class="info-list">
+            <div class="info-item"><span class="info-icon">😋</span><span>名物：飛騨牛串焼き・飛騨牛握り</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-stay">宿泊</span>
+            <span class="time-badge">15:30</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=飛騨花里の湯+高山桜庵" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">飛騨花里の湯 高山桜庵 チェックイン</div>
+          <div class="card-desc">全館和風畳敷きの心地よいお宿。最上階の絶景露天風呂＆貸切温泉で上高地ハイキングの疲れを癒やします。</div>
+          <div class="info-list">
+            <div class="info-item"><span class="info-icon">♨️</span><span>畳敷き和風ホテル・屋上露天風呂（禁煙室）</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-food">グルメ</span>
+            <span class="time-badge">18:00</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">A5飛騨牛炭火焼肉ディナー</div>
+          <div class="card-desc">高山市内にて、極上最高級A5ランク飛騨牛の炭火焼肉ディナーをじっくり堪能！</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- TAB 2 -->
-  <div id="day02" class="tab-content">
-    <div class="card">
-      <span class="time-badge">8/12 08:30</span><span class="tag tag-spot">観光</span>
-      <div class="card-title">宮川朝市 散策</div>
-      <div class="card-desc">高山名物の朝市を散策し、地場の特産品やお土産をチェック。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/12 11:30</span><span class="tag tag-food">グルメ</span>
-      <div class="card-title">小布施 街並み散策＆ランチ</div>
-      <div class="card-desc">長野道経由で栗と北斎の町・小布施へ。名物信州手打ち蕎麦＆「小布施堂」の栗スイーツ。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/12 14:30</span><span class="tag tag-spot">絶景</span>
-      <div class="card-title">志賀草津高原ルート 雲上ドライブ</div>
-      <div class="card-desc">国道292号を走り、渋峠・日本国道最高地点（標高2,172m）へ。スカイカフェで絶景鑑賞。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/12 16:00</span><span class="tag tag-hotel">宿泊</span>
-      <div class="card-title">万座プリンスホテル</div>
-      <div class="card-desc">標高1,800mの雲上リゾート（禁煙）。日のあるうちから絶景露天風呂「こまくさの湯」の白濁湯を堪能。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/12 18:30</span><span class="tag tag-food">グルメ</span>
-      <div class="card-title">夕食バイキング</div>
-      <div class="card-desc">標高1,800mのレストランで和洋バイキングディナー。</div>
+  <!-- TAB 2: 中盤 8/12 -->
+  <div id="tab-part2" class="tab-content">
+    <div class="section-title">🌰 8/12（水）栗グルメ＆志賀草津雲上ドライブ</div>
+    <div class="timeline">
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-sight">絶景</span>
+            <span class="time-badge">08:30</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=宮川朝市" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">宮川朝市 散策</div>
+          <div class="card-desc">高山名物の清流沿いの朝市をぶらり散策。新鮮な果物や伝統民芸品を楽しんだ後、09:30に高山を出発。</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-food">グルメ</span>
+            <span class="time-badge">11:30</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=小布施堂" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">小布施 栗グルメ＆手打ち蕎麦</div>
+          <div class="card-desc">長野道経由で栗の町「小布施」へ。絶品信州手打ち蕎麦ランチ＆小布施堂の伝統栗スイーツ！</div>
+          <div class="info-list">
+            <div class="info-item"><span class="info-icon">😋</span><span>名物：小布施堂 栗鹿ノ子・栗鹿ノ子モンブラン</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-sight">絶景</span>
+            <span class="time-badge">14:30</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=渋峠+日本国道最高地点" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">渋峠・国道最高地点（標高2,172m）</div>
+          <div class="card-desc">💡<strong>見どころ</strong> 日本の国道で最も標高が高い「渋峠」へ！眼下に雲海が広がる天空の絶景パノラマドライブ。</div>
+          <div class="info-list">
+            <div class="info-item"><span class="info-icon">📷</span><span>日本国道最高地点碑での記念撮影</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-stay">宿泊</span>
+            <span class="time-badge">16:00</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=万座プリンスホテル" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">万座プリンスホテル チェックイン</div>
+          <div class="card-desc">標高1,800mに位置する雲上の温泉リゾート。名湯・白濁の濃厚な硫黄泉「こまくさの湯」を心ゆくまで堪能。</div>
+          <div class="info-list">
+            <div class="info-item"><span class="info-icon">♨️</span><span>白濁の極上硫黄泉露天風呂（禁煙室）</span></div>
+            <div class="info-item"><span class="info-icon">🍽️</span><span>18:30 夕食バイキング</span></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- TAB 3 -->
-  <div id="day03" class="tab-content">
-    <div class="card">
-      <span class="time-badge">8/13 10:30</span><span class="tag tag-spot">観光</span>
-      <div class="card-title">草津温泉 湯畑散策＆足湯</div>
-      <div class="card-desc">万座を出発し草津へ。湯畑周辺散策＆「鮨魚魚魚」または「湯川テラス（上州牛寿司）」でランチ。</div>
+  <!-- TAB 3: 後半 8/13-14 -->
+  <div id="tab-part3" class="tab-content">
+    <!-- Day 4 -->
+    <div class="section-title">♨️ 8/13（木）草津温泉散策＆高崎スパホテル</div>
+    <div class="timeline">
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-move">移動</span>
+            <span class="time-badge">09:30</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">万座温泉 出発</div>
+          <div class="card-desc">爽やかな高原道路を通って日本有数の名湯「草津温泉」へ移動（約1時間）。</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-food">グルメ</span>
+            <span class="time-badge">10:30</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=草津温泉+湯畑" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">草津温泉 湯畑散策＆絶品ランチ</div>
+          <div class="card-desc">モクモクと湯けむりあがる湯畑周辺を散策＆足湯。「鮨魚魚魚」または「湯川テラス」にて満足ランチ！</div>
+          <div class="info-list">
+            <div class="info-item"><span class="info-icon">⚠️</span><span>※二枚貝・甲殻類NGに配慮したメニュー選択</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-sight">絶景</span>
+            <span class="time-badge">13:30</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=嬬恋パノラマライン" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">嬬恋パノラマライン ドライブ</div>
+          <div class="card-desc">💡<strong>見どころ</strong> 一面に広がる広大なキャベツ畑と浅間山を望む、開放感バツグンの北海道のような爽快ドライブコース！</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-stay">宿泊</span>
+            <span class="time-badge">17:00</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=ホテル+ココ・グラン高崎" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">ホテル ココ・グラン高崎 チェックイン</div>
+          <div class="card-desc">高級感あふれるシティスパホテル。露天風呂＆本格サウナ完備で旅の疲れを最高に癒やします。</div>
+          <div class="info-list">
+            <div class="info-item"><span class="info-icon">♨️</span><span>大浴場露天風呂・サウナ完備（禁煙室）</span></div>
+            <div class="info-item"><span class="info-icon">🥩</span><span>18:30 高崎市内にて「上州牛ディナー」</span></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="card">
-      <span class="time-badge">8/13 13:30</span><span class="tag tag-drive">絶景</span>
-      <div class="card-title">嬬恋パノラマライン ドライブ</div>
-      <div class="card-desc">どこまでも広がるキャベツ畑と浅間山を望む北海道風の爽快ドライブ道。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/13 17:00</span><span class="tag tag-hotel">宿泊</span>
-      <div class="card-title">ホテル ココ・グラン高崎</div>
-      <div class="card-desc">露天風呂・サウナ完備の上質スパホテル（禁煙）。軽井沢まで車で約35分の好立地。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/13 18:30</span><span class="tag tag-food">グルメ</span>
-      <div class="card-title">高崎市内 ディナー</div>
-      <div class="card-desc">高崎市内のレストランにてブランド牛「上州牛」のステーキ・和食ディナー。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/14 08:45</span><span class="tag tag-spot">観光</span>
-      <div class="card-title">軽井沢 雲場池 朝散策</div>
-      <div class="card-desc">高崎を出発し軽井沢へ。朝の静寂の中、スワンレイクと呼ばれる雲場池を散歩。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/14 09:45</span><span class="tag tag-food">グルメ</span>
-      <div class="card-title">旧軽井沢銀座 散策</div>
-      <div class="card-desc">浅野屋の焼きたてパンやミカドコーヒーのモカソフトを食べ歩き。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/14 12:00</span><span class="tag tag-food">グルメ</span>
-      <div class="card-title">ハルニレテラス＆ランチ</div>
-      <div class="card-desc">「川上庵」にて名物・天せいろ蕎麦ランチ（※二枚貝・甲殻類NG対応）。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/14 13:45</span><span class="tag tag-spot">買い物</span>
-      <div class="card-title">軽井沢・プリンスショッピングプラザ</div>
-      <div class="card-desc">広大なアウトレットでお買い物＆お土産調達。15:30軽井沢発。</div>
-    </div>
-    <div class="card">
-      <span class="time-badge">8/14 19:30</span><span class="tag tag-drive">帰着</span>
-      <div class="card-title">水戸自宅 無事帰着</div>
-      <div class="card-desc">北関東自動車道経由で無事帰着。お疲れ様でした！</div>
+
+    <!-- Day 5 -->
+    <div class="section-title">🛍️ 8/14（金）軽井沢フル満喫＆水戸帰着</div>
+    <div class="timeline">
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-move">移動</span>
+            <span class="time-badge">08:00</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">高崎 出発 ➔ 軽井沢へ</div>
+          <div class="card-desc">朝イチで爽やかな高級リゾート「軽井沢」エリアへ移動（約45分）。</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-sight">絶景</span>
+            <span class="time-badge">08:45</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=雲場池" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">雲場池（くもばいけ）朝散策</div>
+          <div class="card-desc">💡<strong>見どころ</strong> 軽井沢を代表する水鏡の池。観光客で混雑する前の静寂な朝の空気のなか優雅に散策。</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-food">グルメ</span>
+            <span class="time-badge">09:45</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=旧軽井沢銀座" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">旧軽井沢銀座 散策</div>
+          <div class="card-desc">老舗パン屋「ブランジェ浅野屋」の焼きたてパンや、ミカド珈琲の有名名物「モカソフト」をお楽しみ！</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-food">グルメ</span>
+            <span class="time-badge">12:00</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=ハルニレテラス+川上庵" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">ハルニレテラス「川上庵」ランチ</div>
+          <div class="card-desc">星野エリアの美しいハルニレテラス内。名店「川上庵」の天せいろ蕎麦ランチ。<br><strong>※天ぷらの海老等を野菜・穴子等に変更（甲殻類NG対応）</strong></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-shop">買い物</span>
+            <span class="time-badge">13:45</span>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=軽井沢・プリンスショッピングプラザ" target="_blank" class="map-link">📍 Map</a>
+        </div>
+        <div class="card-body">
+          <div class="card-title">軽井沢・プリンスショッピングプラザ</div>
+          <div class="card-desc">広大なアウトレットでお買い物＆旅行のお土産選び！15:30に軽井沢を出発。</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-node"></div>
+        <div class="card-header">
+          <div class="badge-group">
+            <span class="badge badge-move">移動</span>
+            <span class="time-badge">19:30</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">水戸自宅 到着（帰着）</div>
+          <div class="card-desc">上信越道 ➔ 北関東道 ➔ 常磐道経由で無事帰着。充実の4泊5日プレミアムドライブ旅完結！</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- SUMMARY TAB -->
-  <div id="summary" class="tab-content">
-    <div class="card">
-      <div class="card-title">旅行概要</div>
-      <table class="summary-table">
-        <tr><th>日程</th><td>2026年8月10日(月)〜14日(金)</td></tr>
-        <tr><th>目的地</th><td>松本・上高地・高山・志賀草津・万座・草津・高崎・軽井沢</td></tr>
-        <tr><th>車両条件</th><td>パノラマビューモニター装備（禁煙車）</td></tr>
-        <tr><th>食事条件</th><td>二枚貝・甲殻類（エビ・カニ等）の完全排除</td></tr>
-        <tr><th>部屋条件</th><td>全日程 禁煙室確約・温泉/スパあり</td></tr>
-      </table>
+  <!-- TAB 4: 概要・メモ -->
+  <div id="tab-memo" class="tab-content">
+    <!-- 旅行概要 -->
+    <div class="section-title">📌 旅行概要</div>
+    <table class="info-table">
+      <tr>
+        <th>旅行名</th>
+        <td>信州・飛騨・上州 プレミアムドライブ旅行</td>
+      </tr>
+      <tr>
+        <th>日程</th>
+        <td>2026年8月10日(月) 〜 8月14日(金) (4泊5日)</td>
+      </tr>
+      <tr>
+        <th>メンバー</th>
+        <td>大人2名（ご夫婦）</td>
+      </tr>
+      <tr>
+        <th>移動手段</th>
+        <td>自家用車（水戸発着）</td>
+      </tr>
+      <tr>
+        <th>部屋条件</th>
+        <td>全日程 禁煙室確約・温泉/スパ完備</td>
+      </tr>
+    </table>
+
+    <!-- NG食材アラート -->
+    <div class="alert-box">
+      <strong>⚠️ 食事制限・食物アレルギー注意項目</strong>
+      以下の食材は注文・バイキング時に完全排除・NG対応済み：
+      <br>・<strong>二枚貝</strong>（アサリ、ホタテ、シジミ、カキ等）
+      <br>・<strong>甲殻類</strong>（エビ、カニ、シャコ等）
+      <br>※寿司店・川上庵天ぷら・バイキングで確認・変更徹底。
     </div>
 
-    <div class="card">
-      <div class="card-title">宿泊先一覧</div>
-      <ul class="info-list">
-        <li><strong>8/10:</strong> 沢渡駐車場（車中泊）</li>
-        <li><strong>8/11:</strong> 飛騨花里の湯 高山桜庵（全館禁煙・朝食付）</li>
-        <li><strong>8/12:</strong> 万座プリンスホテル（禁煙室・2食付）</li>
-        <li><strong>8/13:</strong> ホテル ココ・グラン高崎（禁煙室・朝食付）</li>
-      </ul>
+    <!-- 宿泊先リスト -->
+    <div class="section-title">🏨 宿泊先リスト</div>
+
+    <div class="hotel-card">
+      <h4><span>8/10(月) 沢渡駐車場</span> <span class="tag-mini">車中泊</span></h4>
+      <p>標高1,000mの快適車中泊。夜間は涼しいため防寒着を用意。事前に入浴（信州健康ランド）を済ませて移動。</p>
     </div>
 
-    <div class="card">
-      <div class="card-title">概算予算（2名合計）</div>
-      <ul class="info-list">
-        <li><strong>宿泊費:</strong> 約 81,915円</li>
-        <li><strong>交通費:</strong> 約 32,115円（高速・ガソリン・タクシー）</li>
-        <li><strong>飲食費:</strong> 約 36,000円</li>
-        <li><strong>観光・温泉:</strong> 約 5,000円</li>
-        <li><strong>合計目安:</strong> 約 155,000円</li>
-      </ul>
+    <div class="hotel-card">
+      <h4><span>8/11(火) 飛騨花里の湯 高山桜庵</span> <span class="tag-mini">禁煙・温泉</span></h4>
+      <p>全館畳敷きの和風ホテル。最上階の絶景露天風呂＆貸切風呂完備。飛騨高山駅から徒歩3分。</p>
     </div>
+
+    <div class="hotel-card">
+      <h4><span>8/12(水) 万座プリンスホテル</span> <span class="tag-mini">禁煙・温泉</span></h4>
+      <p>標高1,800mに位置する雲上リゾート。日本有数の濃厚な白濁の硫黄泉「こまくさの湯」を満喫。</p>
+    </div>
+
+    <div class="hotel-card">
+      <h4><span>8/13(木) ホテル ココ・グラン高崎</span> <span class="tag-mini">禁煙・スパ</span></h4>
+      <p>高崎駅直結の高級シティスパホテル。露天風呂付き大浴場＆炭酸泉・サウナ完備。</p>
+    </div>
+
+    <!-- 予算シミュレーション -->
+    <div class="section-title">💰 予算シミュレーション（2名合計）</div>
+    <table class="info-table">
+      <tr>
+        <th>高速道路代（ETC）</th>
+        <td>約 20,000円（水戸〜長野〜群馬〜水戸）</td>
+      </tr>
+      <tr>
+        <th>ガソリン代</th>
+        <td>約 12,000円</td>
+      </tr>
+      <tr>
+        <th>宿泊代（3泊分）</th>
+        <td>約 78,000円（高山桜庵・万座・高崎）</td>
+      </tr>
+      <tr>
+        <th>食事・飲食代</th>
+        <td>約 35,000円（飛騨牛焼肉・寿司・蕎麦等）</td>
+      </tr>
+      <tr>
+        <th>観光・タクシー・雑費</th>
+        <td>約 10,000円（上高地タクシー・お土産等）</td>
+      </tr>
+      <tr style="background:#f0f9ff;">
+        <th style="color:var(--primary);">概算合計目安</th>
+        <td style="font-weight:800;color:var(--primary);font-size:14px;">約 155,000円</td>
+      </tr>
+    </table>
+
+    <!-- 持ち物チェックリスト -->
+    <div class="section-title">🎒 持ち物チェックリスト</div>
+    <ul class="checklist">
+      <li class="check-item"><input type="checkbox"> 🌧️ レインウェア・折りたたみ傘（山の天気対策）</li>
+      <li class="check-item"><input type="checkbox"> 👟 歩きやすいスニーカー/ハイキングシューズ</li>
+      <li class="check-item"><input type="checkbox"> 🧥 防寒羽織もの（沢渡・万座は標高が高く冷え込みます）</li>
+      <li class="check-item"><input type="checkbox"> 🪥 洗面用具・着替え（車中泊用）</li>
+      <li class="check-item"><input type="checkbox"> 🔋 モバイルバッテリー・車載充電器</li>
+      <li class="check-item"><input type="checkbox"> 💳 ETCカード・保険証</li>
+    </ul>
   </div>
-
 </div>
 
 <script>
-function openTab(tabId){
-  var contents = document.getElementsByClassName('tab-content');
-  for(var i=0; i<contents.length; i++){
-    contents[i].classList.remove('active');
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+  
+  const selectedBtn = document.querySelector(`[data-tab="${tabId}"]`);
+  const selectedContent = document.getElementById(tabId);
+  
+  if (selectedBtn && selectedContent) {
+    selectedBtn.classList.add('active');
+    selectedContent.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  var buttons = document.getElementsByClassName('tab-btn');
-  for(var i=0; i<buttons.length; i++){
-    buttons[i].classList.remove('active');
-  }
-  document.getElementById(tabId).classList.add('active');
-  event.currentTarget.classList.add('active');
-  window.scrollTo(0, 0);
 }
 </script>
 </body>
