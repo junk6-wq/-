@@ -15,8 +15,17 @@ header h1{font-family:"Georgia",serif;font-size:17px;font-weight:700;letter-spac
 header p{font-size:11px;color:#cbd5e1;margin-top:3px;font-weight:600;}
 nav{display:flex;width:100%;background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,0.04);overflow-x:auto;scrollbar-width:none;}
 nav::-webkit-scrollbar{display:none;}
-nav button{flex:1 0 auto;min-width:58px;padding:9px 4px;border:none;background:none;font-size:12px;font-weight:700;color:#64748b;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;text-align:center;white-space:nowrap;}
-nav button.active{color:#d97706;border-bottom-color:#d97706;}
+nav button{position:relative;flex:1 0 auto;min-width:58px;padding:13px 5px 9px;border:none;background:none;font-size:12px;font-weight:700;color:#94a3b8;cursor:pointer;border-bottom:3px solid transparent;transition:all 0.18s;text-align:center;white-space:nowrap;}
+/* 日程タブ：その日のカラーを点で示す（地図の色分けと対応） */
+nav button.day::before{content:'';position:absolute;top:5px;left:50%;transform:translateX(-50%);width:13px;height:3px;border-radius:2px;background:var(--c);opacity:0.4;transition:all 0.18s;}
+nav button.day.active::before{width:24px;opacity:1;}
+nav button.day.active{color:var(--c);border-bottom-color:var(--c);background:var(--tint);}
+nav button.day:hover{color:var(--c);}
+/* 機能タブ：日程と区別するためグレー地でひとまとまりに */
+nav button.util{background:#f8fafc;color:#64748b;}
+nav button.util.active{color:#0f172a;border-bottom-color:#334155;background:#e2e8f0;}
+nav button.util.sep-l{border-left:1px solid #e2e8f0;}
+nav button.util.sep-r{border-right:1px solid #e2e8f0;}
 .container{width:100%;max-width:600px;margin:0 auto;padding:8px 6px;}
 .tab-content{display:none;}
 .tab-content.active{display:block;}
@@ -26,10 +35,13 @@ nav button.active{color:#d97706;border-bottom-color:#d97706;}
 .timeline-item::after{content:'';position:absolute;left:-12px;top:14px;width:6px;height:6px;border-radius:50%;background:#f59e0b;border:1px solid #fff;box-shadow:0 0 0 1.5px #cbd5e1;}
 .card{background:#fff;border:1px solid #cbd5e1;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.03);}
 .card-content{padding:10px 12px;}
-.card-gallery-container{position:relative;width:100%;height:150px;background:#e2e8f0;}
-.card-gallery{width:100%;height:150px;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;}
+.card-gallery-container{position:relative;width:100%;aspect-ratio:16/9;min-height:170px;max-height:340px;background:#e2e8f0;overflow:hidden;}
+.card-gallery{width:100%;height:100%;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;}
 .card-gallery::-webkit-scrollbar{display:none;}
-.card-gallery img{width:100%;height:150px;object-fit:cover;scroll-snap-align:start;flex-shrink:0;}
+.card-gallery img{width:100%;height:100%;object-fit:cover;object-position:center 45%;scroll-snap-align:start;flex-shrink:0;}
+/* 山や空が上部にある写真は上寄りで切り抜く */
+.card-gallery img.pos-top{object-position:center 30%;}
+.card-gallery img.pos-center{object-position:center center;}
 .swipe-hint{position:absolute;bottom:6px;right:8px;background:rgba(15, 23, 42, 0.8);color:#fff;font-size:10px;padding:2px 8px;border-radius:4px;font-weight:700;pointer-events:none;}
 .card-meta{display:flex;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap;}
 .badge-cat,.card-time{padding:2px 8px;border-radius:4px;font-size:10px;font-weight:800;}
@@ -119,15 +131,15 @@ nav button.active{color:#d97706;border-bottom-color:#d97706;}
 <p>2026.08.10 Mon - 08.14 Fri | 4泊5日（初日車中泊）大人2名 ドライブ旅</p>
 </header>
 <nav>
-<button class="nav-btn active" onclick="switchTab('overview',this)">📊 概要</button>
-<button class="nav-btn" onclick="switchTab('day1',this)">8/10 DAY1</button>
-<button class="nav-btn" onclick="switchTab('day2',this)">8/11 DAY2</button>
-<button class="nav-btn" onclick="switchTab('day3',this)">8/12 DAY3</button>
-<button class="nav-btn" onclick="switchTab('day4',this)">8/13 DAY4</button>
-<button class="nav-btn" onclick="switchTab('day5',this)">8/14 DAY5</button>
-<button class="nav-btn" onclick="switchTab('map',this)">🗺️ 地図</button>
-<button class="nav-btn" onclick="switchTab('budget',this)">💰 予算</button>
-<button class="nav-btn" onclick="switchTab('prep',this)">📋 準備</button>
+<button class="nav-btn util sep-r active" onclick="switchTab('overview',this)">📊 概要</button>
+<button class="nav-btn day" style="--c:#ef4444;--tint:#fef2f2" onclick="switchTab('day1',this)">8/10 DAY1</button>
+<button class="nav-btn day" style="--c:#f59e0b;--tint:#fffbeb" onclick="switchTab('day2',this)">8/11 DAY2</button>
+<button class="nav-btn day" style="--c:#10b981;--tint:#f0fdf4" onclick="switchTab('day3',this)">8/12 DAY3</button>
+<button class="nav-btn day" style="--c:#3b82f6;--tint:#eff6ff" onclick="switchTab('day4',this)">8/13 DAY4</button>
+<button class="nav-btn day" style="--c:#8b5cf6;--tint:#f5f3ff" onclick="switchTab('day5',this)">8/14 DAY5</button>
+<button class="nav-btn util sep-l" onclick="switchTab('map',this)">🗺️ 地図</button>
+<button class="nav-btn util" onclick="switchTab('budget',this)">💰 予算</button>
+<button class="nav-btn util" onclick="switchTab('prep',this)">📋 準備</button>
 </nav>
 <div class="container">
 
@@ -220,7 +232,7 @@ nav button.active{color:#d97706;border-bottom-color:#d97706;}
 
 <div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">16:00</span><a href="https://www.google.com/maps/dir/?api=1&origin=水戸市&destination=横川SA&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">水戸 出発（北関東道〜上信越道）</div><div class="info-list"><div class="info-row"><span class="info-icon">🛣️</span><span>高速：約2時間30分（横川SAまで 約190km）</span></div><div class="info-row"><span class="info-icon">🚧</span><span>ルート：北関東道 ➔ 高崎JCT ➔ 上信越道</span></div></div><div class="card-desc">お盆休みのドライブ旅スタート！夕方の渋滞を見越して早めの出発が吉。</div></div></div>
 
-<div class="timeline-item item-food"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/T%C5%8Dge_no_Kamameshi_02.jpg/960px-T%C5%8Dge_no_Kamameshi_02.jpg" alt="峠の釜めし 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🍱 夕食①</span><span class="card-time">18:30</span><a href="https://www.google.com/maps/search/?api=1&query=横川SA+上信越道" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">横川SA にて夕食</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>滞在：約60分（19:30発）</span></div></div>
+<div class="timeline-item item-food"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/%E5%B3%A0%E3%81%AE%E9%87%9C%E3%82%81%E3%81%9720190519-P1010855.jpg/960px-%E5%B3%A0%E3%81%AE%E9%87%9C%E3%82%81%E3%81%9720190519-P1010855.jpg" alt="峠の釜めし 実物写真" class="pos-center" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🍱 夕食①</span><span class="card-time">18:30</span><a href="https://www.google.com/maps/search/?api=1&query=横川SA+上信越道" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">横川SA にて夕食</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>滞在：約60分（19:30発）</span></div></div>
 <div class="food-pick"><div class="food-pick-title">🍽️ 夕食おすすめ（ここが実質のディナー）</div>
 <div class="food-item"><span class="fname">おぎのや「峠の釜めし」</span><br><span class="fmeta">益子焼の器で有名な駅弁の名店。約1,300円／人。SA内で購入・イートイン可</span></div>
 <div class="food-item"><span class="fname">上州豚の炙り豚丼</span><br><span class="fmeta">フードコートの名物。ガッツリ食べたい運転手さん向け</span></div>
@@ -247,7 +259,7 @@ nav button.active{color:#d97706;border-bottom-color:#d97706;}
 
 <div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚌 バス</span><span class="card-time">06:00</span><a href="https://www.google.com/maps/dir/?api=1&origin=沢渡バスターミナル&destination=上高地バスターミナル" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">沢渡 ➔ 上高地（シャトルバス 約30分）</div><div class="info-list"><div class="info-row"><span class="info-icon">💰</span><span>往復割引 3,000円／人</span></div><div class="info-row"><span class="info-icon">🚏</span><span>大正池で途中下車すると下りコースを歩けます</span></div></div><div class="card-desc">大正池で降りて、河童橋まで歩くのが王道コース。</div></div></div>
 
-<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/150920_Taisho-ike_Kamikochi_Japan01n.jpg/960px-150920_Taisho-ike_Kamikochi_Japan01n.jpg" alt="上高地 大正池 実物写真" loading="lazy"/><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/KAMIKOCHI-KAPPABASHI.JPG/960px-KAMIKOCHI-KAPPABASHI.JPG" alt="上高地 河童橋 実物写真" loading="lazy"/></div><span class="swipe-hint">横スワイプ ➔</span></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🌲 トレッキング</span><span class="card-time">06:30</span><a href="https://www.google.com/maps/search/?api=1&query=上高地+大正池" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">上高地 散策（大正池〜田代池〜河童橋）</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要：約3.5時間（ゆっくり歩いて）</span></div><div class="info-row"><span class="info-icon">🥾</span><span>コース：大正池 ➔ 田代池 ➔ 梓川木道 ➔ 河童橋（約3.5km・平坦）</span></div><div class="info-row"><span class="info-icon">📷</span><span>朝は無風で大正池の水面が鏡になる絶好の撮影タイム</span></div></div><div class="card-desc">早朝の澄んだ空気の中、清流・梓川と穂高連峰の絶景を歩く。この時間帯は観光客が少なく静寂を楽しめます。</div></div></div></div>
+<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/150920_Taisho-ike_Kamikochi_Japan06n.jpg/960px-150920_Taisho-ike_Kamikochi_Japan06n.jpg" alt="上高地 大正池 実物写真" class="pos-center" loading="lazy"/><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/KAMIKOCHI-KAPPABASHI.JPG/960px-KAMIKOCHI-KAPPABASHI.JPG" alt="上高地 河童橋 実物写真" class="pos-top" loading="lazy"/></div><span class="swipe-hint">横スワイプ ➔</span></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🌲 トレッキング</span><span class="card-time">06:30</span><a href="https://www.google.com/maps/search/?api=1&query=上高地+大正池" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">上高地 散策（大正池〜田代池〜河童橋）</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要：約3.5時間（ゆっくり歩いて）</span></div><div class="info-row"><span class="info-icon">🥾</span><span>コース：大正池 ➔ 田代池 ➔ 梓川木道 ➔ 河童橋（約3.5km・平坦）</span></div><div class="info-row"><span class="info-icon">📷</span><span>朝は無風で大正池の水面が鏡になる絶好の撮影タイム</span></div></div><div class="card-desc">早朝の澄んだ空気の中、清流・梓川と穂高連峰の絶景を歩く。この時間帯は観光客が少なく静寂を楽しめます。</div></div></div></div>
 
 <div class="timeline-item item-food"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">🍽️ 昼食</span><span class="card-time">11:00</span><a href="https://www.google.com/maps/search/?api=1&query=上高地+河童橋+食堂" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">河童橋周辺で昼食</div>
 <div class="food-pick"><div class="food-pick-title">🍽️ 上高地ランチ候補</div>
@@ -297,7 +309,7 @@ nav button.active{color:#d97706;border-bottom-color:#d97706;}
 
 <div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">13:30</span><a href="https://www.google.com/maps/dir/?api=1&origin=大王わさび農場&destination=白馬岩岳マウンテンリゾート&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">安曇野 ➔ 白馬へ</div><div class="info-list"><div class="info-row"><span class="info-icon">🛤️</span><span>一般道：約1時間（R147・R148 約50km）</span></div></div><div class="card-desc">仁科三湖を横目に北上。青木湖あたりの車窓が美しい区間。</div></div></div>
 
-<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sirouma.JPG/960px-Sirouma.JPG" alt="白馬連峰 景観 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🏔️ 絶景カフェ</span><span class="card-time">14:30</span><a href="https://www.google.com/maps/search/?api=1&query=白馬マウンテンハーバー" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">白馬マウンテンハーバー（岩岳リゾート）</div><div class="info-list"><div class="info-row"><span class="info-icon">🚡</span><span>ゴンドラ往復：約2,000円／人（2名で約4,000円）※目安</span></div><div class="info-row"><span class="info-icon">☕</span><span>THE CITY BAKERY のパン＆コーヒー</span></div><div class="info-row"><span class="info-icon">🕐</span><span>滞在：約2時間</span></div></div><div class="card-desc">標高1,289mの絶景テラスから白馬三山を一望。<b>予算が厳しければここをカットして4,000円節約も可能</b>。</div></div></div></div>
+<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sirouma.JPG/960px-Sirouma.JPG" alt="白馬連峰 景観 実物写真" class="pos-top" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🏔️ 絶景カフェ</span><span class="card-time">14:30</span><a href="https://www.google.com/maps/search/?api=1&query=白馬マウンテンハーバー" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">白馬マウンテンハーバー（岩岳リゾート）</div><div class="info-list"><div class="info-row"><span class="info-icon">🚡</span><span>ゴンドラ往復：約2,000円／人（2名で約4,000円）※目安</span></div><div class="info-row"><span class="info-icon">☕</span><span>THE CITY BAKERY のパン＆コーヒー</span></div><div class="info-row"><span class="info-icon">🕐</span><span>滞在：約2時間</span></div></div><div class="card-desc">標高1,289mの絶景テラスから白馬三山を一望。<b>予算が厳しければここをカットして4,000円節約も可能</b>。</div></div></div></div>
 
 <div class="timeline-item item-hotel"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">♨️ 宿泊・夕食</span><span class="card-time">17:30</span><a href="https://www.google.com/maps/search/?api=1&query=ホテルステラベラ+白馬村神城" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">ホテル ステラベラ チェックイン</div><div class="info-list"><div class="info-row"><span class="info-icon">🎫</span><span>予約番号：IC1663796507（決済済 54,602円・夕朝食付）</span></div><div class="info-row"><span class="info-icon">⚠️</span><span><b>チェックイン 15:00〜18:00</b>（締切が早いので遅れ厳禁）</span></div><div class="info-row"><span class="info-icon">🍷</span><span>18:30〜 蓼科牛メイン×信州産食材のカジュアル・フレンチ 🎁</span></div><div class="info-row"><span class="info-icon">♨️</span><span>露天風呂は<b>貸切制</b>。到着時に時間を予約しておくとスムーズ</span></div><div class="info-row"><span class="info-icon">💴</span><span>現地払い：宿泊税 400円×2名 = 800円（入湯税は料金込み）</span></div></div><div class="card-desc">この旅で一番のごちそう。ゆっくり味わいましょう。</div></div></div></div>
 
@@ -338,7 +350,7 @@ nav button.active{color:#d97706;border-bottom-color:#d97706;}
 
 <div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">18:00</span><a href="https://www.google.com/maps/dir/?api=1&origin=草津温泉&destination=万座プリンスホテル&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">草津 ➔ 万座温泉</div><div class="info-list"><div class="info-row"><span class="info-icon">🛤️</span><span>一般道：約40分（万座ハイウェー経由 約20km）</span></div><div class="info-row"><span class="info-icon">💰</span><span>万座ハイウェー 通行料 約1,070円</span></div></div><div class="card-desc">日没前に到着したい区間。山道なので暗くなる前の通過が安心。</div></div></div>
 
-<div class="timeline-item item-hotel"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Manza-prince.jpg/960px-Manza-prince.jpg" alt="万座温泉 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">♨️ 宿泊</span><span class="card-time">18:30</span><a href="https://www.google.com/maps/search/?api=1&query=万座プリンスホテル" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">万座プリンスホテル チェックイン</div><div class="info-list"><div class="info-row"><span class="info-icon">🎫</span><span>受付番号：6210659387（決済済 23,452円・<b>素泊まり</b>）</span></div><div class="info-row"><span class="info-icon">🛏️</span><span>本館ツインルームC 禁煙 19.2㎡</span></div><div class="info-row"><span class="info-icon">🅿️</span><span>駐車場 無料（屋外190台）</span></div><div class="info-row"><span class="info-icon">💴</span><span>現地払い：入湯税150円＋宿泊税200円 ×2名 = 700円</span></div><div class="info-row"><span class="info-icon">☎️</span><span>TEL 0279-97-1111（到着が18:00を大きく過ぎる場合は要連絡）</span></div></div><div class="card-desc">標高1,800mの乳白色にごり湯露天風呂。夜は空気が澄んで<b>満天の星空</b>が広がります。防寒着を忘れずに。</div></div></div></div>
+<div class="timeline-item item-hotel"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Manza-prince.jpg/960px-Manza-prince.jpg" alt="万座温泉 実物写真" class="pos-center" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">♨️ 宿泊</span><span class="card-time">18:30</span><a href="https://www.google.com/maps/search/?api=1&query=万座プリンスホテル" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">万座プリンスホテル チェックイン</div><div class="info-list"><div class="info-row"><span class="info-icon">🎫</span><span>受付番号：6210659387（決済済 23,452円・<b>素泊まり</b>）</span></div><div class="info-row"><span class="info-icon">🛏️</span><span>本館ツインルームC 禁煙 19.2㎡</span></div><div class="info-row"><span class="info-icon">🅿️</span><span>駐車場 無料（屋外190台）</span></div><div class="info-row"><span class="info-icon">💴</span><span>現地払い：入湯税150円＋宿泊税200円 ×2名 = 700円</span></div><div class="info-row"><span class="info-icon">☎️</span><span>TEL 0279-97-1111（到着が18:00を大きく過ぎる場合は要連絡）</span></div></div><div class="card-desc">標高1,800mの乳白色にごり湯露天風呂。夜は空気が澄んで<b>満天の星空</b>が広がります。防寒着を忘れずに。</div></div></div></div>
 
 </div>
 </div>
