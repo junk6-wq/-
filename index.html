@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
-<title>2026年お盆 ドライブ旅のしおり | 飛騨高山・上高地・白馬・草津・万座・軽井沢</title>
+<title>2026年お盆 ドライブ旅のしおり | 上高地・飛騨高山・白馬・草津・万座・軽井沢</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;}
 body{background-color:#f8fafc;color:#1e293b;line-height:1.4;padding-bottom:20px;}
 header{background:linear-gradient(135deg, #1e293b, #334155);color:#fff;padding:16px 12px;text-align:center;border-bottom:3px solid #f59e0b;}
-header h1{font-family:"Georgia",serif;font-size:18px;font-weight:700;letter-spacing:0.04em;color:#fef08a;}
-header p{font-size:11px;color:#cbd5e1;margin-top:2px;font-weight:600;}
+header h1{font-family:"Georgia",serif;font-size:17px;font-weight:700;letter-spacing:0.03em;color:#fef08a;line-height:1.35;}
+header p{font-size:11px;color:#cbd5e1;margin-top:3px;font-weight:600;}
 nav{display:flex;width:100%;background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,0.04);overflow-x:auto;scrollbar-width:none;}
 nav::-webkit-scrollbar{display:none;}
-nav button{flex:1 0 auto;min-width:60px;padding:9px 2px;border:none;background:none;font-size:12px;font-weight:700;color:#64748b;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;text-align:center;white-space:nowrap;}
+nav button{flex:1 0 auto;min-width:58px;padding:9px 4px;border:none;background:none;font-size:12px;font-weight:700;color:#64748b;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;text-align:center;white-space:nowrap;}
 nav button.active{color:#d97706;border-bottom-color:#d97706;}
 .container{width:100%;max-width:600px;margin:0 auto;padding:8px 6px;}
 .tab-content{display:none;}
@@ -51,31 +51,72 @@ nav button.active{color:#d97706;border-bottom-color:#d97706;}
 .move-card{background:#f8fafc;border:1px solid #cbd5e1;border-radius:10px;padding:10px 12px;box-shadow:0 1px 2px rgba(0,0,0,0.02);}
 .summary-card{background:#fff;border:1px solid #cbd5e1;border-radius:10px;padding:14px;margin-bottom:12px;}
 .summary-title{font-size:14px;font-weight:800;color:#0f172a;margin-bottom:10px;border-bottom:2px solid #f59e0b;padding-bottom:4px;}
-.summary-row{display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:#334155;padding:4px 0;border-bottom:1px dashed #f1f5f9;}
-.summary-row.total{font-size:13px;font-weight:800;color:#b45309;border-bottom:none;padding-top:8px;}
+.summary-row{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:600;color:#334155;padding:4px 0;border-bottom:1px dashed #f1f5f9;}
+.summary-row span:last-child{white-space:nowrap;}
+.summary-row.total{font-size:13px;font-weight:800;color:#b45309;border-bottom:none;padding-top:8px;border-top:2px solid #fde68a;margin-top:4px;}
 .checklist{background:#fff;border:1px solid #cbd5e1;border-radius:10px;padding:14px;}
 .checklist-item{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #f1f5f9;font-size:12px;font-weight:600;color:#334155;}
 .checklist-item:last-child{border-bottom:none;}
 .checklist-item input{width:15px;height:15px;accent-color:#d97706;}
-.leaflet-tooltip{font-size:11px;font-weight:800;padding:3px 6px;border-radius:4px;background:#ffffff;color:#0f172a;border:2px solid #d97706;box-shadow:0 2px 4px rgba(0,0,0,0.15);}
+.leaflet-tooltip{font-size:10px;font-weight:800;padding:2px 6px;border-radius:4px;background:#ffffff;color:#0f172a;border:2px solid #d97706;box-shadow:0 2px 4px rgba(0,0,0,0.15);}
 .leaflet-tooltip-top:before{border-top-color:#d97706;}
+.pin-icon{background:none;border:none;}
+.pin-dot{width:26px;height:26px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;font-size:13px;line-height:1;}
 .route-strip{display:flex;flex-wrap:wrap;gap:5px;align-items:center;font-size:11px;font-weight:700;color:#475569;background:#fff;border:1px solid #cbd5e1;border-radius:10px;padding:10px 12px;margin-bottom:12px;}
 .route-strip .arrow{color:#f59e0b;font-weight:800;}
 .overview-day{background:#fff;border:1px solid #cbd5e1;border-radius:10px;padding:12px 14px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,0.03);}
 .overview-day-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;flex-wrap:wrap;}
-.overview-day-badge{font-size:11px;font-weight:800;color:#fff;background:#1e293b;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.overview-day-badge{font-size:11px;font-weight:800;color:#fff;padding:3px 10px;border-radius:20px;white-space:nowrap;}
 .overview-day-title{font-size:13px;font-weight:800;color:#0f172a;}
-.overview-day-hotel{font-size:11px;color:#6b21a8;font-weight:700;background:#f3e8ff;padding:2px 8px;border-radius:4px;white-space:nowrap;}
+.overview-day-hotel{font-size:10px;color:#6b21a8;font-weight:700;background:#f3e8ff;padding:3px 8px;border-radius:4px;white-space:nowrap;}
+.overview-day-hotel.nostay{color:#166534;background:#dcfce7;}
 .overview-list{list-style:none;}
 .overview-list li{font-size:12px;color:#334155;font-weight:600;padding:3px 0 3px 16px;position:relative;}
 .overview-list li:before{content:'●';position:absolute;left:2px;color:#f59e0b;font-size:8px;top:9px;}
 .overview-list li .t{color:#94a3b8;font-weight:700;margin-right:4px;}
+.alert{background:#fffbeb;border:1px solid #fcd34d;border-left:4px solid #f59e0b;border-radius:8px;padding:10px 12px;font-size:11px;font-weight:600;color:#92400e;line-height:1.65;margin-bottom:10px;}
+.alert b{color:#78350f;font-weight:800;}
+.alert.info{background:#eff6ff;border-color:#93c5fd;border-left-color:#3b82f6;color:#1e40af;}
+.alert.info b{color:#1e3a8a;}
+.food-pick{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:9px 11px;margin-top:8px;}
+.food-pick-title{font-size:11px;font-weight:800;color:#9a3412;margin-bottom:6px;}
+.food-item{font-size:11px;color:#431407;font-weight:600;padding:5px 0;border-bottom:1px dashed #fed7aa;line-height:1.5;}
+.food-item:last-child{border-bottom:none;}
+.food-item .fname{font-weight:800;color:#7c2d12;}
+.food-item .fmeta{color:#9a3412;font-size:10px;}
+.food-item a{color:#c2410c;font-weight:700;text-decoration:none;font-size:10px;}
+.drive-table{width:100%;border-collapse:collapse;font-size:11px;}
+.drive-table th{background:#f1f5f9;color:#334155;font-weight:800;padding:6px 5px;text-align:center;border:1px solid #e2e8f0;font-size:10px;}
+.drive-table td{padding:6px 5px;text-align:center;border:1px solid #e2e8f0;font-weight:700;color:#334155;}
+.drive-table td.lbl{text-align:left;font-weight:800;color:#0f172a;white-space:nowrap;}
+.drive-table .exp{color:#1e40af;background:#eff6ff;}
+.drive-table .loc{color:#166534;background:#f0fdf4;}
+.drive-table tr.sum td{background:#fffbeb;color:#b45309;font-weight:800;border-top:2px solid #fde68a;}
+.map-filter{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
+.map-filter-btn{flex:1 0 auto;min-width:52px;padding:7px 6px;border:1px solid #cbd5e1;background:#fff;border-radius:7px;font-size:11px;font-weight:800;color:#64748b;cursor:pointer;transition:all 0.15s;}
+.map-filter-btn.active{color:#fff;border-color:transparent;}
+.map-legend{display:flex;flex-wrap:wrap;gap:8px;font-size:10px;font-weight:700;color:#475569;margin-top:8px;background:#fff;border:1px solid #cbd5e1;border-radius:8px;padding:8px 10px;}
+.map-legend span{display:flex;align-items:center;gap:4px;}
+.map-legend i{width:10px;height:10px;border-radius:50%;display:inline-block;}
+.budget-cat{background:#fff;border:1px solid #cbd5e1;border-radius:10px;padding:12px 14px;margin-bottom:10px;}
+.budget-cat-head{font-size:12px;font-weight:800;color:#0f172a;margin-bottom:8px;padding-bottom:5px;border-bottom:2px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.budget-cat-head .amt{color:#b45309;white-space:nowrap;}
+.budget-line{display:flex;justify-content:space-between;gap:10px;font-size:11px;font-weight:600;color:#475569;padding:3px 0;}
+.budget-line span:last-child{white-space:nowrap;font-weight:700;color:#334155;}
+.budget-line .paid{color:#059669;font-size:9px;font-weight:800;background:#d1fae5;padding:1px 5px;border-radius:3px;margin-left:4px;}
+.budget-final{background:linear-gradient(135deg,#1e293b,#334155);color:#fff;border-radius:10px;padding:14px;margin-bottom:10px;}
+.budget-final-row{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:700;color:#cbd5e1;padding:5px 0;border-bottom:1px dashed rgba(255,255,255,0.15);}
+.budget-final-row:last-child{border-bottom:none;}
+.budget-final-row.big{font-size:15px;font-weight:800;color:#fef08a;padding-top:9px;}
+.budget-final-row.ok{color:#86efac;}
+.saving{background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:10px 12px;font-size:11px;font-weight:600;color:#166534;line-height:1.7;}
+.saving b{color:#14532d;font-weight:800;}
 </style>
 </head>
 <body>
 <header>
-<h1>2026年お盆 飛騨高山・上高地・白馬・草津・万座・軽井沢 旅のしおり 🚗温泉</h1>
-<p>2026.08.10 Mon - 08.14 Fri | 4泊5日 大人2名 ドライブ旅</p>
+<h1>2026年お盆 上高地・飛騨高山・白馬・草津・万座・軽井沢 旅のしおり 🚗♨️</h1>
+<p>2026.08.10 Mon - 08.14 Fri | 4泊5日（初日車中泊）大人2名 ドライブ旅</p>
 </header>
 <nav>
 <button class="nav-btn active" onclick="switchTab('overview',this)">📊 概要</button>
@@ -85,150 +126,456 @@ nav button.active{color:#d97706;border-bottom-color:#d97706;}
 <button class="nav-btn" onclick="switchTab('day4',this)">8/13 DAY4</button>
 <button class="nav-btn" onclick="switchTab('day5',this)">8/14 DAY5</button>
 <button class="nav-btn" onclick="switchTab('map',this)">🗺️ 地図</button>
+<button class="nav-btn" onclick="switchTab('budget',this)">💰 予算</button>
 <button class="nav-btn" onclick="switchTab('prep',this)">📋 準備</button>
 </nav>
 <div class="container">
 
+<!-- ============ 概要 ============ -->
 <div id="overview" class="tab-content active">
 <div class="route-strip">
-<span>🏠 水戸</span><span class="arrow">➔</span><span>横川SA</span><span class="arrow">➔</span><span>♨️飛騨高山</span><span class="arrow">➔</span><span>🌲上高地</span><span class="arrow">➔</span><span>♨️飛騨高山</span><span class="arrow">➔</span><span>🌱わさび農場</span><span class="arrow">➔</span><span>🏔️白馬</span><span class="arrow">➔</span><span>♨️草津</span><span class="arrow">➔</span><span>♨️万座</span><span class="arrow">➔</span><span>🌿軽井沢</span><span class="arrow">➔</span><span>🏠水戸</span>
+<span>🏠 水戸</span><span class="arrow">➔</span><span>🍱横川SA</span><span class="arrow">➔</span><span>🛁信州健康ランド</span><span class="arrow">➔</span><span>🚙沢渡(車中泊)</span><span class="arrow">➔</span><span>🌲上高地</span><span class="arrow">➔</span><span>♨️飛騨高山</span><span class="arrow">➔</span><span>🌱安曇野</span><span class="arrow">➔</span><span>🏔️白馬</span><span class="arrow">➔</span><span>♨️草津</span><span class="arrow">➔</span><span>♨️万座</span><span class="arrow">➔</span><span>🌿軽井沢</span><span class="arrow">➔</span><span>🏠水戸</span>
 </div>
 
+<div class="alert"><b>⚠️ 予約状況から判明した要注意ポイント</b><br>
+・<b>万座プリンスホテルは「素泊まり」</b>プラン。夕食・朝食とも付いていません → DAY4の夕食とDAY5の朝食を別途手配<br>
+・スパホテルアルピナは<b>朝食のみ</b>（8/11の1泊）→ DAY2の夕食は市内で<br>
+・ホテルステラベラのみ<b>夕朝食付き</b>（蓼科牛フレンチ）</div>
+
 <div class="overview-day">
-<div class="overview-day-head"><span class="overview-day-badge">8/10 DAY1</span><span class="overview-day-title">水戸 ➔ 飛騨高山</span><span class="overview-day-hotel">♨️ スパホテルアルピナ飛騨高山</span></div>
+<div class="overview-day-head"><span class="overview-day-badge" style="background:#ef4444">8/10 DAY1</span><span class="overview-day-title">水戸 ➔ 沢渡（車中泊）</span><span class="overview-day-hotel nostay">🚙 沢渡駐車場で車中泊</span></div>
 <ul class="overview-list">
-<li><span class="t">16:00</span>水戸 出発（北関東道〜上信越道、約2.5h）</li>
-<li><span class="t">18:30</span>横川SAで夕食（峠の釜めし）</li>
-<li><span class="t">21:00</span>飛騨高山 到着・チェックイン・屋上温泉</li>
+<li><span class="t">16:00</span>水戸 出発（高速 約4時間）</li>
+<li><span class="t">18:30</span>横川SA で夕食（峠の釜めし）</li>
+<li><span class="t">21:30</span>信州健康ランドで入浴（塩尻北IC すぐ）</li>
+<li><span class="t">23:45</span>沢渡駐車場 着・車中泊</li>
 </ul>
 </div>
 
 <div class="overview-day">
-<div class="overview-day-head"><span class="overview-day-badge">8/11 DAY2</span><span class="overview-day-title">上高地トレッキング＆高山散策</span><span class="overview-day-hotel">♨️ スパホテルアルピナ飛騨高山</span></div>
+<div class="overview-day-head"><span class="overview-day-badge" style="background:#f59e0b">8/11 DAY2</span><span class="overview-day-title">上高地トレッキング ➔ 高山</span><span class="overview-day-hotel">♨️ スパホテルアルピナ（朝食付）</span></div>
 <ul class="overview-list">
-<li><span class="t">08:30</span>上高地 散策（大正池〜田代池〜河童橋）</li>
-<li><span class="t">13:30</span>飛騨高山 古い町並み 食べ歩き</li>
-<li><span class="t">18:30</span>飛騨牛焼肉・しゃぶしゃぶ ディナー</li>
+<li><span class="t">06:00</span>沢渡発 シャトルバスで上高地へ</li>
+<li><span class="t">06:30</span>大正池〜田代池〜河童橋 トレッキング</li>
+<li><span class="t">15:00</span>高山着・チェックイン ➔ 古い町並み散策</li>
+<li><span class="t">19:30</span>飛騨牛ディナー（要・店選び）</li>
 </ul>
 </div>
 
 <div class="overview-day">
-<div class="overview-day-head"><span class="overview-day-badge">8/12 DAY3</span><span class="overview-day-title">高山朝市 ➔ 安曇野 ➔ 白馬</span><span class="overview-day-hotel">♨️ ホテルステラベラ</span></div>
+<div class="overview-day-head"><span class="overview-day-badge" style="background:#10b981">8/12 DAY3</span><span class="overview-day-title">高山朝市 ➔ 安曇野 ➔ 白馬</span><span class="overview-day-hotel">♨️ ホテルステラベラ（2食付）</span></div>
 <ul class="overview-list">
-<li><span class="t">08:15</span>宮川朝市 散策</li>
+<li><span class="t">08:00</span>宮川朝市 散策</li>
 <li><span class="t">11:00</span>大王わさび農場（わさびソフト）</li>
-<li><span class="t">13:00</span>白馬 到着・信州蕎麦ランチ</li>
 <li><span class="t">14:30</span>白馬マウンテンハーバーで絶景カフェ</li>
+<li><span class="t">18:30</span>宿で蓼科牛フレンチディナー 🎁予約済</li>
 </ul>
 </div>
 
 <div class="overview-day">
-<div class="overview-day-head"><span class="overview-day-badge">8/13 DAY4</span><span class="overview-day-title">志賀草津高原ルート ➔ 草津 ➔ 万座</span><span class="overview-day-hotel">♨️ 万座プリンスホテル</span></div>
+<div class="overview-day-head"><span class="overview-day-badge" style="background:#3b82f6">8/13 DAY4</span><span class="overview-day-title">志賀草津高原ルート ➔ 草津 ➔ 万座</span><span class="overview-day-hotel">♨️ 万座プリンス（素泊まり）</span></div>
 <ul class="overview-list">
-<li><span class="t">09:00</span>白馬 出発（志賀草津高原ルート、約3h）</li>
-<li><span class="t">12:00</span>草津温泉 湯畑・湯もみショー</li>
-<li><span class="t">15:30</span>万座温泉 到着・露天風呂・星空鑑賞</li>
+<li><span class="t">09:00</span>白馬 出発（一般道のみ 約4時間）</li>
+<li><span class="t">12:30</span>草津温泉 湯畑・湯もみショー</li>
+<li><span class="t">17:00</span><b>草津で夕食</b>（素泊まりのため必須）</li>
+<li><span class="t">18:30</span>万座 着・乳白色露天風呂・星空</li>
 </ul>
 </div>
 
 <div class="overview-day">
-<div class="overview-day-head"><span class="overview-day-badge">8/14 DAY5</span><span class="overview-day-title">軽井沢散策 ➔ 水戸 帰着</span><span class="overview-day-hotel">🏠 帰宅日</span></div>
+<div class="overview-day-head"><span class="overview-day-badge" style="background:#8b5cf6">8/14 DAY5</span><span class="overview-day-title">軽井沢散策 ➔ 水戸 帰着</span><span class="overview-day-hotel nostay">🏠 帰宅日</span></div>
 <ul class="overview-list">
-<li><span class="t">09:30</span>万座 出発（鬼押ハイウェイ経由）</li>
+<li><span class="t">09:30</span>万座 出発（鬼押ハイウェー経由）</li>
 <li><span class="t">11:00</span>軽井沢 散策・ショッピング・ランチ</li>
-<li><span class="t">14:30</span>軽井沢 出発 ➔ 18:30 水戸 帰着</li>
+<li><span class="t">14:30</span>軽井沢 発 ➔ 18:30 水戸 帰着</li>
 </ul>
 </div>
 
 <div class="summary-card">
-<div class="summary-title">🕐 運転時間の目安（区間合計）</div>
-<div class="summary-row"><span>DAY1 水戸 ➔ 横川SA</span><span>約2.5時間</span></div>
-<div class="summary-row"><span>DAY2 高山 ⇄ 沢渡（往復）</span><span>約2時間</span></div>
-<div class="summary-row"><span>DAY3 高山 ➔ 白馬</span><span>約1.5時間〜</span></div>
-<div class="summary-row"><span>DAY4 白馬 ➔ 草津</span><span>約3時間</span></div>
-<div class="summary-row"><span>DAY5 万座 ➔ 軽井沢 ➔ 水戸</span><span>約5.5時間</span></div>
-<div class="summary-row total"><span>合計（目安）</span><span>約14.5時間</span></div>
+<div class="summary-title">🕐 運転時間の目安（高速道路／一般道 内訳）</div>
+<table class="drive-table">
+<tr><th>区間</th><th class="exp">高速道路</th><th class="loc">一般道</th><th>計</th></tr>
+<tr><td class="lbl">DAY1 水戸➔沢渡</td><td class="exp">4:00</td><td class="loc">1:20</td><td>5:20</td></tr>
+<tr><td class="lbl">DAY2 沢渡➔高山</td><td class="exp">—</td><td class="loc">1:20</td><td>1:20</td></tr>
+<tr><td class="lbl">DAY3 高山➔白馬</td><td class="exp">—</td><td class="loc">2:50</td><td>2:50</td></tr>
+<tr><td class="lbl">DAY4 白馬➔万座</td><td class="exp">—</td><td class="loc">4:00</td><td>4:00</td></tr>
+<tr><td class="lbl">DAY5 万座➔水戸</td><td class="exp">2:50</td><td class="loc">1:20</td><td>4:10</td></tr>
+<tr class="sum"><td class="lbl">合計</td><td>6:50</td><td>10:50</td><td>17:40</td></tr>
+</table>
+<div style="font-size:10px;color:#64748b;font-weight:600;margin-top:8px;line-height:1.6;">
+※休憩時間は含まない実走行の目安。総走行距離は約960km<br>
+※DAY2の上高地はマイカー規制のためシャトルバス（運転なし）<br>
+※<b style="color:#b45309;">DAY4は全4時間が一般道</b>。志賀草津高原ルートは急カーブ・標高2,000m超で疲れやすいので余裕を持って
+</div>
 </div>
 </div>
 
+<!-- ============ DAY1 ============ -->
 <div id="day1" class="tab-content">
+<div class="alert"><b>⚠️ DAY1は行程がタイト</b><br>
+水戸16:00発だと沢渡着は23:45頃、翌朝5:15起床で睡眠は約5時間。<br>
+<b>可能なら15:00発を推奨</b>（全体が1時間前倒しになり、睡眠6時間を確保できます）。<br>
+上高地の始発バスに固執せず7:00台のバスにすれば、さらに1時間ゆっくりできます。</div>
 <div class="timeline">
-<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">16:00</span><a href="https://www.google.com/maps/dir/?api=1&origin=水戸市&destination=横川SA&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">水戸 出発（北関東道〜上信越道経由）</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：車で約2.5時間（横川SAまで）</span></div><div class="info-row"><span class="info-icon">🛣️</span><span>ルート：北関東自動車道 ➔ 上信越自動車道</span></div></div><div class="card-desc">お盆休みのドライブ旅スタート！安全運転で上信越道へ向かいます。</div></div></div>
-<div class="timeline-item item-food"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/T%C5%8Dge_no_Kamameshi_02.jpg/960px-T%C5%8Dge_no_Kamameshi_02.jpg" alt="峠の釜めし 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🍣 食事</span><span class="card-time">18:30</span><a href="https://www.google.com/maps/search/?api=1&query=横川SA+上り" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">横川SA（上り）にて夕食</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：約60分</span></div><div class="info-row"><span class="info-icon">🍱</span><span>名物：峠の釜めし、上州豚の炙り豚丼</span></div></div><div class="card-desc">名物のおぎのや「峠の釜めし」や香ばしい上州豚の炙り豚丼で腹ごしらえ！</div></div></div></div>
-<div class="timeline-item item-hotel"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Hida_Takayama_old_town_streets_%2848519201716%29.jpg/960px-Hida_Takayama_old_town_streets_%2848519201716%29.jpg" alt="飛騨高山 街並み 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">♨️ 宿泊</span><span class="card-time">21:00</span><a href="https://www.google.com/maps/search/?api=1&query=スパホテルアルピナ飛騨高山" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">「スパホテルアルピナ飛騨高山」到着・チェックイン・屋上温泉</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>チェックイン：21:00</span></div><div class="info-row"><span class="info-icon">♨️</span><span>特徴：自家源泉の屋上展望露天風呂</span></div></div><div class="card-desc">高山到着後は自家源泉の屋上天然温泉で移動の疲れをじっくり癒やします。</div></div></div></div>
+
+<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">16:00</span><a href="https://www.google.com/maps/dir/?api=1&origin=水戸市&destination=横川SA&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">水戸 出発（北関東道〜上信越道）</div><div class="info-list"><div class="info-row"><span class="info-icon">🛣️</span><span>高速：約2時間30分（横川SAまで 約190km）</span></div><div class="info-row"><span class="info-icon">🚧</span><span>ルート：北関東道 ➔ 高崎JCT ➔ 上信越道</span></div></div><div class="card-desc">お盆休みのドライブ旅スタート！夕方の渋滞を見越して早めの出発が吉。</div></div></div>
+
+<div class="timeline-item item-food"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/T%C5%8Dge_no_Kamameshi_02.jpg/960px-T%C5%8Dge_no_Kamameshi_02.jpg" alt="峠の釜めし 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🍱 夕食①</span><span class="card-time">18:30</span><a href="https://www.google.com/maps/search/?api=1&query=横川SA+上信越道" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">横川SA にて夕食</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>滞在：約60分（19:30発）</span></div></div>
+<div class="food-pick"><div class="food-pick-title">🍽️ 夕食おすすめ（ここが実質のディナー）</div>
+<div class="food-item"><span class="fname">おぎのや「峠の釜めし」</span><br><span class="fmeta">益子焼の器で有名な駅弁の名店。約1,300円／人。SA内で購入・イートイン可</span></div>
+<div class="food-item"><span class="fname">上州豚の炙り豚丼</span><br><span class="fmeta">フードコートの名物。ガッツリ食べたい運転手さん向け</span></div>
+</div>
+<div class="card-desc">この先の信州健康ランド着は21:30と遅いため、<b>夕食はここでしっかり</b>取るのが安全策です。</div></div></div></div>
+
+<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">19:30</span><a href="https://www.google.com/maps/dir/?api=1&origin=横川SA&destination=信州健康ランド&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">横川SA ➔ 塩尻北IC へ</div><div class="info-list"><div class="info-row"><span class="info-icon">🛣️</span><span>高速：約2時間（上信越道 ➔ 更埴JCT ➔ 長野道 約160km）</span></div></div><div class="card-desc">夜間走行。長野道は交通量が減るので快適ですが、動物の飛び出しに注意。</div></div></div>
+
+<div class="timeline-item item-hotel"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">🛁 入浴</span><span class="card-time">21:30</span><a href="https://www.google.com/maps/search/?api=1&query=信州健康ランド+塩尻市広丘吉田366-1" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">信州健康ランドで入浴（クア・アンド・ホテル）</div><div class="info-list"><div class="info-row"><span class="info-icon">📍</span><span>長野県塩尻市広丘吉田366-1 ／ <b>塩尻北ICから約1分</b></span></div><div class="info-row"><span class="info-icon">🕐</span><span>24時間営業（清掃 男湯 4:00-5:00 / 女湯 3:00-4:00）</span></div><div class="info-row"><span class="info-icon">💰</span><span>入浴料：大人 1,980円／人（2名で3,960円）</span></div><div class="info-row"><span class="info-icon">⏱️</span><span>滞在目安：60分（22:30発）</span></div></div><div class="card-desc">車中泊前にさっぱり。館内には食事処・仮眠室・岩盤浴もあるので、疲れが強ければここで仮眠する選択肢も。</div></div></div></div>
+
+<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">22:30</span><a href="https://www.google.com/maps/dir/?api=1&origin=信州健康ランド&destination=沢渡駐車場&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">信州健康ランド ➔ 沢渡駐車場</div><div class="info-list"><div class="info-row"><span class="info-icon">🛤️</span><span>一般道：約1時間15分（R158経由 約50km）</span></div><div class="info-row"><span class="info-icon">⚠️</span><span>R158は山岳路。夜間はカーブ・野生動物に注意</span></div></div><div class="card-desc">松本市街を抜けて梓川沿いを遡上。トンネルの多い道です。</div></div></div>
+
+<div class="timeline-item item-hotel"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">🚙 車中泊</span><span class="card-time">23:45</span><a href="https://www.google.com/maps/search/?api=1&query=沢渡駐車場+上高地" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">沢渡（さわんど）駐車場 到着・車中泊</div><div class="info-list"><div class="info-row"><span class="info-icon">💰</span><span>駐車料金：普通車 1日 700〜800円<b>（0時で日付切替のため2日分）</b></span></div><div class="info-row"><span class="info-icon">🚻</span><span>市営駐車場にトイレあり。バスターミナル併設の駐車場が便利</span></div><div class="info-row"><span class="info-icon">🌡️</span><span>標高約1,000m。夏でも夜は15℃前後まで下がるので薄手の寝袋推奨</span></div></div><div class="card-desc">翌朝の上高地シャトルバス始発（6:00頃）に備えて早めに就寝。日の出前の上高地は霧と朝もやが幻想的です。</div></div></div></div>
+
 </div>
 </div>
 
+<!-- ============ DAY2 ============ -->
 <div id="day2" class="tab-content">
+<div class="alert info"><b>ℹ️ 上高地はマイカー規制</b><br>沢渡に車を置き、シャトルバスかタクシーで入ります。<b>バス往復 3,000円／人</b>（2名で6,000円）。始発は6:00頃、繁忙期は増便あり。</div>
 <div class="timeline">
-<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">07:00</span><a href="https://www.google.com/maps/dir/?api=1&origin=飛騨高山&destination=沢渡駐車場&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">高山 出発 ➔ 沢渡駐車場へ移動</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：車で約60分（安房峠道路経由）</span></div></div><div class="card-desc">上高地の玄関口・沢渡（さわんど）駐車場へ移動。</div></div></div>
-<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/KAMIKOCHI-KAPPABASHI.JPG/960px-KAMIKOCHI-KAPPABASHI.JPG" alt="上高地 河童橋 実物写真" loading="lazy"/><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/150920_Taisho-ike_Kamikochi_Japan01n.jpg/960px-150920_Taisho-ike_Kamikochi_Japan01n.jpg" alt="上高地 大正池 実物写真" loading="lazy"/></div><span class="swipe-hint">横スワイプ ➔</span></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🌲 観光・ハイキング</span><span class="card-time">08:30</span><a href="https://www.google.com/maps/search/?api=1&query=上高地+河童橋" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">上高地 散策（大正池〜田代池〜河童橋トレッキング）</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：約3.5時間</span></div><div class="info-row"><span class="info-icon">🥾</span><span>コース：大正池 ➔ 田代池 ➔ 梓川木道 ➔ 河童橋</span></div></div><div class="card-desc">澄み切った清流梓川と穂高連峰の絶景を歩く感動のネイチャートレッキング！</div></div></div></div>
-<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">12:30</span><a href="https://www.google.com/maps/dir/?api=1&origin=沢渡駐車場&destination=高山市内&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">沢渡へ戻り、高山市内へ移動</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：車で約60分</span></div></div><div class="card-desc">シャトルバス/タクシーで沢渡へ戻り、マイカーで高山市内へ。</div></div></div>
-<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Hida_Takayama_old_town_streets_%2848519369602%29.jpg/960px-Hida_Takayama_old_town_streets_%2848519369602%29.jpg" alt="飛騨高山 古い町並み 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🍡 散策・グルメ</span><span class="card-time">13:30</span><a href="https://www.google.com/maps/search/?api=1&query=飛騨高山+古い町並み" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">飛騨高山 古い町並み（上三之町）散策</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：約3.5時間</span></div><div class="info-row"><span class="info-icon">😋</span><span>食べ歩き：飛騨牛寿司・飛騨牛コロッケ・地酒</span></div></div><div class="card-desc">江戸時代の情趣が残る出格子建築の町並みをのんびり食べ歩き散策！</div></div></div></div>
-<div class="timeline-item item-hotel"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">♨️ 温泉</span><span class="card-time">17:00</span><a href="https://www.google.com/maps/search/?api=1&query=スパホテルアルピナ飛騨高山" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">ホテル帰着・温泉</div><div class="card-desc">ホテルに戻り夕食前に天然温泉でリフレッシュ。</div></div></div></div>
-<div class="timeline-item item-food"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">🍣 夕食</span><span class="card-time">18:30</span><a href="https://www.google.com/maps/search/?api=1&query=高山市+飛騨牛焼肉" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">高山市内にて夕食（飛騨牛焼肉・しゃぶしゃぶ）</div><div class="info-list"><div class="info-row"><span class="info-icon">💰</span><span>予算目安：約5,000円〜8,000円/人</span></div></div><div class="card-desc">極上の霜降り飛騨牛焼肉・しゃぶしゃぶで至福のディナーを満喫！</div></div></div></div>
+
+<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">⏰ 起床</span><span class="card-time">05:15</span></div><div class="card-title">起床・身支度</div><div class="info-list"><div class="info-row"><span class="info-icon">🍙</span><span>朝食：前夜にコンビニで買っておいたパン・おにぎりを車内で</span></div></div><div class="card-desc">寒暖差があるので上着を1枚持って出発。</div></div></div>
+
+<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚌 バス</span><span class="card-time">06:00</span><a href="https://www.google.com/maps/dir/?api=1&origin=沢渡バスターミナル&destination=上高地バスターミナル" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">沢渡 ➔ 上高地（シャトルバス 約30分）</div><div class="info-list"><div class="info-row"><span class="info-icon">💰</span><span>往復割引 3,000円／人</span></div><div class="info-row"><span class="info-icon">🚏</span><span>大正池で途中下車すると下りコースを歩けます</span></div></div><div class="card-desc">大正池で降りて、河童橋まで歩くのが王道コース。</div></div></div>
+
+<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/150920_Taisho-ike_Kamikochi_Japan01n.jpg/960px-150920_Taisho-ike_Kamikochi_Japan01n.jpg" alt="上高地 大正池 実物写真" loading="lazy"/><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/KAMIKOCHI-KAPPABASHI.JPG/960px-KAMIKOCHI-KAPPABASHI.JPG" alt="上高地 河童橋 実物写真" loading="lazy"/></div><span class="swipe-hint">横スワイプ ➔</span></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🌲 トレッキング</span><span class="card-time">06:30</span><a href="https://www.google.com/maps/search/?api=1&query=上高地+大正池" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">上高地 散策（大正池〜田代池〜河童橋）</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要：約3.5時間（ゆっくり歩いて）</span></div><div class="info-row"><span class="info-icon">🥾</span><span>コース：大正池 ➔ 田代池 ➔ 梓川木道 ➔ 河童橋（約3.5km・平坦）</span></div><div class="info-row"><span class="info-icon">📷</span><span>朝は無風で大正池の水面が鏡になる絶好の撮影タイム</span></div></div><div class="card-desc">早朝の澄んだ空気の中、清流・梓川と穂高連峰の絶景を歩く。この時間帯は観光客が少なく静寂を楽しめます。</div></div></div></div>
+
+<div class="timeline-item item-food"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">🍽️ 昼食</span><span class="card-time">11:00</span><a href="https://www.google.com/maps/search/?api=1&query=上高地+河童橋+食堂" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">河童橋周辺で昼食</div>
+<div class="food-pick"><div class="food-pick-title">🍽️ 上高地ランチ候補</div>
+<div class="food-item"><span class="fname">五千尺ホテル ラウンジ / 上高地食堂</span><br><span class="fmeta">河童橋の目の前。カレー・信州そば・ソフトクリームなど。1,200〜1,800円／人</span></div>
+<div class="food-item"><span class="fname">節約するなら…</span><br><span class="fmeta">前夜にコンビニでおにぎりを買って持参。梓川沿いのベンチで食べれば景色は最高＆2,000円節約</span></div>
+</div>
+<div class="card-desc">山岳エリアなので価格は高め。こだわりがなければ持参がコスパ良。</div></div></div></div>
+
+<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">12:30</span><a href="https://www.google.com/maps/dir/?api=1&origin=沢渡駐車場&destination=スパホテルアルピナ飛騨高山&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">上高地 ➔ 沢渡 ➔ 高山市内へ</div><div class="info-list"><div class="info-row"><span class="info-icon">🚌</span><span>バスで沢渡へ戻る（約30分）</span></div><div class="info-row"><span class="info-icon">🛤️</span><span>一般道：約1時間20分（R158・安房峠道路 経由 約58km）</span></div><div class="info-row"><span class="info-icon">💰</span><span>安房峠道路（有料トンネル）790円</span></div></div><div class="card-desc">安房トンネルを抜けると岐阜県。平湯温泉を経て高山市街へ下ります。</div></div></div>
+
+<div class="timeline-item item-hotel"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">♨️ チェックイン</span><span class="card-time">15:00</span><a href="https://www.google.com/maps/search/?api=1&query=スパホテルアルピナ飛騨高山" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">スパホテルアルピナ飛騨高山 チェックイン</div><div class="info-list"><div class="info-row"><span class="info-icon">🎫</span><span>予約番号：IN1663699129（決済済 30,306円・朝食付）</span></div><div class="info-row"><span class="info-icon">🕐</span><span>チェックイン 15:00〜25:00 ／ アウト 10:00</span></div><div class="info-row"><span class="info-icon">💴</span><span>現地払い：入湯税150円＋宿泊税200円 ×2名 = 700円</span></div><div class="info-row"><span class="info-icon">🅿️</span><span>このプランは駐車場無料（通常900円/泊）</span></div></div><div class="card-desc">まず荷物を置いて身軽に。車中泊明けなので一度シャワーを浴びてリセットするのもおすすめ。</div></div></div></div>
+
+<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Hida_Takayama_old_town_streets_%2848519369602%29.jpg/960px-Hida_Takayama_old_town_streets_%2848519369602%29.jpg" alt="飛騨高山 古い町並み 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🍡 散策・食べ歩き</span><span class="card-time">15:30</span><a href="https://www.google.com/maps/search/?api=1&query=飛騨高山+古い町並み+上三之町" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">飛騨高山 古い町並み（上三之町）散策</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要：約2.5時間（ホテルから徒歩10分）</span></div><div class="info-row"><span class="info-icon">😋</span><span>食べ歩き：飛騨牛にぎり寿司・飛騨牛コロッケ・みたらし団子・地酒</span></div><div class="info-row"><span class="info-icon">⚠️</span><span>多くの店が17:00頃閉店。早めに向かうのが正解</span></div></div><div class="card-desc">江戸時代の情趣が残る出格子建築の町並み。夕方は人が減って写真も撮りやすくなります。</div></div></div></div>
+
+<div class="timeline-item item-hotel"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">♨️ 温泉</span><span class="card-time">18:00</span></div><div class="card-title">ホテル帰着・屋上天然温泉</div><div class="info-list"><div class="info-row"><span class="info-icon">♨️</span><span>自家源泉の屋上展望露天風呂</span></div></div><div class="card-desc">車中泊＆トレッキングの疲れをここでしっかり抜きましょう。</div></div></div></div>
+
+<div class="timeline-item item-food"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">🥩 夕食</span><span class="card-time">19:30</span><a href="https://www.google.com/maps/search/?api=1&query=高山駅+飛騨牛" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">高山市内で飛騨牛ディナー</div><div class="info-list"><div class="info-row"><span class="info-icon">⚠️</span><span><b>宿は朝食のみ</b>。夕食は市内で（お盆は混雑必至・予約推奨）</span></div></div>
+<div class="food-pick"><div class="food-pick-title">🍽️ 飛騨牛ディナーおすすめ3選（すべて高山駅圏内）</div>
+<div class="food-item"><span class="fname">① 丸明（まるあき）高山店</span> — <span class="fmeta">予算 3,000〜5,000円／人</span><br><span class="fmeta">精肉店直営でコスパ最強。焼肉・しゃぶしゃぶ・すき焼きが選べる。高山駅から徒歩約5分。<b>予算重視ならここ</b></span><br><a href="https://www.google.com/maps/search/?api=1&query=丸明+高山店" target="_blank" rel="noopener">📍 地図で見る</a></div>
+<div class="food-item"><span class="fname">② 熟成飛騨牛焼肉 GYU-SUKE</span> — <span class="fmeta">予算 5,000〜8,000円／人</span><br><span class="fmeta">高山駅すぐ。テラヘルツ熟成庫で寝かせた飛騨牛。ワイン約500本。<b>特別感を出すならここ</b></span><br><a href="https://www.google.com/maps/search/?api=1&query=熟成飛騨牛焼肉+GYU-SUKE+高山" target="_blank" rel="noopener">📍 地図で見る</a></div>
+<div class="food-item"><span class="fname">③ 京や</span> — <span class="fmeta">予算 3,000〜4,000円／人</span><br><span class="fmeta">飛騨の郷土料理。朴葉味噌・漬物ステーキ・地酒。<b>飛騨らしさを味わうならここ</b></span><br><a href="https://www.google.com/maps/search/?api=1&query=京や+高山市" target="_blank" rel="noopener">📍 地図で見る</a></div>
+</div>
+<div class="card-desc">予算の見積もりでは①丸明ベース（2名で約10,000円）で計算しています。</div></div></div></div>
+
 </div>
 </div>
 
+<!-- ============ DAY3 ============ -->
 <div id="day3" class="tab-content">
+<div class="alert info"><b>ℹ️ この日は食事の心配なし</b><br>朝食はアルピナ付き、夕食はステラベラの<b>蓼科牛メインのカジュアル・フレンチ</b>が付いています。手配が必要なのは昼食のみ。</div>
 <div class="timeline">
-<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 チェックアウト</span><span class="card-time">08:00</span></div><div class="card-title">ホテルチェックアウト</div></div></div>
-<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Hida-Takayama_Miyagawa_Morning_Market_%2815668520238%29.jpg/960px-Hida-Takayama_Miyagawa_Morning_Market_%2815668520238%29.jpg" alt="宮川朝市 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🍡 散策・朝市</span><span class="card-time">08:15</span><a href="https://www.google.com/maps/search/?api=1&query=宮川朝市" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">飛騨高山 朝市散策（宮川朝市・陣屋前朝市）</div><div class="info-list"><div class="info-row"><span class="info-icon">😋</span><span>名物：みだらし団子、飛騨牛串焼き、新鮮果物</span></div></div><div class="card-desc">宮川沿いの名物朝市で地元のおばあちゃん達とふれあいながら食べ歩き！</div></div></div></div>
-<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">09:30</span><a href="https://www.google.com/maps/dir/?api=1&origin=飛騨高山&destination=大王わさび農場&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">高山 出発（安房峠道路〜安曇野経由）</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：車で約90分</span></div></div><div class="card-desc">北アルプスの絶景道路を抜けて安曇野へドライブ。</div></div></div>
-<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Daio_Wasabi_Farm_Aerial_Photograph.jpg/960px-Daio_Wasabi_Farm_Aerial_Photograph.jpg" alt="大王わさび農場 三連水車小屋 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🌲 観光・散策</span><span class="card-time">11:00</span><a href="https://www.google.com/maps/search/?api=1&query=大王わさび農場" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">大王わさび農場（散策・わさびソフトクリーム）</div><div class="info-list"><div class="info-row"><span class="info-icon">🍦</span><span>名物：本生わさびソフトクリーム</span></div></div><div class="card-desc">清流蓼川と三連水車小屋の原風景散策＆ピリッと爽やかなわさびソフト！</div></div></div></div>
-<div class="timeline-item item-food"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">🍣 ランチ</span><span class="card-time">13:00</span><a href="https://www.google.com/maps/search/?api=1&query=白馬村+手打ちそば" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">白馬 到着・ランチ（信州手打ち蕎麦）</div><div class="card-desc">白馬到着後、清らかな水で締められた名物本格信州手打ち蕎麦ランチ！</div></div></div></div>
-<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sirouma.JPG/960px-Sirouma.JPG" alt="白馬連峰 景観 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🏔️ 絶景・カフェ</span><span class="card-time">14:30</span><a href="https://www.google.com/maps/search/?api=1&query=白馬マウンテンハーバー" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">白馬マウンテンハーバー（岩岳リゾート / THE CITY BAKERY）</div><div class="card-desc">標高1,289mの山頂絶景テラスで「THE CITY BAKERY」のカフェタイム＆白馬三山の絶景！</div></div></div></div>
-<div class="timeline-item item-hotel"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sirouma.JPG/960px-Sirouma.JPG" alt="白馬神城 エリア実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">♨️ 宿泊・夕食</span><span class="card-time">16:30</span><a href="https://www.google.com/maps/search/?api=1&query=ホテルステラベラ" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">「ホテルステラベラ」チェックイン・温泉（かたくりの湯）</div><div class="info-list"><div class="info-row"><span class="info-icon">🍽️</span><span>18:30〜 ホテルにて夕食（信州旬食材コース）</span></div></div><div class="card-desc">かたくりの湯で癒やされた後は、信州の旬食材をふんだんに使った贅沢コースディナー！</div></div></div></div>
+
+<div class="timeline-item item-food"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">🍳 朝食</span><span class="card-time">07:00</span></div><div class="card-title">ホテルにて朝食（プランに込み）🎁</div><div class="card-desc">飛騨の郷土料理が並ぶ朝食バイキング。しっかり食べて出発。</div></div></div></div>
+
+<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Hida-Takayama_Miyagawa_Morning_Market_%2815668520238%29.jpg/960px-Hida-Takayama_Miyagawa_Morning_Market_%2815668520238%29.jpg" alt="宮川朝市 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🍡 朝市</span><span class="card-time">08:00</span><a href="https://www.google.com/maps/search/?api=1&query=宮川朝市" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">飛騨高山 朝市（宮川朝市・陣屋前朝市）</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>開催：7:00〜12:00頃 ／ 滞在 約1時間</span></div><div class="info-row"><span class="info-icon">😋</span><span>みたらし団子、飛騨牛串焼き、旬の果物、赤かぶ漬け</span></div></div><div class="card-desc">宮川沿いの名物朝市。地元のおばあちゃんとの会話も楽しみのひとつ。お土産の下見にも最適。</div></div></div></div>
+
+<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">09:30</span><a href="https://www.google.com/maps/dir/?api=1&origin=飛騨高山&destination=大王わさび農場&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">高山 出発 ➔ 安曇野へ</div><div class="info-list"><div class="info-row"><span class="info-icon">🛤️</span><span>一般道：約1時間50分（R158・安房峠道路 経由 約90km）</span></div><div class="info-row"><span class="info-icon">💰</span><span>安房峠道路 790円</span></div></div><div class="card-desc">昨日と同じ道を逆走。北アルプスの絶景ドライブを再び。</div></div></div>
+
+<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Daio_Wasabi_Farm_Aerial_Photograph.jpg/960px-Daio_Wasabi_Farm_Aerial_Photograph.jpg" alt="大王わさび農場 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🌱 観光</span><span class="card-time">11:00</span><a href="https://www.google.com/maps/search/?api=1&query=大王わさび農場" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">大王わさび農場（散策・わさびソフト）</div><div class="info-list"><div class="info-row"><span class="info-icon">💰</span><span><b>入場無料</b>／わさびソフト 約400円</span></div><div class="info-row"><span class="info-icon">🕐</span><span>滞在：約1時間</span></div></div><div class="card-desc">日本最大級のわさび田。黒澤明監督の映画に登場した三連水車小屋と清流・蓼川の風景は必見。</div></div></div></div>
+
+<div class="timeline-item item-food"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">🍜 昼食</span><span class="card-time">12:30</span><a href="https://www.google.com/maps/search/?api=1&query=安曇野+手打ちそば" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">信州手打ち蕎麦ランチ（安曇野 or 白馬）</div>
+<div class="food-pick"><div class="food-pick-title">🍽️ ランチ候補</div>
+<div class="food-item"><span class="fname">安曇野で食べる</span><br><span class="fmeta">わさび農場周辺にそば処が点在。本わさびを自分で擦って食べられる店も。1,200〜1,800円／人</span></div>
+<div class="food-item"><span class="fname">白馬まで走ってから食べる</span><br><span class="fmeta">白馬村のそば店。到着が14時前後になるので、農場でソフトを食べて繋ぐのがコツ</span></div>
+</div>
+<div class="card-desc">北アルプスの伏流水で締めた蕎麦は格別。</div></div></div></div>
+
+<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">13:30</span><a href="https://www.google.com/maps/dir/?api=1&origin=大王わさび農場&destination=白馬岩岳マウンテンリゾート&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">安曇野 ➔ 白馬へ</div><div class="info-list"><div class="info-row"><span class="info-icon">🛤️</span><span>一般道：約1時間（R147・R148 約50km）</span></div></div><div class="card-desc">仁科三湖を横目に北上。青木湖あたりの車窓が美しい区間。</div></div></div>
+
+<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sirouma.JPG/960px-Sirouma.JPG" alt="白馬連峰 景観 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🏔️ 絶景カフェ</span><span class="card-time">14:30</span><a href="https://www.google.com/maps/search/?api=1&query=白馬マウンテンハーバー" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">白馬マウンテンハーバー（岩岳リゾート）</div><div class="info-list"><div class="info-row"><span class="info-icon">🚡</span><span>ゴンドラ往復：約2,000円／人（2名で約4,000円）※目安</span></div><div class="info-row"><span class="info-icon">☕</span><span>THE CITY BAKERY のパン＆コーヒー</span></div><div class="info-row"><span class="info-icon">🕐</span><span>滞在：約2時間</span></div></div><div class="card-desc">標高1,289mの絶景テラスから白馬三山を一望。<b>予算が厳しければここをカットして4,000円節約も可能</b>。</div></div></div></div>
+
+<div class="timeline-item item-hotel"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">♨️ 宿泊・夕食</span><span class="card-time">17:30</span><a href="https://www.google.com/maps/search/?api=1&query=ホテルステラベラ+白馬村神城" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">ホテル ステラベラ チェックイン</div><div class="info-list"><div class="info-row"><span class="info-icon">🎫</span><span>予約番号：IC1663796507（決済済 54,602円・夕朝食付）</span></div><div class="info-row"><span class="info-icon">⚠️</span><span><b>チェックイン 15:00〜18:00</b>（締切が早いので遅れ厳禁）</span></div><div class="info-row"><span class="info-icon">🍷</span><span>18:30〜 蓼科牛メイン×信州産食材のカジュアル・フレンチ 🎁</span></div><div class="info-row"><span class="info-icon">♨️</span><span>露天風呂は<b>貸切制</b>。到着時に時間を予約しておくとスムーズ</span></div><div class="info-row"><span class="info-icon">💴</span><span>現地払い：宿泊税 400円×2名 = 800円（入湯税は料金込み）</span></div></div><div class="card-desc">この旅で一番のごちそう。ゆっくり味わいましょう。</div></div></div></div>
+
 </div>
 </div>
 
+<!-- ============ DAY4 ============ -->
 <div id="day4" class="tab-content">
+<div class="alert"><b>⚠️ 最重要：万座プリンスは「素泊まり」</b><br>
+予約プランは<b>【バリューレート】室料のみ・1泊食事無</b>（23,452円決済済）。<b>夕食も朝食も付いていません。</b><br>
+万座温泉は山上の温泉地で外食店がほぼ無いため、以下のどちらかを選んでください。</div>
+<div class="alert info"><b>🚗 この日は全行程4時間が一般道</b><br>志賀草津高原ルートは標高2,000m超・急カーブ連続。白馬9:00発で草津12:30着の想定です。<br>※火山ガス規制により<b>夜間通行止め（17:00〜翌8:00）</b>の区間あり。時間内通過を厳守。</div>
 <div class="timeline">
-<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">09:00</span><a href="https://www.google.com/maps/dir/?api=1&origin=白馬村&destination=草津温泉&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">白馬 出発（志賀草津高原ルート経由）</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：車で約3時間</span></div></div><div class="card-desc">標高2,000m超の志賀草津高原ルートを駆け抜ける絶景スカイドライブ！</div></div></div>
-<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/2023.04.26_Yubatake_%28Kusatsu_Onsen%29.jpg/960px-2023.04.26_Yubatake_%28Kusatsu_Onsen%29.jpg" alt="草津温泉 湯畑 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">♨️ 観光・ランチ</span><span class="card-time">12:00</span><a href="https://www.google.com/maps/search/?api=1&query=草津温泉+湯畑" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">草津温泉 散策（湯畑、湯もみショー、上州豚丼）</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：約3.5時間</span></div></div><div class="card-desc">名物「湯畑」散策＆熱乃湯での「湯もみショー」観賞、名物上州豚丼ランチ！</div></div></div></div>
-<div class="timeline-item item-hotel"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Manza-prince.jpg/960px-Manza-prince.jpg" alt="万座温泉 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">♨️ 宿泊・ディナー</span><span class="card-time">15:30</span><a href="https://www.google.com/maps/search/?api=1&query=万座プリンスホテル" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">「万座プリンスホテル（万座高原ホテル）」チェックイン・露天風呂・星空鑑賞</div><div class="info-list"><div class="info-row"><span class="info-icon">🍽️</span><span>18:30〜 ホテルにてディナービュッフェ</span></div></div><div class="card-desc">標高1,800mの乳白色絶景露天風呂を堪能し、夜は満天の星空鑑賞＆バイキングディナー！</div></div></div></div>
+
+<div class="timeline-item item-food"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">🍳 朝食</span><span class="card-time">08:00</span></div><div class="card-title">ステラベラにて朝食（プランに込み）🎁</div><div class="card-desc">長距離運転の日なのでしっかり補給を。</div></div></div></div>
+
+<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">09:00</span><a href="https://www.google.com/maps/dir/?api=1&origin=白馬村&destination=草津温泉+湯畑&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">白馬 出発（志賀草津高原ルート経由）</div><div class="info-list"><div class="info-row"><span class="info-icon">🛤️</span><span>一般道：約3時間20分（約130km・全線一般道）</span></div><div class="info-row"><span class="info-icon">🏔️</span><span>渋峠（標高2,172m）は日本国道最高地点</span></div><div class="info-row"><span class="info-icon">⛽</span><span>山岳路に入る前に給油を済ませておくこと</span></div></div><div class="card-desc">白根山の火山景観と雲海の絶景ロード。休憩を挟みつつ余裕を持って。</div></div></div>
+
+<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/2023.04.26_Yubatake_%28Kusatsu_Onsen%29.jpg/960px-2023.04.26_Yubatake_%28Kusatsu_Onsen%29.jpg" alt="草津温泉 湯畑 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">♨️ 観光</span><span class="card-time">12:30</span><a href="https://www.google.com/maps/search/?api=1&query=草津温泉+湯畑" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">草津温泉 到着・湯畑周辺散策</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>滞在：約4.5時間（12:30〜17:00）</span></div><div class="info-row"><span class="info-icon">🎭</span><span>熱乃湯「湯もみショー」 約700円／人（2名で1,400円）</span></div><div class="info-row"><span class="info-icon">🍡</span><span>食べ歩き：温泉まんじゅう、揚げまんじゅう、温泉たまご</span></div></div><div class="card-desc">毎分4,000L以上湧く湯畑を中心に湯けむり漂う温泉街を散策。西の河原公園まで足を延ばすのもおすすめ。</div></div></div></div>
+
+<div class="timeline-item item-food"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">🍚 昼食</span><span class="card-time">13:00</span><a href="https://www.google.com/maps/search/?api=1&query=草津温泉+湯畑+ランチ" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">草津でランチ</div>
+<div class="food-pick"><div class="food-pick-title">🍽️ 草津ランチ候補</div>
+<div class="food-item"><span class="fname">いいやま亭（釜めし専門）</span> — <span class="fmeta">湯畑から徒歩4分</span><br><span class="fmeta">上州牛など群馬ブランド食材の釜めし約20種。人気の五目・まいたけ釜めし。<b>11:00〜釜めし終了次第閉店</b>なので早めに</span><br><a href="https://www.google.com/maps/search/?api=1&query=いいやま亭+草津温泉" target="_blank" rel="noopener">📍 地図で見る</a></div>
+<div class="food-item"><span class="fname">上州牛・上州もち豚の店</span><br><span class="fmeta">湯畑周辺に点在。上州豚丼や牛焼き定食。1,500〜2,500円／人</span></div>
+</div>
+</div></div></div>
+
+<div class="timeline-item item-food"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">🍖 夕食</span><span class="card-time">17:00</span><a href="https://www.google.com/maps/search/?api=1&query=草津温泉+夕食+居酒屋" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">夕食（素泊まりのため必須手配）</div>
+<div class="food-pick"><div class="food-pick-title">🍽️ 案A：草津で早めの夕食 ＜おすすめ・予算内＞</div>
+<div class="food-item"><span class="fname">湯畑周辺の和食・居酒屋</span> — <span class="fmeta">予算 2,500〜3,500円／人（2名 約5,000〜7,000円）</span><br><span class="fmeta">上州牛・高原野菜・ギンヒカリ（最高級ニジマス）など地元食材の店が集まる。ディナー営業は17:30〜23:00の店が多い。<b>17:00〜18:00に食べて18:30に万座着</b>が理想的な流れ</span><br><a href="https://www.google.com/maps/search/?api=1&query=草津温泉+湯畑+居酒屋+夕食" target="_blank" rel="noopener">📍 地図で見る</a></div>
+<div class="food-item"><span class="fname">⚠️ 注意</span><br><span class="fmeta">草津は21〜22時閉店の店が多く、20時以降は混雑。<b>早めの時間が確実</b></span></div>
+</div>
+<div class="food-pick" style="background:#eff6ff;border-color:#bfdbfe;"><div class="food-pick-title" style="color:#1e40af;">🍽️ 案B：万座プリンス館内で食べる ＜楽だが割高＞</div>
+<div class="food-item" style="border-color:#bfdbfe;color:#1e3a8a;"><span class="fname" style="color:#1e3a8a;">レストラン しゃくなげ（ブッフェ）</span> — <span class="fmeta" style="color:#1e40af;">7,300円／人（2名 14,600円）</span><br><span class="fmeta" style="color:#1e40af;">ボイル蟹・ローストビーフ入りの和洋中ブッフェ。90分制。<b>案Aより約8,000円高くなり予算オーバーの原因に</b></span></div>
+<div class="food-item" style="border-color:#bfdbfe;color:#1e3a8a;"><span class="fname" style="color:#1e3a8a;">和食「松風」／中華「錦」</span><br><span class="fmeta" style="color:#1e40af;">館内2階・3階。松風はディナー18:00〜20:00のコース。錦は万座唯一の中華専門店。<b>いずれも要事前予約（0279-97-1111）</b></span></div>
+</div>
+<div class="card-desc">予算試算では<b>案A（草津で夕食・2名6,000円）</b>で計算しています。</div></div></div></div>
+
+<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">18:00</span><a href="https://www.google.com/maps/dir/?api=1&origin=草津温泉&destination=万座プリンスホテル&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">草津 ➔ 万座温泉</div><div class="info-list"><div class="info-row"><span class="info-icon">🛤️</span><span>一般道：約40分（万座ハイウェー経由 約20km）</span></div><div class="info-row"><span class="info-icon">💰</span><span>万座ハイウェー 通行料 約1,070円</span></div></div><div class="card-desc">日没前に到着したい区間。山道なので暗くなる前の通過が安心。</div></div></div>
+
+<div class="timeline-item item-hotel"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Manza-prince.jpg/960px-Manza-prince.jpg" alt="万座温泉 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">♨️ 宿泊</span><span class="card-time">18:30</span><a href="https://www.google.com/maps/search/?api=1&query=万座プリンスホテル" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">万座プリンスホテル チェックイン</div><div class="info-list"><div class="info-row"><span class="info-icon">🎫</span><span>受付番号：6210659387（決済済 23,452円・<b>素泊まり</b>）</span></div><div class="info-row"><span class="info-icon">🛏️</span><span>本館ツインルームC 禁煙 19.2㎡</span></div><div class="info-row"><span class="info-icon">🅿️</span><span>駐車場 無料（屋外190台）</span></div><div class="info-row"><span class="info-icon">💴</span><span>現地払い：入湯税150円＋宿泊税200円 ×2名 = 700円</span></div><div class="info-row"><span class="info-icon">☎️</span><span>TEL 0279-97-1111（到着が18:00を大きく過ぎる場合は要連絡）</span></div></div><div class="card-desc">標高1,800mの乳白色にごり湯露天風呂。夜は空気が澄んで<b>満天の星空</b>が広がります。防寒着を忘れずに。</div></div></div></div>
+
 </div>
 </div>
 
+<!-- ============ DAY5 ============ -->
 <div id="day5" class="tab-content">
+<div class="alert"><b>⚠️ 朝食も付いていません</b><br>万座プリンスは素泊まりのため、朝食は①館内レストランで別料金、②前日に草津のコンビニで購入、のいずれか。<b>山上でコンビニは無い</b>ので、草津で買っておくのが確実＆節約になります。</div>
 <div class="timeline">
-<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">09:30</span><a href="https://www.google.com/maps/dir/?api=1&origin=万座プリンスホテル&destination=軽井沢駅&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">万座 出発（鬼押ハイウェイ経由）</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：車で約1.5時間</span></div></div><div class="card-desc">浅間山の溶岩景観を横目に避暑地軽井沢へ移動。</div></div></div>
-<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Old_Karuizawa_Ginza_2014-08-04_%2815063636420%29.jpg/960px-Old_Karuizawa_Ginza_2014-08-04_%2815063636420%29.jpg" alt="軽井沢 旧軽井沢銀座 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🌿/🛍️ 散策・買い物</span><span class="card-time">11:00</span><a href="https://www.google.com/maps/search/?api=1&query=旧軽井沢銀座通り" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">軽井沢 散策（旧軽井沢銀座またはハルニレテラス / ショッピング・ランチ）</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：約3.5時間</span></div></div><div class="card-desc">爽やかな高原リゾート散策＆カフェランチ、プリンスショッピングプラザでお買い物！</div></div></div></div>
-<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗/🏠 帰路</span><span class="card-time">14:30 ➔ 18:30</span><a href="https://www.google.com/maps/dir/?api=1&origin=軽井沢駅&destination=水戸市&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">軽井沢 出発 ➔ 18:30 水戸 帰着</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>所要時間：車で約4時間（碓氷軽井沢IC〜上信越道〜北関東道）</span></div></div><div class="card-desc">渋滞を回避して18:30に水戸へ無事帰着！お疲れ様でした✨</div></div></div></div>
+
+<div class="timeline-item item-food"><div class="card"><div class="card-content"><div class="card-meta"><span class="badge-cat">🍞 朝食</span><span class="card-time">08:00</span></div><div class="card-title">朝食（各自手配）</div><div class="info-list"><div class="info-row"><span class="info-icon">💡</span><span>前夜に草津で購入した軽食 → 約1,500円で済む</span></div><div class="info-row"><span class="info-icon">🍽️</span><span>館内レストランを利用する場合は別料金（要確認）</span></div></div><div class="card-desc">出発前にもう一度、朝の露天風呂に入るのがおすすめ。</div></div></div></div>
+
+<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🚗 移動</span><span class="card-time">09:30</span><a href="https://www.google.com/maps/dir/?api=1&origin=万座プリンスホテル&destination=旧軽井沢銀座&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">万座 出発（鬼押ハイウェー経由）</div><div class="info-list"><div class="info-row"><span class="info-icon">🛤️</span><span>一般道・有料道路：約1時間20分（約50km）</span></div><div class="info-row"><span class="info-icon">💰</span><span>鬼押ハイウェー 約830円</span></div><div class="info-row"><span class="info-icon">🌋</span><span>浅間山の溶岩景観（鬼押出し園）が車窓に</span></div></div><div class="card-desc">最終日は高原リゾートへ下っていくドライブ。</div></div></div>
+
+<div class="timeline-item item-sight"><div class="card"><div class="card-gallery-container"><div class="card-gallery"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Old_Karuizawa_Ginza_2014-08-04_%2815063636420%29.jpg/960px-Old_Karuizawa_Ginza_2014-08-04_%2815063636420%29.jpg" alt="旧軽井沢銀座 実物写真" loading="lazy"/></div></div><div class="card-content"><div class="card-meta"><span class="badge-cat">🌿 散策・買い物</span><span class="card-time">11:00</span><a href="https://www.google.com/maps/search/?api=1&query=旧軽井沢銀座通り" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">軽井沢 散策・ランチ・お土産</div><div class="info-list"><div class="info-row"><span class="info-icon">🕐</span><span>滞在：約3.5時間</span></div><div class="info-row"><span class="info-icon">🛍️</span><span>旧軽井沢銀座／ハルニレテラス／プリンスショッピングプラザ</span></div></div>
+<div class="food-pick"><div class="food-pick-title">🍽️ 軽井沢ランチ候補（予算 2,000円／人）</div>
+<div class="food-item"><span class="fname">旧軽井沢銀座エリア</span><br><span class="fmeta">ミカドコーヒーのモカソフト、腸詰屋のソーセージ、フランスベーカリーのパンなど食べ歩きも楽しい</span></div>
+<div class="food-item"><span class="fname">ハルニレテラス</span><br><span class="fmeta">星野エリアの川沿いテラス。落ち着いてランチしたいならこちら</span></div>
+</div>
+<div class="card-desc">最終日はお土産の総仕上げ。<b>お盆最終日は道路が混むので14:30出発を厳守</b>。</div></div></div></div>
+
+<div class="timeline-item item-move"><div class="move-card"><div class="card-meta"><span class="badge-cat">🏠 帰路</span><span class="card-time">14:30 ➔ 18:30</span><a href="https://www.google.com/maps/dir/?api=1&origin=軽井沢&destination=水戸市&travelmode=driving" target="_blank" rel="noopener" class="gmap-link">📍 Map</a></div><div class="card-title">軽井沢 出発 ➔ 18:30 水戸 帰着</div><div class="info-list"><div class="info-row"><span class="info-icon">🛣️</span><span>高速：約2時間50分（碓氷軽井沢IC〜上信越道〜北関東道 約230km）</span></div><div class="info-row"><span class="info-icon">⚠️</span><span>お盆Uターンラッシュ。渋滞を見込んで+1時間の余裕を</span></div></div><div class="card-desc">4泊5日、約960kmのドライブ旅お疲れさまでした✨</div></div></div></div>
+
 </div>
 </div>
 
+<!-- ============ 地図 ============ -->
 <div id="map" class="tab-content">
-<div id="main-map" style="height:480px;width:100%;border-radius:10px;border:1px solid #cbd5e1;"></div>
+<div class="map-filter">
+<button class="map-filter-btn active" id="mf-all" onclick="filterMap('all',this)">全部</button>
+<button class="map-filter-btn" onclick="filterMap(1,this)">8/10</button>
+<button class="map-filter-btn" onclick="filterMap(2,this)">8/11</button>
+<button class="map-filter-btn" onclick="filterMap(3,this)">8/12</button>
+<button class="map-filter-btn" onclick="filterMap(4,this)">8/13</button>
+<button class="map-filter-btn" onclick="filterMap(5,this)">8/14</button>
+</div>
+<div id="main-map" style="height:460px;width:100%;border-radius:10px;border:1px solid #cbd5e1;"></div>
+<div class="map-legend">
+<span><i style="background:#ef4444"></i>DAY1 8/10</span>
+<span><i style="background:#f59e0b"></i>DAY2 8/11</span>
+<span><i style="background:#10b981"></i>DAY3 8/12</span>
+<span><i style="background:#3b82f6"></i>DAY4 8/13</span>
+<span><i style="background:#8b5cf6"></i>DAY5 8/14</span>
+</div>
+<div style="font-size:10px;color:#64748b;font-weight:600;margin-top:8px;padding:0 4px;line-height:1.6;">
+💡「全部」表示ではピンをタップすると時刻・場所が出ます。日付を選ぶとその日のピンだけになり、時刻ラベルが常時表示されます。
+</div>
 </div>
 
+<!-- ============ 予算 ============ -->
+<div id="budget" class="tab-content">
+<div class="alert info"><b>ℹ️ 予約メールの実額をもとに算出</b><br>宿泊費は3件とも<b>オンライン決済済み</b>の確定金額です。それ以外は2名分の目安額。</div>
+
+<div class="budget-cat">
+<div class="budget-cat-head"><span>🏨 A. 宿泊費（決済済み）</span><span class="amt">108,360円</span></div>
+<div class="budget-line"><span>8/11 スパホテルアルピナ飛騨高山（朝食付）<span class="paid">決済済</span></span><span>30,306円</span></div>
+<div class="budget-line"><span>8/12 ホテルステラベラ（夕朝食付）<span class="paid">決済済</span></span><span>54,602円</span></div>
+<div class="budget-line"><span>8/13 万座プリンスホテル（素泊まり）<span class="paid">決済済</span></span><span>23,452円</span></div>
+<div class="budget-line" style="color:#64748b;font-size:10px;padding-top:6px;"><span>※8/10は沢渡で車中泊のため宿泊費ゼロ</span><span>—</span></div>
+</div>
+
+<div class="budget-cat">
+<div class="budget-cat-head"><span>💴 B. 現地払いの税金</span><span class="amt">2,200円</span></div>
+<div class="budget-line"><span>アルピナ 入湯税150＋宿泊税200 ×2名</span><span>700円</span></div>
+<div class="budget-line"><span>ステラベラ 宿泊税400 ×2名</span><span>800円</span></div>
+<div class="budget-line"><span>万座プリンス 入湯税150＋宿泊税200 ×2名</span><span>700円</span></div>
+</div>
+
+<div class="budget-cat">
+<div class="budget-cat-head"><span>🚗 C. 交通費</span><span class="amt">36,680円</span></div>
+<div class="budget-line"><span>高速 水戸➔塩尻北IC（約330km・ETC目安）</span><span>8,400円</span></div>
+<div class="budget-line"><span>高速 碓氷軽井沢IC➔水戸（約230km・ETC目安）</span><span>6,000円</span></div>
+<div class="budget-line"><span>安房峠道路 790円 ×2回（往路・復路）</span><span>1,580円</span></div>
+<div class="budget-line"><span>万座ハイウェー＋鬼押ハイウェー</span><span>1,900円</span></div>
+<div class="budget-line"><span>沢渡駐車場 2日分（0時で日付切替）</span><span>1,600円</span></div>
+<div class="budget-line"><span>上高地シャトルバス 往復3,000円 ×2名</span><span>6,000円</span></div>
+<div class="budget-line"><span>ガソリン 約960km（15km/L・175円/L換算）</span><span>11,200円</span></div>
+</div>
+
+<div class="budget-cat">
+<div class="budget-cat-head"><span>♨️ D. 温泉・観光</span><span class="amt">10,360円</span></div>
+<div class="budget-line"><span>信州健康ランド 入浴 1,980円 ×2名</span><span>3,960円</span></div>
+<div class="budget-line"><span>白馬岩岳ゴンドラ 往復 約2,000円 ×2名</span><span>4,000円</span></div>
+<div class="budget-line"><span>熱乃湯 湯もみショー 700円 ×2名</span><span>1,400円</span></div>
+<div class="budget-line"><span>わさびソフト・食べ歩き小計</span><span>1,000円</span></div>
+</div>
+
+<div class="budget-cat">
+<div class="budget-cat-head"><span>🍽️ E. 食事（宿の食事以外）</span><span class="amt">38,700円</span></div>
+<div class="budget-line"><span>8/10 夕食 横川SA 峠の釜めし</span><span>3,000円</span></div>
+<div class="budget-line"><span>8/11 朝食 コンビニ（車中泊）</span><span>1,200円</span></div>
+<div class="budget-line"><span>8/11 昼食 上高地</span><span>3,000円</span></div>
+<div class="budget-line"><span>8/11 夕食 <b>高山 飛騨牛</b>（丸明ベース）</span><span>10,000円</span></div>
+<div class="budget-line"><span>8/12 昼食 朝市食べ歩き＋信州そば</span><span>3,500円</span></div>
+<div class="budget-line"><span>8/13 昼食 草津 釜めし・豚丼</span><span>3,500円</span></div>
+<div class="budget-line"><span>8/13 夕食 <b>草津（素泊まり対応）</b></span><span>5,000円</span></div>
+<div class="budget-line"><span>8/14 朝食 万座（前日購入の軽食）</span><span>1,500円</span></div>
+<div class="budget-line"><span>8/14 昼食 軽井沢</span><span>4,000円</span></div>
+<div class="budget-line"><span>飲み物・おやつ（5日分）</span><span>4,000円</span></div>
+</div>
+
+<div class="budget-cat">
+<div class="budget-cat-head"><span>🎁 F. お土産・予備費</span><span class="amt">8,000円</span></div>
+<div class="budget-line"><span>お土産（高山の朝市・草津・軽井沢）／予備</span><span>8,000円</span></div>
+</div>
+
+<div class="budget-final">
+<div class="budget-final-row"><span>A 宿泊費</span><span>108,360円</span></div>
+<div class="budget-final-row"><span>B 現地税</span><span>2,200円</span></div>
+<div class="budget-final-row"><span>C 交通費</span><span>36,680円</span></div>
+<div class="budget-final-row"><span>D 温泉・観光</span><span>10,360円</span></div>
+<div class="budget-final-row"><span>E 食事</span><span>38,700円</span></div>
+<div class="budget-final-row"><span>F お土産・予備</span><span>8,000円</span></div>
+<div class="budget-final-row big"><span>支出合計（見込み）</span><span>204,300円</span></div>
+<div class="budget-final-row"><span>PayPayポイント還元（3,030＋5,460）</span><span>− 8,490円</span></div>
+<div class="budget-final-row big ok"><span>実質負担</span><span>195,810円</span></div>
+<div class="budget-final-row ok" style="font-size:11px;"><span>予算 200,000円との差</span><span>+4,190円 の余裕 ✓</span></div>
+</div>
+
+<div class="summary-card">
+<div class="summary-title">✂️ さらに削りたい場合の候補</div>
+<div class="saving">
+現金支出だけで20万円以内に収めたい場合は、以下から選べば <b>最大 9,000円</b> 圧縮できます。<br><br>
+<b>① 白馬岩岳ゴンドラをパス　−4,000円</b><br>
+　白馬の絶景は道路沿いや宿からでも十分楽しめます<br>
+<b>② 上高地の昼食をおにぎり持参に　−2,000円</b><br>
+　前夜のコンビニで購入。梓川沿いで食べれば景色は最高<br>
+<b>③ 高山の夕食を丸明のリーズナブルなコースに　−3,000円</b><br>
+　精肉店直営なので価格を抑えても質は十分<br><br>
+すべて実行すると <b>195,300円</b>（実質 186,810円）まで下がります。
+</div>
+</div>
+
+<div class="summary-card">
+<div class="summary-title">📌 見積もりの前提</div>
+<div style="font-size:11px;color:#475569;font-weight:600;line-height:1.8;">
+・すべて<b>大人2名分の合計額</b>です<br>
+・高速料金はETC通常料金の概算。<b>お盆期間は休日割引の適用外</b>となる場合があります<br>
+・ガソリンは燃費15km/L・175円/Lで試算。実燃費や価格で前後します<br>
+・ゴンドラ料金など施設利用料は目安です。最新料金は各公式サイトでご確認を<br>
+・PayPayポイントは付与日が後日のため、当日の持ち出しは204,300円分を想定してください
+</div>
+</div>
+</div>
+
+<!-- ============ 準備 ============ -->
 <div id="prep" class="tab-content">
 <div class="summary-card">
-<div class="summary-title">💰 旅の概要・宿泊まとめ</div>
-<div class="summary-row"><span>🏨 8/10 DAY 1</span><span>スパホテルアルピナ飛騨高山（高山）</span></div>
-<div class="summary-row"><span>🏨 8/11 DAY 2</span><span>スパホテルアルピナ飛騨高山（高山）</span></div>
-<div class="summary-row"><span>🏨 8/12 DAY 3</span><span>ホテルステラベラ（白馬神城）</span></div>
-<div class="summary-row"><span>🏨 8/13 DAY 4</span><span>万座プリンスホテル（万座温泉）</span></div>
+<div class="summary-title">🏨 宿泊まとめ・予約番号</div>
+<div class="summary-row"><span>🚙 8/10 DAY1</span><span>沢渡駐車場で車中泊</span></div>
+<div class="summary-row"><span>♨️ 8/11 DAY2</span><span>スパホテルアルピナ飛騨高山</span></div>
+<div class="summary-row" style="font-size:10px;color:#64748b;"><span>　予約番号</span><span>IN1663699129（朝食付）</span></div>
+<div class="summary-row"><span>♨️ 8/12 DAY3</span><span>ホテル ステラベラ</span></div>
+<div class="summary-row" style="font-size:10px;color:#64748b;"><span>　予約番号</span><span>IC1663796507（夕朝食付）</span></div>
+<div class="summary-row"><span>♨️ 8/13 DAY4</span><span>万座プリンスホテル</span></div>
+<div class="summary-row" style="font-size:10px;color:#64748b;"><span>　受付番号</span><span>6210659387（素泊まり）</span></div>
 </div>
-<div class="checklist">
-<h3 style="font-size: 14px; margin-bottom: 10px; color: #0f172a;">📋 持ち物・事前準備チェックリスト</h3>
-<label class="checklist-item"><input type="checkbox"> 歩きやすいスニーカー/トレッキングシューズ（上高地散策用）</label>
-<label class="checklist-item"><input type="checkbox"> 防寒用羽織もの（万座温泉・標高の高いエリア用）</label>
-<label class="checklist-item"><input type="checkbox"> ETCカード・運転免許証・車充電器</label>
+
+<div class="summary-card">
+<div class="summary-title">☎️ 連絡先</div>
+<div class="summary-row"><span>スパホテルアルピナ飛騨高山</span><span>0577-33-0033</span></div>
+<div class="summary-row"><span>ホテル ステラベラ</span><span>0261-75-2244</span></div>
+<div class="summary-row"><span>万座プリンスホテル</span><span>0279-97-1111</span></div>
+</div>
+
+<div class="checklist" style="margin-bottom:12px;">
+<h3 style="font-size:14px;margin-bottom:10px;color:#0f172a;">🚙 車中泊グッズ（DAY1 必須）</h3>
+<label class="checklist-item"><input type="checkbox"> 寝袋 or 毛布（沢渡は標高1,000m・夜は15℃前後）</label>
+<label class="checklist-item"><input type="checkbox"> 車中泊用マット／エアピロー</label>
+<label class="checklist-item"><input type="checkbox"> サンシェード・カーテン（目隠し）</label>
+<label class="checklist-item"><input type="checkbox"> 携帯トイレ（万一の備え）</label>
+<label class="checklist-item"><input type="checkbox"> モバイルバッテリー・車載充電器</label>
+<label class="checklist-item"><input type="checkbox"> ランタン or ヘッドライト</label>
+<label class="checklist-item"><input type="checkbox"> <b>翌朝の朝食（コンビニで前夜に購入）</b></label>
+<label class="checklist-item"><input type="checkbox"> 信州健康ランド用のタオル（館内貸出もあり）</label>
+</div>
+
+<div class="checklist" style="margin-bottom:12px;">
+<h3 style="font-size:14px;margin-bottom:10px;color:#0f172a;">📋 持ち物・事前準備</h3>
+<label class="checklist-item"><input type="checkbox"> 歩きやすいスニーカー／トレッキングシューズ（上高地）</label>
+<label class="checklist-item"><input type="checkbox"> 防寒用の羽織もの（万座1,800m・上高地の早朝）</label>
+<label class="checklist-item"><input type="checkbox"> ETCカード・運転免許証</label>
 <label class="checklist-item"><input type="checkbox"> タオル・アメニティ・常備薬・スキンケア</label>
-<label class="checklist-item"><input type="checkbox"> レインウェア・折りたたみ傘</label>
+<label class="checklist-item"><input type="checkbox"> レインウェア・折りたたみ傘（山の天気は変わりやすい）</label>
+<label class="checklist-item"><input type="checkbox"> 日焼け止め・虫除け・サングラス</label>
+<label class="checklist-item"><input type="checkbox"> 現金（湯畑周辺の小店・駐車場用に1万円程度）</label>
+</div>
+
+<div class="checklist">
+<h3 style="font-size:14px;margin-bottom:10px;color:#0f172a;">📞 出発前にやること</h3>
+<label class="checklist-item"><input type="checkbox"> <b>8/11 高山の飛騨牛店を予約</b>（お盆は満席になりやすい）</label>
+<label class="checklist-item"><input type="checkbox"> <b>8/13 草津の夕食店を確認</b>（万座は素泊まり）</label>
+<label class="checklist-item"><input type="checkbox"> 万座で館内ディナーにする場合は 0279-97-1111 に予約</label>
+<label class="checklist-item"><input type="checkbox"> 志賀草津高原ルートの通行規制を確認（火山・夜間規制）</label>
+<label class="checklist-item"><input type="checkbox"> 上高地シャトルバスの始発時刻を最終確認</label>
+<label class="checklist-item"><input type="checkbox"> 車の点検（タイヤ空気圧・オイル・ウォッシャー液）</label>
+<label class="checklist-item"><input type="checkbox"> 出発前に満タン給油</label>
 </div>
 </div>
 
 </div>
 <script>
-let mainMap;
-let mainMapInited=false;
-let mainMapMarkers=[];
+var mainMap;
+var mainMapInited=false;
+var markerObjs=[];
+var routeLines={};
+var allRouteLine=null;
+
+var dayColors={1:'#ef4444',2:'#f59e0b',3:'#10b981',4:'#3b82f6',5:'#8b5cf6'};
+
+var mapStops=[
+  {day:1,lat:36.3658,lng:140.4713,time:"8/10 16:00",place:"水戸 出発",icon:"🏠"},
+  {day:1,lat:36.3283,lng:138.7397,time:"8/10 18:30",place:"横川SA 夕食",icon:"🍱"},
+  {day:1,lat:36.1327,lng:137.9494,time:"8/10 21:30",place:"信州健康ランド 入浴",icon:"🛁"},
+  {day:1,lat:36.1896,lng:137.6383,time:"8/10 23:45",place:"沢渡駐車場 車中泊",icon:"🚙"},
+
+  {day:2,lat:36.2222,lng:137.6297,time:"8/11 06:30",place:"上高地 大正池",icon:"🌲"},
+  {day:2,lat:36.2513,lng:137.6383,time:"8/11 09:30",place:"上高地 河童橋",icon:"🌉"},
+  {day:2,lat:36.1406,lng:137.2494,time:"8/11 15:00",place:"スパホテルアルピナ",icon:"♨️"},
+  {day:2,lat:36.1414,lng:137.2586,time:"8/11 15:30",place:"高山 古い町並み",icon:"🍡"},
+  {day:2,lat:36.1400,lng:137.2530,time:"8/11 19:30",place:"高山 飛騨牛ディナー",icon:"🥩"},
+
+  {day:3,lat:36.1443,lng:137.2568,time:"8/12 08:00",place:"宮川朝市",icon:"🍡"},
+  {day:3,lat:36.3372,lng:137.9106,time:"8/12 11:00",place:"大王わさび農場",icon:"🌱"},
+  {day:3,lat:36.7083,lng:137.8489,time:"8/12 14:30",place:"白馬マウンテンハーバー",icon:"🏔️"},
+  {day:3,lat:36.6528,lng:137.8617,time:"8/12 17:30",place:"ホテル ステラベラ",icon:"♨️"},
+
+  {day:4,lat:36.6222,lng:138.5953,time:"8/13 12:30",place:"草津温泉 湯畑",icon:"♨️"},
+  {day:4,lat:36.6218,lng:138.5941,time:"8/13 17:00",place:"草津 夕食",icon:"🍖"},
+  {day:4,lat:36.6858,lng:138.4986,time:"8/13 18:30",place:"万座プリンスホテル",icon:"♨️"},
+
+  {day:5,lat:36.3563,lng:138.6363,time:"8/14 11:00",place:"軽井沢 散策",icon:"🌿"},
+  {day:5,lat:36.3658,lng:140.4713,time:"8/14 18:30",place:"水戸 帰着",icon:"🏠"}
+];
 
 function switchTab(tabId,btn){
-  document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(function(el){el.classList.remove('active');});
+  document.querySelectorAll('.nav-btn').forEach(function(el){el.classList.remove('active');});
   document.getElementById(tabId).classList.add('active');
   if(btn)btn.classList.add('active');
   if(tabId==='map'){
@@ -237,49 +584,95 @@ function switchTab(tabId,btn){
         initMainMap();
       }else if(mainMap){
         mainMap.invalidateSize();
-        if(mainMapMarkers.length>0){
-          var group=new L.featureGroup(mainMapMarkers);
-          mainMap.fitBounds(group.getBounds().pad(0.15));
-        }
+        fitToVisible();
       }
     },100);
   }
 }
 
-var mapStops=[
-  {lat:36.3420,lng:138.9800,time:"8/10 18:30",place:"横川SA",icon:"🍱"},
-  {lat:36.1420,lng:137.2510,time:"8/10 21:00",place:"スパホテルアルピナ飛騨高山",icon:"♨️"},
-  {lat:36.2485,lng:137.6360,time:"8/11 08:30",place:"上高地（大正池・河童橋）",icon:"🌲"},
-  {lat:36.1400,lng:137.2580,time:"8/11 13:30",place:"飛騨高山 古い町並み",icon:"🍡"},
-  {lat:36.1428,lng:137.2515,time:"8/11 17:00",place:"ホテル帰着・温泉",icon:"♨️"},
-  {lat:36.1408,lng:137.2528,time:"8/11 18:30",place:"高山市内 夕食（飛騨牛焼肉）",icon:"🍣"},
-  {lat:36.1447,lng:137.2543,time:"8/12 08:15",place:"宮川朝市",icon:"🍡"},
-  {lat:36.3350,lng:137.9120,time:"8/12 11:00",place:"大王わさび農場",icon:"🌲"},
-  {lat:36.6980,lng:137.8480,time:"8/12 13:00",place:"白馬 到着・信州蕎麦ランチ",icon:"🍣"},
-  {lat:36.7110,lng:137.8630,time:"8/12 14:30",place:"白馬マウンテンハーバー",icon:"🏔️"},
-  {lat:36.6740,lng:137.8420,time:"8/12 16:30",place:"ホテルステラベラ",icon:"♨️"},
-  {lat:36.6180,lng:138.5960,time:"8/13 12:00",place:"草津温泉 湯畑",icon:"♨️"},
-  {lat:36.6320,lng:138.5280,time:"8/13 15:30",place:"万座プリンスホテル",icon:"♨️"},
-  {lat:36.3420,lng:138.6360,time:"8/14 11:00",place:"軽井沢 散策",icon:"🌿"}
-];
+function makeIcon(color,emoji){
+  return L.divIcon({
+    className:'pin-icon',
+    html:'<div class="pin-dot" style="background:'+color+'">'+emoji+'</div>',
+    iconSize:[26,26],
+    iconAnchor:[13,13],
+    popupAnchor:[0,-14],
+    tooltipAnchor:[0,-14]
+  });
+}
 
 function initMainMap(){
   mainMapInited=true;
-  mainMap=L.map('main-map',{zoomControl:true}).setView([36.30,137.90],8);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'}).addTo(mainMap);
+  mainMap=L.map('main-map',{zoomControl:true}).setView([36.40,138.30],8);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap',maxZoom:18}).addTo(mainMap);
 
   mapStops.forEach(function(s){
-    var m=L.marker([s.lat,s.lng])
-      .bindTooltip(s.time+" | "+s.place,{permanent:true,direction:"top",offset:[0,-10]})
-      .bindPopup("<b>"+s.time+"</b><br>"+s.icon+" "+s.place);
-    m.addTo(mainMap);
-    mainMapMarkers.push(m);
+    var m=L.marker([s.lat,s.lng],{icon:makeIcon(dayColors[s.day],s.icon)});
+    m.bindPopup('<b>'+s.time+'</b><br>'+s.icon+' '+s.place);
+    m._stop=s;
+    markerObjs.push(m);
   });
 
-  var routeLine=L.polyline(mapStops.map(function(s){return [s.lat,s.lng];}),{color:"#f59e0b",weight:3,opacity:0.7,dashArray:"6,6"}).addTo(mainMap);
+  for(var d=1;d<=5;d++){
+    var pts=mapStops.filter(function(s){return s.day===d;}).map(function(s){return [s.lat,s.lng];});
+    if(pts.length>1){
+      routeLines[d]=L.polyline(pts,{color:dayColors[d],weight:3.5,opacity:0.75,dashArray:'6,6'});
+    }
+  }
+  allRouteLine=L.polyline(mapStops.map(function(s){return [s.lat,s.lng];}),{color:'#94a3b8',weight:2.5,opacity:0.5,dashArray:'4,6'});
 
-  var group=new L.featureGroup(mainMapMarkers);
-  mainMap.fitBounds(group.getBounds().pad(0.15));
+  filterMap('all',document.getElementById('mf-all'));
+}
+
+function filterMap(day,btn){
+  if(!mainMapInited)return;
+  document.querySelectorAll('.map-filter-btn').forEach(function(b){
+    b.classList.remove('active');
+    b.style.background='';
+  });
+  if(btn){
+    btn.classList.add('active');
+    btn.style.background=(day==='all')?'#334155':dayColors[day];
+  }
+
+  markerObjs.forEach(function(m){
+    var s=m._stop;
+    var show=(day==='all')||(s.day===day);
+    m.unbindTooltip();
+    if(show){
+      m.bindTooltip(s.time.split(' ')[1]+' '+s.place,{
+        permanent:(day!=='all'),
+        direction:'top',
+        offset:[0,-4]
+      });
+      m.addTo(mainMap);
+    }else if(mainMap.hasLayer(m)){
+      mainMap.removeLayer(m);
+    }
+  });
+
+  if(mainMap.hasLayer(allRouteLine))mainMap.removeLayer(allRouteLine);
+  for(var d in routeLines){
+    if(mainMap.hasLayer(routeLines[d]))mainMap.removeLayer(routeLines[d]);
+  }
+  if(day==='all'){
+    allRouteLine.addTo(mainMap);
+  }else if(routeLines[day]){
+    routeLines[day].addTo(mainMap);
+  }
+
+  fitToVisible();
+}
+
+function fitToVisible(){
+  var visible=markerObjs.filter(function(m){return mainMap.hasLayer(m);});
+  if(visible.length===0)return;
+  if(visible.length===1){
+    mainMap.setView(visible[0].getLatLng(),12);
+    return;
+  }
+  var group=new L.featureGroup(visible);
+  mainMap.fitBounds(group.getBounds().pad(0.18));
 }
 </script>
 </body>
