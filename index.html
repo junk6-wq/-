@@ -130,6 +130,38 @@ nav button.util.sep-r{border-right:1px solid #e2e8f0;}
 .budget-final-row.ok{color:#86efac;}
 .saving{background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:10px 12px;font-size:11px;font-weight:600;color:#166534;line-height:1.7;}
 .saving b{color:#14532d;font-weight:800;}
+/* ===== 天気（Open-Meteoから開くたびに自動取得） ===== */
+.wx-day{background:#fff;border:1px solid #cbd5e1;border-radius:10px;padding:11px 13px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,0.03);}
+.wx-day-head{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap;}
+.wx-day-badge{font-size:11px;font-weight:800;color:#fff;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.wx-day-title{font-size:12px;font-weight:800;color:#0f172a;}
+.wx-verdict{font-size:10px;font-weight:800;padding:3px 9px;border-radius:4px;white-space:nowrap;margin-left:auto;}
+.wx-v-ok{background:#dcfce7;color:#166534;}
+.wx-v-warn{background:#fef3c7;color:#92400e;}
+.wx-v-bad{background:#fee2e2;color:#991b1b;}
+.wx-spot{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px dashed #f1f5f9;}
+.wx-spot:last-child{border-bottom:none;}
+.wx-ico{font-size:21px;width:27px;text-align:center;flex-shrink:0;line-height:1.1;}
+.wx-main{flex:1;min-width:0;}
+.wx-name{font-size:12px;font-weight:800;color:#0f172a;}
+.wx-name .wx-hours{color:#94a3b8;font-weight:700;font-size:10px;margin-left:5px;}
+.wx-desc{font-size:10px;font-weight:600;color:#475569;margin-top:2px;}
+.wx-nums{text-align:right;flex-shrink:0;}
+.wx-temp{font-size:12px;font-weight:800;color:#0f172a;white-space:nowrap;}
+.wx-pop{font-size:10px;font-weight:800;white-space:nowrap;margin-top:1px;}
+.wx-pop.p-hi{color:#b91c1c;}
+.wx-pop.p-mid{color:#b45309;}
+.wx-pop.p-lo{color:#059669;}
+.wx-foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:10px;font-weight:600;color:#64748b;margin-bottom:10px;padding:0 4px;}
+.wx-reload{background:#fff;border:1px solid #cbd5e1;border-radius:6px;padding:4px 10px;font-size:10px;font-weight:800;color:#334155;cursor:pointer;}
+.wx-reload:hover{background:#f1f5f9;}
+/* 各日程タブの先頭に出る当日サマリー */
+.wx-inline{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #cbd5e1;border-left:4px solid #0ea5e9;border-radius:8px;padding:9px 11px;margin-bottom:10px;}
+.wx-inline .wx-ico{font-size:22px;}
+.wx-inline .wxi-txt{flex:1;min-width:0;font-size:11px;font-weight:700;color:#334155;line-height:1.5;}
+.wx-inline .wxi-txt b{color:#0f172a;font-weight:800;}
+.wx-inline.v-warn{border-left-color:#f59e0b;}
+.wx-inline.v-bad{border-left-color:#ef4444;}
 </style>
 </head>
 <body>
@@ -138,7 +170,8 @@ nav button.util.sep-r{border-right:1px solid #e2e8f0;}
 <p>2026.08.10 Mon - 08.14 Fri | 4泊5日（初日車中泊）大人2名 ドライブ旅</p>
 </header>
 <nav>
-<button class="nav-btn util sep-r active" onclick="switchTab('overview',this)">📊 概要</button>
+<button class="nav-btn util active" onclick="switchTab('overview',this)">📊 概要</button>
+<button class="nav-btn util sep-r" onclick="switchTab('weather',this)">🌦️ 天気</button>
 <button class="nav-btn day" style="--c:#ef4444;--tint:#fef2f2" onclick="switchTab('day1',this)">8/10 DAY1</button>
 <button class="nav-btn day" style="--c:#f59e0b;--tint:#fffbeb" onclick="switchTab('day2',this)">8/11 DAY2</button>
 <button class="nav-btn day" style="--c:#10b981;--tint:#f0fdf4" onclick="switchTab('day3',this)">8/12 DAY3</button>
@@ -155,6 +188,9 @@ nav button.util.sep-r{border-right:1px solid #e2e8f0;}
 <div class="route-strip">
 <span>🏠 水戸</span><span class="arrow">➔</span><span>🍱横川SA</span><span class="arrow">➔</span><span>🛁信州健康ランド</span><span class="arrow">➔</span><span>🚙沢渡(車中泊)</span><span class="arrow">➔</span><span>🌲上高地</span><span class="arrow">➔</span><span>♨️飛騨高山</span><span class="arrow">➔</span><span>🌱安曇野</span><span class="arrow">➔</span><span>🏔️白馬</span><span class="arrow">➔</span><span>♨️草津</span><span class="arrow">➔</span><span>♨️万座</span><span class="arrow">➔</span><span>🌿軽井沢</span><span class="arrow">➔</span><span>🏠水戸</span>
 </div>
+
+<div class="alert warn"><b>🌀 お盆は台風シーズンです</b><br>
+<b>「🌦️ 天気」タブ</b>に各日の予報を自動取得して表示しています（訪問地ごと・実際に外にいる時間帯だけを抜き出して判定）。<b>雨だったときの差し替えプランも同じタブ</b>にまとめてあるので、前夜と当日朝に開いてください。</div>
 
 <div class="alert warn"><b>🚨 出発前に電話確認すべきこと</b><br>
 ・<b>8/13（木）は眞すしの定休日</b>です。お盆の臨時営業を <b>0279-88-3078</b> に要確認 → 休みならDAY4は湯畑周辺の居酒屋へ<br>
@@ -234,8 +270,67 @@ nav button.util.sep-r{border-right:1px solid #e2e8f0;}
 </div>
 </div>
 
+<!-- ============ 天気 ============ -->
+<div id="weather" class="tab-content">
+
+<div class="alert warn"><b>🌀 お盆は台風シーズン・山の天気は変わります</b><br>
+下の予報は<b>このタブを開くたびに自動で最新を取得</b>します（気象データ：Open-Meteo）。ただし<b>通行止め・運休の最終判断は必ず公式情報で</b>確認してください。<br>
+<a href="https://www.jma.go.jp/bosai/map.html#contents=typhoon" target="_blank" rel="noopener" class="official-link">🌀 気象庁 台風情報</a>
+<a href="https://www.jartic.or.jp/" target="_blank" rel="noopener" class="official-link">🚧 道路交通情報</a></div>
+
+<div id="wx-status" class="alert info">☁️ 最新の天気予報を取得しています…</div>
+<div class="wx-foot"><span id="wx-updated"></span><button class="wx-reload" onclick="loadWeather(true)">🔄 再取得</button></div>
+<div id="wx-days"></div>
+
+<div class="summary-card">
+<div class="summary-title">☔ 雨だったときの差し替えプラン</div>
+
+<div class="food-pick"><div class="food-pick-title">🌲 DAY2 8/11 上高地 ＜判断は沢渡で 5:30＞</div>
+<div class="food-item"><span class="fname">小雨なら決行推奨</span><br><span class="fmeta">上高地は木道・砂利道が整備され、霧の梓川はむしろ幻想的。レインウェア（傘より合羽）で歩けます</span></div>
+<div class="food-item"><span class="fname">大雨・雷なら短縮</span><br><span class="fmeta">大正池で降りずバスターミナルまで乗り、<b>河童橋周辺1時間だけ</b>にして高山へ前倒し。増水時は梓川左岸の遊歩道に近づかない</span></div>
+<div class="food-item"><span class="fname">高山の屋内代替</span><br><span class="fmeta"><b>高山陣屋</b>（440円）、<b>飛騨高山まちの博物館</b>（無料）、<b>飛騨の里</b>。古い町並みは軒が深く小雨なら歩けます</span></div>
+</div>
+
+<div class="food-pick"><div class="food-pick-title">🏔️ DAY3 8/12 白馬岩岳 ＜当日朝に運行状況を確認＞</div>
+<div class="food-item"><span class="fname">ゴンドラは強風・雷で運休します</span><br><span class="fmeta">霧が濃いとマウンテンハーバーの展望はゼロ。<b>入場券5,800円が無駄になる</b>ので、朝の時点で霧・強風予報なら中止判断を（予算圧縮案①と同じ効果）</span><br><a href="https://iwatake-mountain-resort.com/" target="_blank" rel="noopener">🔗 白馬岩岳 公式で運行状況</a></div>
+<div class="food-item"><span class="fname">雨の日の代替</span><br><span class="fmeta">大王わさび農場を長め（水車小屋・洞窟あり）／<b>八方の湯</b>で温泉／ステラベラは<b>2食付なので早着しても損がない</b>のが強み</span></div>
+</div>
+
+<div class="food-pick"><div class="food-pick-title">🌋 DAY4 8/13 志賀草津高原ルート ＜最重要・判断は 8:30＞</div>
+<div class="food-item"><span class="fname">標高2,000m超の稜線道路です</span><br><span class="fmeta">濃霧で視界数十m・横風・路面凍結はないが滑りやすい。<b>大雨や雷では通行止めになることがあります</b>。火山ガス規制の<b>夜間通行止め（17:00〜翌8:00）</b>と併せて確認を</span></div>
+<div class="food-item"><span class="fname">通れない／視界が悪い場合の迂回</span><br><span class="fmeta">白馬 →（長野道・上信越道）→ <b>東部湯の丸IC または 碓氷軽井沢IC</b> → 国道144・146号 → 草津。高速代が+3,000円前後かかりますが<b>所要はほぼ同等</b>で、天候に左右されません。<b>当日Googleマップで実所要を確認</b>してください</span><br><a href="https://www.google.com/maps/dir/?api=1&origin=白馬村&destination=草津温泉+湯畑&travelmode=driving" target="_blank" rel="noopener">📍 現在の所要時間を見る</a></div>
+<div class="food-item"><span class="fname">草津は雨でも成立します</span><br><span class="fmeta">湯畑・熱乃湯の湯もみショー・大滝乃湯・御座之湯は屋内／屋根あり。<b>むしろ雨向きの目的地</b>なので、ここを削る必要はありません</span></div>
+<div class="food-item"><span class="fname">万座の注意</span><br><span class="fmeta">標高1,800m。<b>雷が鳴ると露天風呂は閉鎖</b>されます。星空も期待できないので、その場合は内湯でゆっくりを。<b>雨の日の夜は体感10℃台前半</b>まで下がるので防寒着を必ず</span></div>
+</div>
+
+<div class="food-pick"><div class="food-pick-title">🌿 DAY5 8/14 軽井沢 ＜雨なら屋根のある場所へ＞</div>
+<div class="food-item"><span class="fname">雨のときに削るもの</span><br><span class="fmeta"><b>雲場池</b>（遊歩道が滑る・景色も沈む）と<b>聖パウロ教会</b>は思い切ってカット。旧軽銀座はアーケードがありません</span></div>
+<div class="food-item"><span class="fname">屋根のある選択肢</span><br><span class="fmeta"><b>プリンスショッピングプラザ</b>（店内移動が中心・ICへの帰路上）／<b>軽井沢絵本の森美術館・ムーゼの森</b>（屋内）／<b>ハルニレテラス</b>は屋根付き通路あり</span></div>
+<div class="food-item"><span class="fname">帰路の渋滞に直結します</span><br><span class="fmeta">お盆Uターン＋雨は事故渋滞が増えます。<b>14:30発をさらに前倒し（13:30〜14:00）</b>する判断を、昼の時点で。上信越道の状況は道路交通情報で</span></div>
+</div>
+</div>
+
+<div class="summary-card">
+<div class="summary-title">🔗 当日チェックするリンク</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;">
+<a href="https://www.jma.go.jp/bosai/map.html#contents=typhoon" target="_blank" rel="noopener" class="official-link">🌀 気象庁 台風</a>
+<a href="https://www.jma.go.jp/bosai/warning/" target="_blank" rel="noopener" class="official-link">⚠️ 気象警報・注意報</a>
+<a href="https://www.jma.go.jp/bosai/nowc/" target="_blank" rel="noopener" class="official-link">🌧️ 雨雲レーダー</a>
+<a href="https://www.jartic.or.jp/" target="_blank" rel="noopener" class="official-link">🚧 道路交通情報</a>
+<a href="https://info.pref.nagano.lg.jp/road/" target="_blank" rel="noopener" class="official-link">🛣️ 長野県 道路規制</a>
+<a href="https://www.zeneki.pref.gunma.jp/" target="_blank" rel="noopener" class="official-link">🛣️ 群馬県 道路規制</a>
+<a href="https://www.kamikochi.or.jp/" target="_blank" rel="noopener" class="official-link">🌲 上高地 公式</a>
+<a href="https://iwatake-mountain-resort.com/" target="_blank" rel="noopener" class="official-link">🏔️ 白馬岩岳</a>
+</div>
+<div style="font-size:10px;color:#64748b;font-weight:600;margin-top:9px;line-height:1.6;">
+※予報は Open-Meteo（気象庁GSM/MSMを含むモデル）の自動取得値です。標高が高い地点は実際の体感と差が出ることがあります。<b>警報級の判断は必ず気象庁の情報で</b>。
+</div>
+</div>
+</div>
+
 <!-- ============ DAY1 ============ -->
 <div id="day1" class="tab-content">
+<div class="wx-inline" data-wxday="1"><span class="wx-ico">⏳</span><span class="wxi-txt">天気を読み込み中…</span></div>
 <div class="alert"><b>⚠️ DAY1は行程がタイト</b><br>
 水戸16:00発だと沢渡着は23:45頃、翌朝5:15起床で睡眠は約5時間。<br>
 <b>可能なら15:00発を推奨</b>（全体が1時間前倒しになり、睡眠6時間を確保できます）。<br>
@@ -271,6 +366,7 @@ nav button.util.sep-r{border-right:1px solid #e2e8f0;}
 
 <!-- ============ DAY2 ============ -->
 <div id="day2" class="tab-content">
+<div class="wx-inline" data-wxday="2"><span class="wx-ico">⏳</span><span class="wxi-txt">天気を読み込み中…</span></div>
 <div class="alert info"><b>ℹ️ 上高地はマイカー規制</b><br>沢渡に車を置き、シャトルバスかタクシーで入ります。<b>バス往復 3,000円／人</b>（2名で6,000円）。始発は6:00頃、繁忙期は増便あり。</div>
 <div class="timeline">
 
@@ -337,6 +433,7 @@ nav button.util.sep-r{border-right:1px solid #e2e8f0;}
 
 <!-- ============ DAY3 ============ -->
 <div id="day3" class="tab-content">
+<div class="wx-inline" data-wxday="3"><span class="wx-ico">⏳</span><span class="wxi-txt">天気を読み込み中…</span></div>
 <div class="alert info"><b>ℹ️ この日は食事の心配なし</b><br>朝食はアルピナ付き、夕食はステラベラの<b>蓼科牛メインのカジュアル・フレンチ</b>が付いています。手配が必要なのは昼食のみ。</div>
 <div class="timeline">
 
@@ -414,6 +511,7 @@ nav button.util.sep-r{border-right:1px solid #e2e8f0;}
 
 <!-- ============ DAY4 ============ -->
 <div id="day4" class="tab-content">
+<div class="wx-inline" data-wxday="4"><span class="wx-ico">⏳</span><span class="wxi-txt">天気を読み込み中…</span></div>
 <div class="alert"><b>⚠️ 最重要：万座プリンスは「素泊まり」</b><br>
 予約プランは<b>【バリューレート】室料のみ・1泊食事無</b>（23,452円決済済）。<b>夕食も朝食も付いていません。</b><br>
 万座温泉は山上の温泉地で外食店がほぼ無いため、以下のどちらかを選んでください。</div>
@@ -478,6 +576,7 @@ nav button.util.sep-r{border-right:1px solid #e2e8f0;}
 
 <!-- ============ DAY5 ============ -->
 <div id="day5" class="tab-content">
+<div class="wx-inline" data-wxday="5"><span class="wx-ico">⏳</span><span class="wxi-txt">天気を読み込み中…</span></div>
 <div class="alert"><b>⚠️ 朝食も付いていません</b><br>万座プリンスは素泊まりのため、朝食は①館内レストランで別料金、②前日に草津のコンビニで購入、のいずれか。<b>山上でコンビニは無い</b>ので、草津で買っておくのが確実＆節約になります。</div>
 <div class="timeline">
 
@@ -676,6 +775,9 @@ nav button.util.sep-r{border-right:1px solid #e2e8f0;}
 <label class="checklist-item"><input type="checkbox"> <b>8/13 草津の夕食店を確認</b>（万座は素泊まり）</label>
 <label class="checklist-item"><input type="checkbox"> 万座で館内ディナーにする場合は 0279-97-1111 に予約</label>
 <label class="checklist-item"><input type="checkbox"> 志賀草津高原ルートの通行規制を確認（火山・夜間規制）</label>
+<label class="checklist-item"><input type="checkbox"> <b>毎晩「🌦️ 天気」タブで翌日の予報を確認</b>（雨天プランも同タブに）</label>
+<label class="checklist-item"><input type="checkbox"> レインウェア（傘ではなく<b>上下セパレートの合羽</b>）を人数分</label>
+<label class="checklist-item"><input type="checkbox"> 濡れた靴の替え・防水の袋（上高地・岩岳用）</label>
 <label class="checklist-item"><input type="checkbox"> 上高地シャトルバスの始発時刻を最終確認</label>
 <label class="checklist-item"><input type="checkbox"> 車の点検（タイヤ空気圧・オイル・ウォッシャー液）</label>
 <label class="checklist-item"><input type="checkbox"> 出発前に満タン給油</label>
@@ -730,11 +832,190 @@ function galScroll(el){
   lab.querySelector('.num').textContent=(i+1)+' / '+imgs.length;
 }
 
+/* ================= 天気（Open-Meteo・APIキー不要／CORS可） =================
+   各日の「実際に外にいる時間帯」だけを切り出して評価する。
+   1日中の平均ではなく行動時間帯の雨量・降水確率で判定するのが要点。 */
+var wxSpots=[
+  {day:1,date:'2026-08-10',name:'水戸 出発〜横川SA',lat:36.3658,lng:140.4713,h:[15,20]},
+  {day:1,date:'2026-08-10',name:'沢渡 車中泊',      lat:36.1896,lng:137.6383,h:[22,23]},
+  {day:2,date:'2026-08-11',name:'上高地 トレッキング',lat:36.2513,lng:137.6383,h:[6,14],key:1},
+  {day:2,date:'2026-08-11',name:'高山 古い町並み',   lat:36.1406,lng:137.2494,h:[15,20]},
+  {day:3,date:'2026-08-12',name:'高山 宮川朝市',     lat:36.1443,lng:137.2568,h:[8,10]},
+  {day:3,date:'2026-08-12',name:'大王わさび農場',    lat:36.3372,lng:137.9106,h:[11,13]},
+  {day:3,date:'2026-08-12',name:'白馬岩岳',          lat:36.7083,lng:137.8489,h:[14,17],key:1},
+  {day:4,date:'2026-08-13',name:'志賀草津高原ルート',lat:36.6486,lng:138.5122,h:[10,12],key:1},
+  {day:4,date:'2026-08-13',name:'草津 湯畑',         lat:36.6222,lng:138.5953,h:[12,18]},
+  {day:4,date:'2026-08-13',name:'万座温泉',          lat:36.6858,lng:138.4986,h:[18,23]},
+  {day:5,date:'2026-08-14',name:'軽井沢 散策',       lat:36.3563,lng:138.6363,h:[10,15],key:1},
+  {day:5,date:'2026-08-14',name:'帰路 上信越道〜水戸',lat:36.3658,lng:140.4713,h:[15,19]}
+];
+
+var wxDayTitle={1:'水戸 ➔ 沢渡',2:'上高地 ➔ 高山',3:'高山 ➔ 安曇野 ➔ 白馬',4:'草津 ➔ 万座',5:'軽井沢 ➔ 水戸'};
+
+var wxCode={
+  0:['☀️','快晴'],1:['🌤️','晴れ'],2:['⛅','薄曇り'],3:['☁️','曇り'],
+  45:['🌫️','霧'],48:['🌫️','霧（着氷）'],
+  51:['🌦️','弱い霧雨'],53:['🌦️','霧雨'],55:['🌧️','強い霧雨'],
+  56:['🌧️','着氷性の霧雨'],57:['🌧️','着氷性の霧雨'],
+  61:['🌧️','弱い雨'],63:['🌧️','雨'],65:['🌧️','強い雨'],
+  66:['🌧️','着氷性の雨'],67:['🌧️','着氷性の雨'],
+  71:['🌨️','弱い雪'],73:['🌨️','雪'],75:['❄️','強い雪'],77:['❄️','霧雪'],
+  80:['🌦️','にわか雨'],81:['🌦️','強いにわか雨'],82:['⛈️','激しいにわか雨'],
+  85:['🌨️','にわか雪'],86:['🌨️','強いにわか雪'],
+  95:['⛈️','雷雨'],96:['⛈️','雹を伴う雷雨'],99:['⛈️','激しい雷雨']
+};
+function wxLook(c){return wxCode[c]||['❓','—'];}
+
+/* 行動時間帯の値から 0=良好 / 1=雨具 / 2=要判断 を返す。
+   降水確率だけで赤にすると「確率90%・雨量0.1mm」でも警告が出て役に立たないため、
+   赤は実際の雨量を伴う場合と雷のみに限定する。 */
+function wxScore(pr,pop,code){
+  if(pr>=5||code>=95||code===82||(pop>=80&&pr>=2))return 2;
+  if(pr>=0.5||pop>=50||code===45||code===48||(code>=51&&code<=67)||code>=80)return 1;
+  return 0;
+}
+var wxVerdictTxt=[['wx-v-ok','🟢 問題なし'],['wx-v-warn','🟡 雨具を用意'],['wx-v-bad','🔴 要判断']];
+
+function wxAgg(loc,spot){
+  var H=loc.hourly,t=[],pop=[],pr=0,code=0,ws=0,n=0;
+  for(var i=0;i<H.time.length;i++){
+    var ts=H.time[i];
+    if(ts.slice(0,10)!==spot.date)continue;
+    var hh=parseInt(ts.slice(11,13),10);
+    if(hh<spot.h[0]||hh>spot.h[1])continue;
+    n++;
+    if(H.temperature_2m[i]!=null)t.push(H.temperature_2m[i]);
+    if(H.precipitation_probability[i]!=null)pop.push(H.precipitation_probability[i]);
+    if(H.precipitation[i]!=null)pr+=H.precipitation[i];
+    if(H.weathercode[i]!=null&&H.weathercode[i]>code)code=H.weathercode[i];
+    if(H.windspeed_10m[i]!=null&&H.windspeed_10m[i]>ws)ws=H.windspeed_10m[i];
+  }
+  if(!n)return null;
+  return {
+    tmin:t.length?Math.min.apply(null,t):null,
+    tmax:t.length?Math.max.apply(null,t):null,
+    pop:pop.length?Math.max.apply(null,pop):0,
+    pr:Math.round(pr*10)/10,
+    code:code,wind:Math.round(ws)
+  };
+}
+
+function loadWeather(force){
+  if(window._wxLoaded&&!force)return;
+  window._wxLoaded=true;
+  var st=document.getElementById('wx-status');
+
+  /* 同じ座標は1回にまとめて問い合わせる */
+  var keys=[],idx={};
+  wxSpots.forEach(function(s){
+    var k=s.lat+','+s.lng;
+    if(idx[k]===undefined){idx[k]=keys.length;keys.push(s);}
+    s._i=idx[k];
+  });
+  var url='https://api.open-meteo.com/v1/forecast'
+    +'?latitude='+keys.map(function(s){return s.lat;}).join(',')
+    +'&longitude='+keys.map(function(s){return s.lng;}).join(',')
+    +'&hourly=temperature_2m,precipitation,precipitation_probability,weathercode,windspeed_10m'
+    +'&timezone=Asia%2FTokyo&forecast_days=16';
+
+  fetch(url).then(function(r){
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    return r.json();
+  }).then(function(js){
+    var locs=Array.isArray(js)?js:[js];
+    renderWeather(locs);
+    st.style.display='none';
+    var now=new Date();
+    document.getElementById('wx-updated').textContent=
+      '最終取得：'+(now.getMonth()+1)+'/'+now.getDate()+' '
+      +('0'+now.getHours()).slice(-2)+':'+('0'+now.getMinutes()).slice(-2);
+  }).catch(function(e){
+    window._wxLoaded=false;
+    st.className='alert warn';
+    st.innerHTML='<b>⚠️ 天気予報を取得できませんでした</b><br>電波状況を確認して「再取得」を押すか、'
+      +'<a href="https://tenki.jp/" target="_blank" rel="noopener">tenki.jp</a> ／ '
+      +'<a href="https://www.jma.go.jp/bosai/forecast/" target="_blank" rel="noopener">気象庁</a> で直接ご確認ください。<br>'
+      +'<span style="font-size:10px;">（'+e.message+'）</span>';
+    document.querySelectorAll('.wx-inline').forEach(function(el){
+      el.querySelector('.wx-ico').textContent='📡';
+      el.querySelector('.wxi-txt').innerHTML='天気を取得できませんでした。<a href="https://tenki.jp/" target="_blank" rel="noopener">tenki.jp で見る</a>';
+    });
+  });
+}
+
+function renderWeather(locs){
+  var box=document.getElementById('wx-days');
+  box.innerHTML='';
+  var today=new Date();
+  var todayStr=today.getFullYear()+'-'+('0'+(today.getMonth()+1)).slice(-2)+'-'+('0'+today.getDate()).slice(-2);
+
+  for(var d=1;d<=5;d++){
+    var spots=wxSpots.filter(function(s){return s.day===d;});
+    var rows='',worst=0,keyAgg=null,keySpot=null,any=false;
+
+    spots.forEach(function(s){
+      var a=wxAgg(locs[s._i],s);
+      if(!a){
+        rows+='<div class="wx-spot"><span class="wx-ico">—</span><div class="wx-main">'
+          +'<div class="wx-name">'+s.name+'</div>'
+          +'<div class="wx-desc">予報範囲外（16日先まで）</div></div></div>';
+        return;
+      }
+      any=true;
+      var sc=wxScore(a.pr,a.pop,a.code);
+      if(sc>worst)worst=sc;
+      if(s.key&&!keyAgg){keyAgg=a;keySpot=s;}
+      var lk=wxLook(a.code);
+      var pc=a.pop>=80?'p-hi':(a.pop>=50?'p-mid':'p-lo');
+      rows+='<div class="wx-spot">'
+        +'<span class="wx-ico">'+lk[0]+'</span>'
+        +'<div class="wx-main">'
+          +'<div class="wx-name">'+s.name+'<span class="wx-hours">'+s.h[0]+'〜'+s.h[1]+'時</span></div>'
+          +'<div class="wx-desc">'+lk[1]+'／雨量 '+a.pr.toFixed(1)+'mm'
+            +(a.wind>=20?'／<b style="color:#b91c1c;">風 '+a.wind+'km/h</b>':'／風 '+a.wind+'km/h')+'</div>'
+        +'</div>'
+        +'<div class="wx-nums">'
+          +'<div class="wx-temp">'+Math.round(a.tmax)+'° / '+Math.round(a.tmin)+'°</div>'
+          +'<div class="wx-pop '+pc+'">降水 '+a.pop+'%</div>'
+        +'</div>'
+      +'</div>';
+    });
+
+    if(!keyAgg&&any){var f=wxAgg(locs[spots[0]._i],spots[0]);keyAgg=f;keySpot=spots[0];}
+
+    var v=wxVerdictTxt[worst];
+    var dc={1:'#ef4444',2:'#f59e0b',3:'#10b981',4:'#3b82f6',5:'#8b5cf6'}[d];
+    var isToday=(spots[0].date===todayStr);
+    var el=document.createElement('div');
+    el.className='wx-day';
+    el.innerHTML='<div class="wx-day-head">'
+      +'<span class="wx-day-badge" style="background:'+dc+'">'+spots[0].date.slice(5).replace('-','/')+' DAY'+d+'</span>'
+      +'<span class="wx-day-title">'+wxDayTitle[d]+(isToday?' ・本日':'')+'</span>'
+      +'<span class="wx-verdict '+v[0]+'">'+v[1]+'</span>'
+      +'</div>'+rows;
+    box.appendChild(el);
+
+    /* 各日程タブ先頭のサマリーも同じデータで埋める */
+    var inl=document.querySelector('.wx-inline[data-wxday="'+d+'"]');
+    if(inl&&keyAgg){
+      var klk=wxLook(keyAgg.code);
+      inl.className='wx-inline'+(worst===2?' v-bad':(worst===1?' v-warn':''));
+      inl.querySelector('.wx-ico').textContent=klk[0];
+      inl.querySelector('.wxi-txt').innerHTML=
+        '<b>'+keySpot.name+'</b>（'+keySpot.h[0]+'〜'+keySpot.h[1]+'時）：'+klk[1]
+        +' <b>'+Math.round(keyAgg.tmax)+'°/'+Math.round(keyAgg.tmin)+'°</b>'
+        +'　降水確率 <b>'+keyAgg.pop+'%</b>・雨量 '+keyAgg.pr.toFixed(1)+'mm　'
+        +'<span class="wx-verdict '+v[0]+'" style="margin:0;display:inline-block;">'+v[1]+'</span>';
+    }
+  }
+}
+
 function switchTab(tabId,btn){
   document.querySelectorAll('.tab-content').forEach(function(el){el.classList.remove('active');});
   document.querySelectorAll('.nav-btn').forEach(function(el){el.classList.remove('active');});
   document.getElementById(tabId).classList.add('active');
   if(btn)btn.classList.add('active');
+  if(tabId==='weather')loadWeather(false);
   if(tabId==='map'){
     setTimeout(function(){
       if(!mainMapInited){
@@ -820,6 +1101,9 @@ function filterMap(day,btn){
 
   fitToVisible();
 }
+
+/* 各日程タブのサマリーも埋めたいので、天気タブを開かなくても起動時に一度取得する */
+loadWeather(false);
 
 function fitToVisible(){
   var visible=markerObjs.filter(function(m){return mainMap.hasLayer(m);});
