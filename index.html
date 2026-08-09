@@ -908,9 +908,24 @@ function wxAgg(loc,spot){
   };
 }
 
+var WX_AUTO_MS=30*60*1000;   /* 開いている間、30分ごとに勝手に取り直す */
+var WX_STALE_MS=10*60*1000;  /* 画面に戻ってきたとき、10分以上経っていれば取り直す */
+
+/* 「最終取得：◯分前」を出す。取得できていない間は何も出さない */
+function wxStamp(){
+  var el=document.getElementById('wx-updated');
+  if(!el)return;
+  if(!window._wxAt){el.textContent='';return;}
+  var d=new Date(window._wxAt),age=Math.floor((Date.now()-window._wxAt)/60000);
+  el.textContent='最終取得：'+(d.getMonth()+1)+'/'+d.getDate()+' '
+    +('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)
+    +'（'+(age<1?'たった今':age+'分前')+'・30分ごとに自動更新）';
+}
+
 function loadWeather(force){
+  if(window._wxBusy)return;                    /* 二重取得を防ぐ */
   if(window._wxLoaded&&!force)return;
-  window._wxLoaded=true;
+  window._wxBusy=true;
   var st=document.getElementById('wx-status');
 
   /* 同じ座標は1回にまとめて問い合わせる */
@@ -932,21 +947,30 @@ function loadWeather(force){
   }).then(function(js){
     var locs=Array.isArray(js)?js:[js];
     renderWeather(locs);
+    window._wxLoaded=true;
+    window._wxAt=Date.now();
+    window._wxBusy=false;
     st.style.display='none';
-    var now=new Date();
-    document.getElementById('wx-updated').textContent=
-      '最終取得：'+(now.getMonth()+1)+'/'+now.getDate()+' '
-      +('0'+now.getHours()).slice(-2)+':'+('0'+now.getMinutes()).slice(-2);
+    wxStamp();
   }).catch(function(e){
+    window._wxBusy=false;
+    /* 山間部は電波が切れる。自動更新の失敗で、すでに表示済みの予報を
+       消してしまうと逆に困るので、取得済みなら画面はそのまま残す。 */
+    if(window._wxAt){
+      var el=document.getElementById('wx-updated');
+      if(el)el.textContent='⚠️ 更新に失敗（表示中の予報は取得済みのもの）／「再取得」で再試行';
+      return;
+    }
     window._wxLoaded=false;
+    st.style.display='';
     st.className='alert warn';
     st.innerHTML='<b>⚠️ 天気予報を取得できませんでした</b><br>電波状況を確認して「再取得」を押すか、'
-      +'<a href="https://tenki.jp/" target="_blank" rel="noopener">tenki.jp</a> ／ '
+      +'<a href="https://weathernews.jp/onebox/typhoon/" target="_blank" rel="noopener">ウェザーニュース</a> ／ '
       +'<a href="https://www.jma.go.jp/bosai/forecast/" target="_blank" rel="noopener">気象庁</a> で直接ご確認ください。<br>'
       +'<span style="font-size:10px;">（'+e.message+'）</span>';
     document.querySelectorAll('.wx-inline').forEach(function(el){
       el.querySelector('.wx-ico').textContent='📡';
-      el.querySelector('.wxi-txt').innerHTML='天気を取得できませんでした。<a href="https://tenki.jp/" target="_blank" rel="noopener">tenki.jp で見る</a>';
+      el.querySelector('.wxi-txt').innerHTML='天気を取得できませんでした。<a href="https://weathernews.jp/onebox/typhoon/" target="_blank" rel="noopener">ウェザーニュースで見る</a>';
     });
   });
 }
@@ -959,7 +983,10 @@ function renderWeather(locs){
 
   for(var d=1;d<=5;d++){
     var spots=wxSpots.filter(function(s){return s.day===d;});
-    var rows='',worst=0,keyAgg=null,keySpot=null,any=false;
+    /* サマリーには「その日いちばん条件が悪い地点」を出す。
+       主目的地(key)の穏やかな数値の隣に🔴が並ぶと、その地点が危険だと誤読されるため。
+       同点なら主目的地を優先する。 */
+    var rows='',worst=0,keyAgg=null,keySpot=null,keyScore=-1,any=false;
 
     spots.forEach(function(s){
       var a=wxAgg(locs[s._i],s);
@@ -972,7 +999,9 @@ function renderWeather(locs){
       any=true;
       var sc=wxScore(a.pr,a.pop,a.code);
       if(sc>worst)worst=sc;
-      if(s.key&&!keyAgg){keyAgg=a;keySpot=s;}
+      if(sc>keyScore||(sc===keyScore&&s.key&&keySpot&&!keySpot.key)){
+        keyScore=sc;keyAgg=a;keySpot=s;
+      }
       var lk=wxLook(a.code);
       var pc=a.pop>=80?'p-hi':(a.pop>=50?'p-mid':'p-lo');
       rows+='<div class="wx-spot">'
@@ -1113,6 +1142,23 @@ function filterMap(day,btn){
 
 /* 各日程タブのサマリーも埋めたいので、天気タブを開かなくても起動時に一度取得する */
 loadWeather(false);
+
+/* --- 自動更新 ---
+   画面を見ていない間は動かさない（通信量とバッテリーの無駄なので）。
+   スマホは他アプリに切り替えるとタイマーが止まるため、
+   戻ってきたときに古ければ取り直す方を本命にしている。 */
+setInterval(function(){
+  if(!document.hidden)loadWeather(true);
+},WX_AUTO_MS);
+
+document.addEventListener('visibilitychange',function(){
+  if(document.hidden)return;
+  if(!window._wxAt||Date.now()-window._wxAt>WX_STALE_MS)loadWeather(true);
+  else wxStamp();
+});
+
+/* 「◯分前」の表示だけは1分ごとに更新する（通信は発生しない） */
+setInterval(wxStamp,60*1000);
 
 function fitToVisible(){
   var visible=markerObjs.filter(function(m){return mainMap.hasLayer(m);});
